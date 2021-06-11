@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>aspnet-Astronomyfi-BBB373B5-EF3F-4DBB-B8AA-7152CEC275BF</UserSecretsId>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.6" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.113" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.6" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.312" PrivateAssets="all">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Astronomyfi.Common\Astronomyfi.Common.csproj" />
+    <ProjectReference Include="..\..\Data\Astronomyfi.Data.Models\Astronomyfi.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\Astronomyfi.Data\Astronomyfi.Data.csproj" />
+    <ProjectReference Include="..\..\Services\Astronomyfi.Services.Data\Astronomyfi.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Services\Astronomyfi.Services.Mapping\Astronomyfi.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\Services\Astronomyfi.Services.Messaging\Astronomyfi.Services.Messaging.csproj" />
+    <ProjectReference Include="..\..\Services\Astronomyfi.Services\Astronomyfi.Services.csproj" />
+    <ProjectReference Include="..\Astronomyfi.Web.Infrastructure\Astronomyfi.Web.Infrastructure.csproj" />
+    <ProjectReference Include="..\Astronomyfi.Web.ViewModels\Astronomyfi.Web.ViewModels.csproj" />
+  </ItemGroup>
+</Project>
