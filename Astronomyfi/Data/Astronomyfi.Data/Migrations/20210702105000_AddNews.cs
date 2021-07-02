@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace Astronomyfi.Data.Migrations
+﻿namespace Astronomyfi.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddNews : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
