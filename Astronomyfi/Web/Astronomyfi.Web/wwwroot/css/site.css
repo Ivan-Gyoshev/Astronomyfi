@@ -13,7 +13,11 @@ a {
 }
 
 .navbar{
-    background: transparent;
+    background-color: black;
+}
+
+ul {
+    list-style-type: none;
 }
 
 .btn-primary {
@@ -81,3 +85,49 @@ body {
     line-height: 60px; /* Vertically center the text there */
 }
 
+body {
+    font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.svcs-container {
+    margin-top: 60px;
+}
+
+.service-icon {
+    text-align: center;
+    height: 176px;
+}
+
+    .service-icon img {
+        display: inline-block;
+        max-width: 180px;
+        height: 176px;
+        vertical-align: middle;
+        padding: 20px 0;
+    }
+
+h3 {
+    font-size: 20px;
+    margin: 35px 0 25px;
+    font-weight: 800;
+    color: #3d3d3d;
+    text-transform: uppercase;
+}
+
+.hoverServices:hover {
+    background-color: #f2f2f2;
+}
+
+@media (min-width: 978px) {
+    .services-box {
+        margin-right: 0;
+        border: 1px solid #e5e5e5;
+        border-left: 0;
+        border-top: 0;
+        height: 515px;
+    }
+
+        .services-box.last {
+            border-right: 0;
+        }
+}

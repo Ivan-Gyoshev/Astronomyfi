@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@this.ViewData["Title"] - @GlobalConstants.SystemName</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
-<body style="background-image: url('assets/img/cosmos.jpg')">
+<body>
     <header>
-        <nav style="background-color: rgb(1,0,18);" class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+        <nav  style="background-image: url('assets/img/background.jpg')" class="navbar navbar-expand-sm navbar-dark border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+                <a class="navbar-brand font-weight-bolder" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,19 +21,21 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Settings" asp-action="Index">Settings</a>
+                            <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="" asp-action="">Forum</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="" asp-action="">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="" asp-action="">Images</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="" asp-action="">Chat</a>
                         </li>
                     </ul>
-                    <form class="d-flex search-box">
-                        <input class="form-control me-sm-2" type="text" placeholder="Search">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                    </form>
                 </div>
             </div>
         </nav>
@@ -46,9 +48,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-light bg-dark">
+    <footer  style="background-image: url('assets/img/background.jpg')" class="border-top footer text-light">
         <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a class="text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName
         </div>
     </footer>
 
