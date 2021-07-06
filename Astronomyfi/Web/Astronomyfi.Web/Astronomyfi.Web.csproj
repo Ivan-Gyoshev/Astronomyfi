@@ -40,4 +40,8 @@
     <ProjectReference Include="..\Astronomyfi.Web.Infrastructure\Astronomyfi.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\Astronomyfi.Web.ViewModels\Astronomyfi.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Forum\" />
+  </ItemGroup>
 </Project>
