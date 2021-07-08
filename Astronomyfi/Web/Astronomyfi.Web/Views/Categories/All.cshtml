@@ -1,16 +1,9 @@
-﻿@{
+﻿@model List<ListCategoriesViewModel>
+@{
     this.ViewData["Title"] = "Categories";
 }
 
 <div class="container" style="background-image: url('assets/img/stars.jpg')">
-    <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-3">
-            <form class="" asp-area="" asp-controller="Categories" asp-action="Add">
-                <button type="submit" class="btn-outline-primary form-control nav-link btn btn-light text-dark font-weight-bold">Create New Category</button>
-            </form>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12 text-center">
             <img class="img-fluid text-center" alt="Photo" src="@Url.Content("~/assets/img/categories-image.png")" />
@@ -18,38 +11,29 @@
         </div>
         <div class="col-sm-1"></div>
     </div>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-3">
+            <form class="" asp-area="" asp-controller="Categories" asp-action="Add">
+                <button type="submit" class="btn-outline-dark form-control nav-link btn btn-light text-ligh font-weight-bold">Create New Category</button>
+            </form>
+        </div>
+    </div>
     <div class="container category">
         <div class="row">
-            <div class="col-md">
-                <div class="card border-dark" style="width: 18rem;">
-                    <img src="https://www.esa.int/var/esa/storage/images/esa_multimedia/videos/2013/11/guide_to_our_galaxy/13409760-3-eng-GB/Guide_to_our_Galaxy_pillars.png" alt="..." class="img-thumbnail">
-                    <div class="card-body">
-                        <h5 class="card-title">Galaxies</h5>
-                        <p class="card-text">In this section you will find discussions about Galaxies and related Topics!</p>
-                        <a asp-controller="Forum" asp-action="" class="btn btn-outline-dark">Proceed to Galaxy Page</a>
+            @foreach (var category in Model)
+            {
+                <div class="col-md">
+                    <div class="card border-dark" style="width: 18rem;">
+                        <img src="@category.ImageUrl" alt="..." class="img-thumbnail">
+                        <div class="card-body">
+                            <h5 class="card-title">@category.Name</h5>
+                            <p class="card-text">@category.Description</p>
+                            <a asp-controller="Forum" asp-action="" class="btn btn-outline-dark">Proceed to Forum</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </div>
