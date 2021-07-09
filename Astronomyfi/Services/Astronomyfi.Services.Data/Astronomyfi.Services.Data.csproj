@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Astronomyfi.Data.Common\Astronomyfi.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\Astronomyfi.Data.Models\Astronomyfi.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\Astronomyfi.Web.ViewModels\Astronomyfi.Web.ViewModels.csproj" />
     <ProjectReference Include="..\Astronomyfi.Services.Mapping\Astronomyfi.Services.Mapping.csproj" />
   </ItemGroup>
 

@@ -3,37 +3,36 @@
     using System.Linq;
 
     using Astronomyfi.Data;
+    using Astronomyfi.Services.Data;
     using Astronomyfi.Web.ViewModels.Categories;
     using Microsoft.AspNetCore.Mvc;
 
     public class CategoriesController : BaseController
     {
-        private readonly ApplicationDbContext data;
+        private readonly ICategoryService categoryService;
 
-        public CategoriesController(ApplicationDbContext data)
+        public CategoriesController(ICategoryService categoryService)
         {
-            this.data = data;
+            this.categoryService = categoryService;
         }
 
         public IActionResult All()
         {
-            var categories = this.data.Categories
-                .Select(c => new ListCategoriesViewModel
-                {
-                    Name = c.Name,
-                    Description = c.Description,
-                    ImageUrl = c.ImageUrl,
-
-                    // TODO: Posts Count
-                })
-                .ToList();
-
+            var categories = this.categoryService.GetCategories();
             return this.View(categories);
         }
 
-        public IActionResult Add()
-        {
-            return this.View();
-        }
+        public IActionResult Add() => this.View();
+
+        //[HttpPost]
+        //public IActionResult Add(AddCategoryViewModel model)
+        //{
+        //    if (!this.ModelState.IsValid)
+        //    {
+        //        return this.View();
+        //    }
+
+        //    //return this.RedirectToAction("All", "Categories");
+        //}
     }
 }

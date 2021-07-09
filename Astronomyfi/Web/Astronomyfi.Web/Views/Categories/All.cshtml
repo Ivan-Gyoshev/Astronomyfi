@@ -6,18 +6,12 @@
 <div class="container" style="background-image: url('assets/img/stars.jpg')">
     <div class="row">
         <div class="col-md-12 text-center">
-            <img class="img-fluid text-center" alt="Photo" src="@Url.Content("~/assets/img/categories-image.png")" />
-            <h1 class="display-4 text-secondary"><u>Select the forum that you want to read </u></h1>
+            <img class="img-fluid text-center" alt="Photo" src="~/assets/img/categories.png" />
+            <h1 class="display-4 text-dark border btn-outline-light">Select the forum that you want to read </h1>
+            <h3 class="text-info">Or continue without filtering categories</h3>
+            <a asp-controller="Forum" asp-action="All" class="btn btn-outline-dark">Proceed to All Posts</a>
         </div>
         <div class="col-sm-1"></div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-3">
-            <form class="" asp-area="" asp-controller="Categories" asp-action="Add">
-                <button type="submit" class="btn-outline-dark form-control nav-link btn btn-light text-ligh font-weight-bold">Create New Category</button>
-            </form>
-        </div>
     </div>
     <div class="container category">
         <div class="row">
@@ -29,11 +23,20 @@
                         <div class="card-body">
                             <h5 class="card-title">@category.Name</h5>
                             <p class="card-text">@category.Description</p>
+                            <p><strong>Posts in this category: </strong></p>
                             <a asp-controller="Forum" asp-action="" class="btn btn-outline-dark">Proceed to Forum</a>
                         </div>
                     </div>
                 </div>
             }
+        </div>
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-3">
+                <form class="" asp-area="" asp-controller="Categories" asp-action="Add">
+                    <button type="submit" class="btn-outline-dark form-control nav-link btn btn-light text-ligh font-weight-bold">Create New Category</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
