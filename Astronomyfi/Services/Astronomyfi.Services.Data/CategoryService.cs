@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-
+    using System.Threading.Tasks;
     using Astronomyfi.Data.Common.Repositories;
     using Astronomyfi.Data.Models;
     using Astronomyfi.Web.ViewModels.Categories;
@@ -11,16 +11,13 @@
     {
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
 
-        public CategoryService(IDeletableEntityRepository<Category> categoriesRepository)
-        {
-            this.categoriesRepository = categoriesRepository;
-        }
+        public CategoryService(IDeletableEntityRepository<Category> categoriesRepository) => this.categoriesRepository = categoriesRepository;
 
         public IEnumerable<ListCategoriesViewModel> GetCategories()
         {
             var categories = this.categoriesRepository.All()
-                .Select(c => new ListCategoriesViewModel 
-                { 
+                .Select(c => new ListCategoriesViewModel
+                {
                     Name = c.Name,
                     Description = c.Description,
                     ImageUrl = c.ImageUrl,
@@ -30,6 +27,19 @@
                 .ToList();
 
             return categories;
+        }
+
+        public async Task AddCategoryAsync(AddCategoryViewModel category)
+        {
+            var categoryData = new Category
+            {
+                Name = category.Name,
+                Description = category.Description,
+                ImageUrl = category.ImageUrl,
+            };
+
+            await this.categoriesRepository.AddAsync(categoryData);
+            await this.categoriesRepository.SaveChangesAsync();
         }
     }
 }

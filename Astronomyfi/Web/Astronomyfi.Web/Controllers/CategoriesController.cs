@@ -1,8 +1,7 @@
 ﻿namespace Astronomyfi.Web.Controllers
 {
-    using System.Linq;
+    using System.Threading.Tasks;
 
-    using Astronomyfi.Data;
     using Astronomyfi.Services.Data;
     using Astronomyfi.Web.ViewModels.Categories;
     using Microsoft.AspNetCore.Mvc;
@@ -11,10 +10,7 @@
     {
         private readonly ICategoryService categoryService;
 
-        public CategoriesController(ICategoryService categoryService)
-        {
-            this.categoryService = categoryService;
-        }
+        public CategoriesController(ICategoryService categoryService) => this.categoryService = categoryService;
 
         public IActionResult All()
         {
@@ -22,17 +18,20 @@
             return this.View(categories);
         }
 
+        [HttpGet]
         public IActionResult Add() => this.View();
 
-        //[HttpPost]
-        //public IActionResult Add(AddCategoryViewModel model)
-        //{
-        //    if (!this.ModelState.IsValid)
-        //    {
-        //        return this.View();
-        //    }
+        [HttpPost]
+        public async Task<IActionResult> Add(AddCategoryViewModel category)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
 
-        //    //return this.RedirectToAction("All", "Categories");
-        //}
+            await this.categoryService.AddCategoryAsync(category);
+
+            return this.RedirectToAction("All", "Categories");
+        }
     }
 }

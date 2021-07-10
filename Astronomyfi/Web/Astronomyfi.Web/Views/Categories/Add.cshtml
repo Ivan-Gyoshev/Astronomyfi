@@ -1,21 +1,29 @@
-﻿<h1 class="text-center mt-2">Create a new Category</h1>
+﻿@model AddCategoryViewModel
+@{
+    ViewData["Title"] = "Add Category";
+}
+
+<h3 class="text-center mt-2">Create a new Category</h3>
 <div class="row mt-4 mb-6">
     <div class="col-3"></div>
     <form class="col-6 col-lg-6" method="post">
         <div class="form-group">
-            <label for="name-input">Category Name</label>
-            <input name="name" type="text" class="form-control" id="name-input">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" type="text" class="form-control" placeholder="Write your name here">
+            <span asp-validation-for="Name" class="small text-danger"></span>
         </div>
         <div class="form-group">
-            <label for="description-input">Category Description</label>
-            <input name="description" type="text" class="form-control" id="description-input">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control" placeholder="Write your description here"></textarea>
+            <span asp-validation-for="Description" class="small text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label for="image-input">Category Image URL</label>
-            <input name="image" type="text" class="form-control" id="image-input">
+            <label asp-for="ImageUrl"></label>
+            <input asp-for="ImageUrl" type="text" class="form-control" placeholder="Your image URL">
+            <span asp-validation-for="ImageUrl" class="small text-danger"></span>
         </div>
 
-        <button type="submit" class="btn btn-block btn-primary">Create Category</button>
+        <button type="submit" asp-controller="Categories" asp-action="Add" class="btn btn-block btn-outline-dark">Create Category</button>
     </form>
 </div>
