@@ -3,9 +3,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using Astronomyfi.Data.Common.Repositories;
     using Astronomyfi.Data.Models;
     using Astronomyfi.Web.ViewModels.Categories;
+    using Astronomyfi.Web.ViewModels.Posts;
 
     public class CategoryService : ICategoryService
     {
@@ -41,5 +43,14 @@
             await this.categoriesRepository.AddAsync(categoryData);
             await this.categoriesRepository.SaveChangesAsync();
         }
+
+        public IEnumerable<PostCategoryViewModel> GetCategoriesById()
+          => this.categoriesRepository.All()
+            .Select(c => new PostCategoryViewModel
+            {
+                Id = c.Id,
+                Name = c.Name,
+            })
+            .ToList();
     }
 }

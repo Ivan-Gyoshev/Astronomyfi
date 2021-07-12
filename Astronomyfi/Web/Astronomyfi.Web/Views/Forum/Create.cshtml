@@ -1,0 +1,39 @@
+﻿@model Astronomyfi.Web.ViewModels.Posts.CreatePostViewModel
+@{ 
+    this.ViewData["Title"] = "Create Post";
+}
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <h2 class="heading-margin text-center">Create new Post</h2>
+
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" class="form-control" placeholder="Write down post title here...">
+                <span asp-validation-for="Title" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type"></label>
+                <input asp-for="Type" class="form-control" placeholder="Question, Discussion, etc...">
+                <span asp-validation-for="Type" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Content"></label>
+                <textarea asp-for="Content" rows="4" class="form-control" placeholder="Write down description here..."></textarea>
+                <span asp-validation-for="Content" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId"></label>
+                <select asp-for="CategoryId" class="form-control">
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </select>
+            </div>
+
+            <input class="btn btn-info" type="submit" value="Post" />
+        </form>
+    </div>
+</div>
