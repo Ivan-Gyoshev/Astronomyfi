@@ -6,7 +6,7 @@
     using Astronomyfi.Web.ViewModels.Categories;
     using Astronomyfi.Web.ViewModels.Posts;
 
-    public interface ICategoryService
+    public interface ICategoriesService
     {
         IEnumerable<ListCategoriesViewModel> GetCategories();
 

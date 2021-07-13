@@ -9,11 +9,11 @@
     using Astronomyfi.Web.ViewModels.Categories;
     using Astronomyfi.Web.ViewModels.Posts;
 
-    public class CategoryService : ICategoryService
+    public class CategoriesService : ICategoriesService
     {
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
 
-        public CategoryService(IDeletableEntityRepository<Category> categoriesRepository) => this.categoriesRepository = categoriesRepository;
+        public CategoriesService(IDeletableEntityRepository<Category> categoriesRepository) => this.categoriesRepository = categoriesRepository;
 
         public IEnumerable<ListCategoriesViewModel> GetCategories()
         {

@@ -8,9 +8,9 @@
 
     public class CategoriesController : BaseController
     {
-        private readonly ICategoryService categoryService;
+        private readonly ICategoriesService categoryService;
 
-        public CategoriesController(ICategoryService categoryService) => this.categoryService = categoryService;
+        public CategoriesController(ICategoriesService categoryService) => this.categoryService = categoryService;
 
         public IActionResult All()
         {

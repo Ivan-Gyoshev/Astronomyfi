@@ -9,7 +9,7 @@
             <img class="img-fluid text-center" alt="Photo" src="~/assets/img/categories.png" />
             <h1 class="display-4 text-dark border btn-outline-light">Select the forum that you want to read </h1>
             <h3 class="text-info">Or continue without filtering categories</h3>
-            <a asp-controller="Forum" asp-action="All" class="btn btn-outline-dark">Proceed to All Posts</a>
+            <a asp-controller="Forums" asp-action="All" class="btn btn-outline-dark">Proceed to All Posts</a>
         </div>
         <div class="col-sm-1"></div>
     </div>
@@ -24,7 +24,7 @@
                             <h5 class="card-title">@category.Name</h5>
                             <p class="card-text">@category.Description</p>
                             <p><strong>Posts in this category: </strong></p>
-                            <a asp-controller="Forum" asp-action="" class="btn btn-outline-dark">Proceed to Forum</a>
+                            <a asp-controller="Forums" asp-action="" class="btn btn-outline-dark">Proceed to Forum</a>
                         </div>
                     </div>
                 </div>
