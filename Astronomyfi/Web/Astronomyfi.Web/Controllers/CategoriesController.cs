@@ -6,7 +6,7 @@
     using Astronomyfi.Web.ViewModels.Categories;
     using Microsoft.AspNetCore.Mvc;
 
-    public class CategoriesController : BaseController
+    public class CategoriesController : Controller
     {
         private readonly ICategoriesService categoryService;
 
