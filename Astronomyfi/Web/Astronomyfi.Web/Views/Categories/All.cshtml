@@ -8,8 +8,6 @@
         <div class="col-md-12 text-center">
             <img class="img-fluid text-center" alt="Photo" src="~/assets/img/categories.png" />
             <h1 class="display-4 text-dark border btn-outline-light">Select the forum that you want to read </h1>
-            <h3 class="text-info">Or continue without filtering categories</h3>
-            <a asp-controller="Forums" asp-action="All" class="btn btn-outline-dark">Proceed to All Posts</a>
         </div>
         <div class="col-sm-1"></div>
     </div>
@@ -18,18 +16,19 @@
             @foreach (var category in Model)
             {
                 <div class="col-md">
-                    <div class="card border-dark" style="width: 18rem;">
+                    <div class="card border-dark" style="width: 220px;">
                         <img src="@category.ImageUrl" alt="..." class="img-thumbnail">
                         <div class="card-body">
                             <h5 class="card-title">@category.Name</h5>
                             <p class="card-text">@category.Description</p>
-                            <p><strong>Posts in this category: </strong></p>
-                            <a asp-controller="Forums" asp-action="" class="btn btn-outline-dark">Proceed to Forum</a>
+                            <p><strong>Posts in this category: @category.PostsCount</strong></p>
+                            <a style="background-image: url('../assets/img/background.jpg')" asp-controller="Forums" asp-action="" class="btn text-light">Proceed to Forum</a>
                         </div>
                     </div>
                 </div>
             }
         </div>
+        <div class="mb-5"></div>
         <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-3">

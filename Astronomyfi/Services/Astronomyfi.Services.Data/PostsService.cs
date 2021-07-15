@@ -9,13 +9,12 @@
     using Astronomyfi.Data.Models;
     using Astronomyfi.Data.Models.Enums;
     using Astronomyfi.Web.ViewModels.Posts;
-    using Microsoft.AspNetCore.Identity;
 
     public class PostsService : IPostsService
     {
         private readonly IDeletableEntityRepository<Post> postsRepository;
 
-        public PostsService(IDeletableEntityRepository<Post> postsRepository, UserManager<ApplicationUser> userManager)
+        public PostsService(IDeletableEntityRepository<Post> postsRepository)
         {
             this.postsRepository = postsRepository;
         }
@@ -35,6 +34,40 @@
 
             await this.postsRepository.AddAsync(postData);
             await this.postsRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<PostListingViewModel> GetAllPosts()
+        {
+            var posts = this.postsRepository.All()
+                 .Select(p => new PostListingViewModel
+                 {
+                     Id = p.Id,
+                     Title = p.Title,
+                     CommentsCount = p.Comments.Count(),
+                     Author = p.Author.UserName,
+                     CreatedOn = p.CreatedOn.ToString("dd/MM/yyy/ hh:mm"),
+                     Type = p.Type.ToString(),
+                 })
+                 .ToList();
+
+            return posts;
+        }
+
+        public PostDetailsViewModel GetPost(int postId)
+        {
+            var currentPost = this.postsRepository.All()
+                .Where(p => p.Id == postId)
+                .Select(p => new PostDetailsViewModel
+                {
+                    Title = p.Title,
+                    Content = p.Content,
+                    Author = p.Author.UserName,
+                    Type = p.Type.ToString(),
+                    CreatedOn = p.CreatedOn.ToString("dd/MM/yyyy hh:mm"),
+                })
+                .FirstOrDefault();
+
+            return currentPost;
         }
 
         public IEnumerable<TypeOfPost> GetPostTypes()
