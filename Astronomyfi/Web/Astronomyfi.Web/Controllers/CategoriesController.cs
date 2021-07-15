@@ -33,5 +33,12 @@
 
             return this.RedirectToAction("All", "Categories");
         }
+
+        public IActionResult Specify(int categoryId)
+        {
+            var posts = this.categoryService.GetPostsByCategory(categoryId);
+
+            return this.View(posts);
+        }
     }
 }

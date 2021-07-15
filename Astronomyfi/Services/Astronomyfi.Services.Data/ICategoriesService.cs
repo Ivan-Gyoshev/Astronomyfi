@@ -13,5 +13,7 @@
         IEnumerable<PostCategoryViewModel> GetCategoriesById();
 
         Task AddCategoryAsync(AddCategoryViewModel category);
+
+        CategorySpecifyViewModel GetPostsByCategory(int categoryId);
     }
 }

@@ -22,7 +22,7 @@
                             <h5 class="card-title">@category.Name</h5>
                             <p class="card-text">@category.Description</p>
                             <p><strong>Posts in this category: @category.PostsCount</strong></p>
-                            <a style="background-image: url('../assets/img/background.jpg')" asp-controller="Forums" asp-action="" class="btn text-light">Proceed to Forum</a>
+                            <a style="background-image: url('../assets/img/background.jpg')" asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@category.Id" class="btn text-light">Proceed to Forum</a>
                         </div>
                     </div>
                 </div>

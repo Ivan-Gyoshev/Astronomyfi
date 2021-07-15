@@ -25,6 +25,7 @@
             var categories = this.categoriesRepository.All()
                 .Select(c => new ListCategoriesViewModel
                 {
+                    Id = c.Id,
                     Name = c.Name,
                     Description = c.Description,
                     ImageUrl = c.ImageUrl,
@@ -57,5 +58,34 @@
                 Name = c.Name,
             })
             .ToList();
+
+        public CategorySpecifyViewModel GetPostsByCategory(int categoryId)
+        {
+            var currentCategory = this.categoriesRepository.All().FirstOrDefault(c => c.Id == categoryId);
+
+            var categoryPosts = this.postsRepository.All()
+                 .Where(p => p.CategoryId == categoryId)
+                 .Select(p => new CategorySpecifyViewModel
+                 {
+                     Title = currentCategory.Name,
+                     Content = currentCategory.Description,
+                     Image = currentCategory.ImageUrl,
+                     Posts = this.postsRepository.All()
+                     .Where(p => p.CategoryId == categoryId)
+                     .Select(p => new PostListingViewModel
+                     {
+                         Id = p.Id,
+                         Author = p.Author.UserName,
+                         Title = p.Title,
+                         Type = p.Type.ToString(),
+                         CommentsCount = p.Comments.Count(),
+                         CreatedOn = p.CreatedOn.ToString("dd/MM/yyy/ hh:mm"),
+                     })
+                     .ToList(),
+                 })
+                 .FirstOrDefault();
+
+            return categoryPosts;
+        }
     }
 }
