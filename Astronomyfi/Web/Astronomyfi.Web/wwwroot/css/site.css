@@ -13,7 +13,7 @@ a {
 }
 
 .navbar {
-    background-color: black;
+    background-image: url('../assets/img/background.jpg');
 }
 
 ul {
@@ -83,7 +83,7 @@ body {
     width: 100%;
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
-    background-color: black;
+    background-image: url('../assets/img/background.jpg');
 }
 
 body {
@@ -137,4 +137,9 @@ h3 {
 .category {
     margin-top: 20px;
     margin-bottom: 100px;
+}
+
+th {
+    color: white;
+    background-image: url('../assets/img/background.jpg');
 }
