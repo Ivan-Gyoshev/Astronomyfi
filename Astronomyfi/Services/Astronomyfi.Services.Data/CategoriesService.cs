@@ -12,8 +12,13 @@
     public class CategoriesService : ICategoriesService
     {
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
+        private readonly IDeletableEntityRepository<Post> postsRepository;
 
-        public CategoriesService(IDeletableEntityRepository<Category> categoriesRepository) => this.categoriesRepository = categoriesRepository;
+        public CategoriesService(IDeletableEntityRepository<Category> categoriesRepository, IDeletableEntityRepository<Post> postsRepository)
+        {
+            this.categoriesRepository = categoriesRepository;
+            this.postsRepository = postsRepository;
+        }
 
         public IEnumerable<ListCategoriesViewModel> GetCategories()
         {
@@ -23,8 +28,8 @@
                     Name = c.Name,
                     Description = c.Description,
                     ImageUrl = c.ImageUrl,
-
-                    // TODO Posts Count
+                    PostsCount = this.postsRepository.All().Where(p => p.Category.Name == c.Name)
+                    .Count(),
                 })
                 .ToList();
 

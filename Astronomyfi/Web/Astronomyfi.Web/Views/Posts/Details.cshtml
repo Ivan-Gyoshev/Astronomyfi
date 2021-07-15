@@ -1,0 +1,58 @@
+﻿@model Astronomyfi.Web.ViewModels.Posts.PostDetailsViewModel
+@{ 
+    this.ViewData["Title"] = $"Post - {Model.Title}";
+}
+
+<div class="blog-single gray-bg">
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8 m-15px-tb">
+                <article class="article">
+                    <div class="article-title">
+                        <h6><a href="#">@Model.Category</a></h6>
+                        <h2>@Model.Title</h2>
+                        <div class="media">
+                            <div class="avatar">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" title="" alt="">
+                            </div>
+                            <div class="media-body">
+                                <label>@Model.Author</label>
+                                <span>@Model.CreatedOn</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                       @Model.Content
+                    </div>
+                    <div class="nav tag-cloud">
+                        <a href="#">@Model.Type</a>
+                    </div>
+                </article>
+                <div class="contact-form article-comment">
+                    <h4>Leave a Comment</h4>
+                    <form id="contact-form" method="POST">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input name="Name" id="name" placeholder="Name *" class="form-control" type="text">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <textarea name="message" id="message" placeholder="Your message *" rows="4" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="send">
+                                    <button type="submit" class="btn btn-outline-dark">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
