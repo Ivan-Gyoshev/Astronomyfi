@@ -10,7 +10,9 @@
             <div class="col-lg-8 m-15px-tb">
                 <article class="article">
                     <div class="article-title">
-                        <h6><a href="#">@Model.Category</a></h6>
+                        <h6>
+                        <a asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@Model.CategoryId">@Model.Category</a>
+                        </h6>
                         <h2>@Model.Title</h2>
                         <div class="media">
                             <div class="avatar">

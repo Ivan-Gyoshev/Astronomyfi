@@ -15,6 +15,8 @@
 
         public string Type { get; set; }
 
+        public int CategoryId { get; set; }
+
         public string Category { get; set; }
 
         public string Author { get; set; }

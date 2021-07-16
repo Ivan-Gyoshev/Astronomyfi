@@ -63,6 +63,7 @@
                     Content = p.Content,
                     Author = p.Author.UserName,
                     Category = p.Category.Name,
+                    CategoryId = p.CategoryId,
                     Type = p.Type.ToString(),
                     CreatedOn = p.CreatedOn.ToString("dd/MM/yyyy hh:mm"),
                 })
