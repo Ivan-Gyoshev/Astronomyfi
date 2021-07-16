@@ -4,6 +4,7 @@
 
     using Astronomyfi.Services.Data;
     using Astronomyfi.Web.ViewModels.Categories;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class CategoriesController : Controller
@@ -19,9 +20,11 @@
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Add() => this.View();
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Add(AddCategoryViewModel category)
         {
             if (!this.ModelState.IsValid)

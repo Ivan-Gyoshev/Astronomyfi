@@ -8,7 +8,7 @@
     @if (this.SignInManager.IsSignedIn(this.User))
     {
         <li class="nav-item">
-            <a class="nav-link text-light font-weight-bold" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @this.User.Identity.Name!</a>
+            <a class="nav-link text-light font-weight-bold" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Account</a>
         </li>
         if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
         {
@@ -22,7 +22,7 @@
             </form>
         </li>
     }
-    @*else
+    else
     {
         <li class="nav-item">
             <a class="nav-link text-light font-weight-bold" asp-area="Identity" asp-page="/Account/Register">Register</a>
@@ -30,5 +30,5 @@
         <li class="nav-item">
             <a class="nav-link text-light font-weight-bold" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </li>
-    }*@
+    }
 </ul>

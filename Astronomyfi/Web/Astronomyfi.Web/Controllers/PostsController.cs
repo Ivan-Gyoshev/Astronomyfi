@@ -7,6 +7,7 @@
     using Astronomyfi.Data.Models;
     using Astronomyfi.Services.Data;
     using Astronomyfi.Web.ViewModels.Posts;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -31,13 +32,14 @@
             return this.View(posts);
         }
 
+        [Authorize]
         public IActionResult Create() => this.View(new CreatePostViewModel
         {
             Categories = this.categoryService.GetCategoriesById(),
             Types = this.postsService.GetPostTypes(),
         });
 
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(CreatePostViewModel post)
         {
