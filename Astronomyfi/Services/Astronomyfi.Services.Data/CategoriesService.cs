@@ -63,7 +63,9 @@
         {
             var currentCategory = this.categoriesRepository.All().FirstOrDefault(c => c.Id == categoryId);
 
-            var categoryPosts = this.postsRepository.All()
+            if (this.postsRepository.All().Any(p => p.CategoryId == categoryId))
+            {
+                var categoryPosts = this.postsRepository.All()
                  .Where(p => p.CategoryId == categoryId)
                  .Select(p => new CategorySpecifyViewModel
                  {
@@ -85,7 +87,23 @@
                  })
                  .FirstOrDefault();
 
-            return categoryPosts;
+                return categoryPosts;
+            }
+            else
+            {
+                var emptyCategory = this.categoriesRepository.All()
+                    .Where(c => c.Id == categoryId)
+                    .Select(c => new CategorySpecifyViewModel
+                    {
+                        Title = currentCategory.Name,
+                        Content = currentCategory.Description,
+                        Image = currentCategory.ImageUrl,
+                        Posts = new List<PostListingViewModel>(),
+                    })
+                    .FirstOrDefault();
+
+                return emptyCategory;
+            }
         }
     }
 }

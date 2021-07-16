@@ -5,12 +5,12 @@
 
 <section class="py-5">
     <div class="row">
-        <div class="col-12">
+        <div class="col-2 img-fluid">
+            <img class="border" src="@Model.Image" alt="Alternate Text" />
+        </div>
+        <div class="col-8">
             <h3>@Model.Title</h3>
             <h4>@Model.Content</h4>
-        </div>
-        <div class="col-6">
-            
         </div>
     </div>
     <div class="container row mt-lg-5">
@@ -54,6 +54,14 @@
                     }
                 </tbody>
             </table>
+            @if (Model.Posts.Count() == 0)
+            {
+                <div class="container">
+                    <h4>There are no topics in this category yet...</h4>
+                    <h5>Be the first one to post by creating one!</h5>
+                </div>
+            }
+
         </div>
     </div>
 </section>
