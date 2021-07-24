@@ -1,1 +1,3 @@
 # Astronomyfi
+
+![AstronomyfiLogo](AstronomifyLogo.png)
