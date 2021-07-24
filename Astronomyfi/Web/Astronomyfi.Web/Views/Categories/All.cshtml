@@ -13,20 +13,19 @@
     </div>
     <div class="container category">
         <div class="row">
-            @foreach (var category in Model)
-            {
-                <div class="col-md">
-                    <div class="card border-dark" style="width: 220px;">
-                        <img src="@category.ImageUrl" alt="..." class="img-thumbnail">
-                        <div class="card-body">
-                            <h5 class="card-title">@category.Name</h5>
-                            <p class="card-text">@category.Description</p>
-                            <p><strong>Posts in this category: @category.PostsCount</strong></p>
-                            <a style="background-image: url('../assets/img/background.jpg')" asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@category.Id" class="btn text-light">Proceed to Forum</a>
-                        </div>
-                    </div>
-                </div>
-            }
+            <ul class="card-wrapper-image">
+
+                @foreach (var category in Model)
+                {
+                <li class="card-img">
+                    <img class="img-card" src='@category.ImageUrl' alt=''>
+                    <h3 class="ml-2">@category.Name</h3>
+                    <hr class="ml-2">@category.Description</hr>
+                    <p class="ml-2"><strong>Posts in this category: @category.PostsCount</strong></p>
+                    <a style="background-image: url('../assets/img/background.jpg')" asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@category.Id" class="btn text-light ml-2">Proceed to Forum</a>
+                </li>
+                }
+            </ul>
         </div>
         <div class="mb-5"></div>
         <div class="row">

@@ -299,3 +299,42 @@ img {
     vertical-align: middle;
     border-style: none;
 }
+
+.jbg {
+    background-image: url('https://cdn.mos.cms.futurecdn.net/B64CE289URBuvK3Z4kY4FE-1200-80.jpg')
+}
+
+.card-wrapper-image {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
+    grid-gap: 1.5rem;
+    max-width: 100vw;
+    width: 120ch;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.card-img {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem rgba(0, 0, 0, 0.45);
+    padding-bottom: 1rem;
+    background-image: linear-gradient( var(--card-gradient), white max(9.5rem, 27vh) );
+    overflow: hidden;
+}
+
+.img-card {
+    border-radius: 0.5rem 0.5rem 0 0;
+    width: 100%;
+    object-fit: cover;
+    max-height: 200px;
+    mix-blend-mode: var(--card-blend-mode);
+}
+
+.cap-bg {
+    background-image: linear-gradient(45deg, #1861ac, #3d3d3d);
+    margin-right: 250px;
+}
