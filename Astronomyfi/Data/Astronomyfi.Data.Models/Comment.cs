@@ -9,6 +9,7 @@
     {
         public Comment() => this.Votes = new HashSet<Vote>();
 
+        [Required]
         public string Content { get; set; }
 
         [Required]

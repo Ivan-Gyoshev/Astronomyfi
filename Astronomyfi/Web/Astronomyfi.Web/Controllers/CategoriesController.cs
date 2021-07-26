@@ -19,7 +19,6 @@
             return this.View(categories);
         }
 
-        [HttpGet]
         [Authorize]
         public IActionResult Add() => this.View();
 

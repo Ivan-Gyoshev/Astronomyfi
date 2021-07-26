@@ -15,5 +15,9 @@
 
         public const int PostContentMinLength = 10;
         public const int PostContentMaxLength = 600;
+
+        // Comments Constants
+        public const int CommentMinLength = 2;
+        public const int CommentMaxLength = 150;
     }
 }

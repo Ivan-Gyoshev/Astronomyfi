@@ -77,6 +77,7 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IPostsService, PostsService>();
+            services.AddTransient<ICommentsService, CommentsService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

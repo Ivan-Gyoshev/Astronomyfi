@@ -13,10 +13,12 @@
     public class PostsService : IPostsService
     {
         private readonly IDeletableEntityRepository<Post> postsRepository;
+        private readonly ICommentsService commentsService;
 
-        public PostsService(IDeletableEntityRepository<Post> postsRepository)
+        public PostsService(IDeletableEntityRepository<Post> postsRepository, ICommentsService commentsService)
         {
             this.postsRepository = postsRepository;
+            this.commentsService = commentsService;
         }
 
         public async Task AddPostAsync(CreatePostViewModel post, string userId)
@@ -59,6 +61,7 @@
                 .Where(p => p.Id == postId)
                 .Select(p => new PostDetailsViewModel
                 {
+                    Id = p.Id,
                     Title = p.Title,
                     Content = p.Content,
                     Author = p.Author.UserName,
@@ -66,6 +69,7 @@
                     CategoryId = p.CategoryId,
                     Type = p.Type.ToString(),
                     CreatedOn = p.CreatedOn.ToString("dd/MM/yyyy hh:mm"),
+                    Comments = this.commentsService.ListComments(p.Id),
                 })
                 .FirstOrDefault();
 

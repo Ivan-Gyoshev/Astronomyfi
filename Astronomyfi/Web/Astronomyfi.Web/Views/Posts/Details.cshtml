@@ -1,6 +1,6 @@
 ﻿@model Astronomyfi.Web.ViewModels.Posts.PostDetailsViewModel
-@{ 
-    this.ViewData["Title"] = $"Post - {Model.Title}";
+@{
+    this.ViewData["Title"] = $"Post Details";
 }
 
 <div class="blog-single gray-bg">
@@ -11,7 +11,7 @@
                 <article class="article">
                     <div class="article-title">
                         <h6>
-                        <a asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@Model.CategoryId">@Model.Category</a>
+                            <a asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@Model.CategoryId">@Model.Category</a>
                         </h6>
                         <h2>@Model.Title</h2>
                         <div class="media">
@@ -25,32 +25,40 @@
                         </div>
                     </div>
                     <div class="article-content">
-                       @Model.Content
+                        @Model.Content
                     </div>
                     <div class="nav tag-cloud">
                         <a class="disabled">@Model.Type</a>
                     </div>
                 </article>
                 <div class="contact-form article-comment">
-                    <h4>Leave a Comment</h4>
-                    <form id="contact-form" method="POST">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input name="Name" id="name" placeholder="Name *" class="form-control" type="text">
-                                </div>
+                    <div class="row">
+                        <h4 class="col-9">Comments</h4>
+                    </div>
+                    @if (Model.Comments.Count() == 0)
+                    {
+                        <h5>No comments yet..</h5>
+                    }
+
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <div class="container com-bg">
+                            <div class="row">
+                                <h4 class="col-9">@comment.Author</h4>
+                                <span class="col-3 text-secondary">@comment.CreatedOn</span>
                             </div>
-                            
-                            <div class="col-md-9">
-                                <div class="form-group">
-                                    <textarea name="message" id="message" placeholder="Your message *" rows="4" class="form-control"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="send">
-                                    <button type="submit" class="btn btn-outline-dark">Submit</button>
-                                </div>
-                            </div>
+                            <p>@comment.Content</p>
+                        </div>
+                        <hr class="my-2" />
+                    }
+                </div>
+                <div class="contact-form article-comment mt-3 text-center">
+                    <h4>Leave a comment</h4>
+                    <form method="post">
+                        <input type="hidden" name="PostId" value="@this.Model.Id" />
+                        <textarea name="Content" class="feedback-input" placeholder="Comment"></textarea>
+                        <div class="tag-cloud">
+                            <button asp-controller="Comments" asp-action="Create" class="btn borderButton col-6 font-weight-bold font-italic">Add comment</button>
                         </div>
                     </form>
                 </div>

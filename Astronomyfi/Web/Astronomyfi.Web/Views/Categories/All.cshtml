@@ -20,7 +20,7 @@
                 <li class="card-img">
                     <img class="img-card" src='@category.ImageUrl' alt=''>
                     <h3 class="ml-2">@category.Name</h3>
-                    <hr class="ml-2">@category.Description</hr>
+                    <p class="ml-2">@category.Description</p>
                     <p class="ml-2"><strong>Posts in this category: @category.PostsCount</strong></p>
                     <a style="background-image: url('../assets/img/background.jpg')" asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@category.Id" class="btn text-light ml-2">Proceed to Forum</a>
                 </li>
