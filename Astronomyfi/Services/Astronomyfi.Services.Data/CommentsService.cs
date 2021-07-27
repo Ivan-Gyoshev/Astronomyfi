@@ -19,7 +19,6 @@
 
         public async Task CreateCommentAsync(string content, string userId, int postId)
         {
-
             var newComment = new Comment
             {
                 Content = content,

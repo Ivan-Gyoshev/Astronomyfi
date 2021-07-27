@@ -5,11 +5,14 @@
 
     using Astronomyfi.Data.Common.Models;
 
+    using static Astronomyfi.Data.Models.Common.DataConstants;
+
     public class Comment : BaseDeletableModel<int>
     {
         public Comment() => this.Votes = new HashSet<Vote>();
 
         [Required]
+        [MaxLength(CommentMaxLength)]
         public string Content { get; set; }
 
         [Required]

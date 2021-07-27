@@ -26,9 +26,14 @@
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
+            if (string.IsNullOrWhiteSpace(comment.Content))
+            {
+                return this.RedirectToAction("Details", "Posts", new { postId = comment.PostId });
+            }
+
             await this.commentsService.CreateCommentAsync(comment.Content, user.Id, comment.PostId);
 
-            return this.RedirectToAction("Details", "Posts" , new { postId = comment.PostId });
+            return this.RedirectToAction("Details", "Posts", new { postId = comment.PostId });
         }
     }
 }
