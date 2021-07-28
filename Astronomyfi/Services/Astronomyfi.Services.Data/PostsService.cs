@@ -21,7 +21,7 @@
             this.commentsService = commentsService;
         }
 
-        public async Task AddPostAsync(CreatePostViewModel post, string userId)
+        public async Task AddPostAsync(PostFormModel post, string userId)
         {
             Enum.TryParse(typeof(TypeOfPost), post.Type.ToString(), out object type);
 
@@ -35,6 +35,18 @@
             };
 
             await this.postsRepository.AddAsync(postData);
+            await this.postsRepository.SaveChangesAsync();
+        }
+
+        public async Task EditPostAsync(PostFormModel post, int postId)
+        {
+            var currentPost = this.postsRepository.All().First(p => p.Id == postId);
+
+            currentPost.Title = post.Title;
+            currentPost.CategoryId = post.CategoryId;
+            currentPost.Content = post.Content;
+            currentPost.Type = post.Type;
+
             await this.postsRepository.SaveChangesAsync();
         }
 
@@ -53,6 +65,16 @@
                  .ToList();
 
             return posts;
+        }
+
+        public async Task DeletePostAsync(int postId)
+        {
+            var post = this.GetById(postId);
+
+            post.IsDeleted = true;
+            post.DeletedOn = DateTime.UtcNow;
+
+            await this.postsRepository.SaveChangesAsync();
         }
 
         public PostDetailsViewModel GetPost(int postId)
@@ -80,5 +102,9 @@
              => Enum.GetValues(typeof(TypeOfPost))
             .Cast<TypeOfPost>()
             .ToList();
+
+        public Post GetById(int postId)
+            => this.postsRepository.All()
+            .FirstOrDefault(p => p.Id == postId);
     }
 }

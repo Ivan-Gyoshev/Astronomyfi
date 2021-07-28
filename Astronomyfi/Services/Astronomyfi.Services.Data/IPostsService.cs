@@ -13,7 +13,13 @@
 
         IEnumerable<PostListingViewModel> GetAllPosts();
 
-        Task AddPostAsync(CreatePostViewModel post, string userId);
+        Task AddPostAsync(PostFormModel post, string userId);
+
+        Task EditPostAsync(PostFormModel post, int postId);
+
+        Post GetById(int postId);
+
+        Task DeletePostAsync(int postId);
 
         PostDetailsViewModel GetPost(int postId);
     }

@@ -35,5 +35,6 @@
 
             return this.RedirectToAction("Details", "Posts", new { postId = comment.PostId });
         }
+
     }
 }

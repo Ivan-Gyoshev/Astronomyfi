@@ -33,7 +33,7 @@
         }
 
         [Authorize]
-        public IActionResult Create() => this.View(new CreatePostViewModel
+        public IActionResult Create() => this.View(new PostFormModel
         {
             Categories = this.categoryService.GetCategoriesById(),
             Types = this.postsService.GetPostTypes(),
@@ -41,7 +41,7 @@
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Create(CreatePostViewModel post)
+        public async Task<IActionResult> Create(PostFormModel post)
         {
             if (!this.categoriesRepository.All().Any(c => c.Id == post.CategoryId))
             {
@@ -58,6 +58,47 @@
             var user = await this.userManager.GetUserAsync(this.User);
 
             await this.postsService.AddPostAsync(post, user.Id);
+
+            return this.RedirectToAction("All", "Posts");
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Edit(int postId)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            var post = this.postsService.GetById(postId);
+
+            if (post.AuthorId != user.Id)
+            {
+                return this.Unauthorized();
+            }
+
+            return this.View(post);
+        }
+
+        //public async Task<IActionResult> Edit(PostFormModel post, int postId)
+        //{
+        //    var
+        //}
+
+        public async Task<IActionResult> Detele(int postId)
+        {
+            var post = this.postsService.GetById(postId);
+
+            if (post == null)
+            {
+                return this.NotFound();
+            }
+
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            if (user.Id != post.AuthorId)
+            {
+                return this.Unauthorized();
+            }
+
+            await this.postsService.DeletePostAsync(postId);
 
             return this.RedirectToAction("All", "Posts");
         }

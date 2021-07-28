@@ -1,4 +1,5 @@
-﻿@model Astronomyfi.Web.ViewModels.Posts.PostDetailsViewModel
+﻿@model PostDetailsViewModel
+
 @{
     this.ViewData["Title"] = $"Post Details";
 }
@@ -30,6 +31,26 @@
                     <div class="nav tag-cloud">
                         <a class="disabled">@Model.Type</a>
                     </div>
+                    <ul class="list-inline m-0">
+                        <li class="list-inline-item">
+                            <a 
+                                    asp-controller="Posts"
+                                    asp-action="Edit"
+                                    asp-route-postId="@Model.Id"
+                                    class="btn btn-outline-primary btn-sm rounded-0 mb-2" type="submit" data-toggle="tooltip" data-placement="top" title="Edit">
+                            <i class="fa fa-edit"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <button 
+                                    asp-controller="Posts"
+                                    asp-action="Delete"
+                                    asp-route-postId="@Model.Id"
+                                    class="btn btn-outline-danger btn-sm rounded-0 mb-2" type="submit" data-toggle="tooltip" data-placement="top" title="Delete">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </li>
+                    </ul>
                 </article>
                 <div class="contact-form article-comment">
                     <div class="row">
@@ -48,6 +69,16 @@
                                 <span class="col-3 text-secondary">@comment.CreatedOn</span>
                             </div>
                             <p>@comment.Content</p>
+                            <ul class="list-inline m-0">
+                                <li class="list-inline-item">
+                                    <button class="btn btn-outline-primary btn-sm rounded-0 mb-2" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
+                                </li>
+                                <li class="list-inline-item">
+                                    <button asp-controller="Comments"
+                                            asp-action="Delete"
+                                            class="btn btn-outline-danger btn-sm rounded-0 mb-2" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                                </li>
+                            </ul>
                         </div>
                         <hr class="my-2" />
                     }
@@ -58,7 +89,8 @@
                         <input type="hidden" name="PostId" value="@this.Model.Id" />
                         <textarea name="Content" class="feedback-input" placeholder="Comment"></textarea>
                         <div class="tag-cloud">
-                            <button asp-controller="Comments" asp-action="Create" class="btn borderButton col-6 font-weight-bold font-italic">Add comment</button>
+                            <button asp-controller="Comments"
+                                    asp-action="Create" class="btn borderButton col-6 font-weight-bold font-italic">Add comment</button>
                         </div>
                     </form>
                 </div>
