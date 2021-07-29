@@ -48,6 +48,8 @@
 
             services.AddSingleton(cloudinary);
 
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddDefaultIdentity<ApplicationUser>(IdentityOptionsProvider.GetIdentityOptions)
                 .AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 

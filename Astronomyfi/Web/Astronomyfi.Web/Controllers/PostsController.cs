@@ -6,6 +6,7 @@
     using Astronomyfi.Data.Common.Repositories;
     using Astronomyfi.Data.Models;
     using Astronomyfi.Services.Data;
+    using Astronomyfi.Services.Mapping;
     using Astronomyfi.Web.ViewModels.Posts;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -13,9 +14,9 @@
 
     public class PostsController : Controller
     {
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly ICategoriesService categoryService;
         private readonly IPostsService postsService;
-        private readonly UserManager<ApplicationUser> userManager;
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
 
         public PostsController(ICategoriesService categoryService, IPostsService postsService, IDeletableEntityRepository<Category> categoriesRepository, UserManager<ApplicationUser> userManager)
@@ -51,6 +52,7 @@
             if (!this.ModelState.IsValid)
             {
                 post.Categories = this.categoryService.GetCategoriesById();
+                post.Types = this.postsService.GetPostTypes();
 
                 return this.View(post);
             }
@@ -66,13 +68,17 @@
         public async Task<IActionResult> Edit(int postId)
         {
             var user = await this.userManager.GetUserAsync(this.User);
+            var postModel = this.postsService.GetById(postId);
 
-            var post = this.postsService.GetById(postId);
-
-            if (post.AuthorId != user.Id)
+            if (postModel.AuthorId != user.Id)
             {
                 return this.Unauthorized();
             }
+
+            var post = this.postsService.GetById<PostFormModel>(postId);
+
+            post.Types = this.postsService.GetPostTypes();
+            post.Categories = this.categoryService.GetCategoriesById();
 
             return this.View(post);
         }
@@ -82,22 +88,32 @@
         //    var
         //}
 
-        public async Task<IActionResult> Detele(int postId)
+        public async Task<IActionResult> Delete(int postId)
         {
-            var post = this.postsService.GetById(postId);
+            var postModel = this.postsService.GetById(postId);
 
-            if (post == null)
+            if (postModel == null)
             {
                 return this.NotFound();
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            if (user.Id != post.AuthorId)
+            if (user.Id != postModel.AuthorId)
             {
                 return this.Unauthorized();
             }
 
+            var post = this.postsService.GetById<PostDetailsViewModel>(postId);
+
+            post.Category = postModel.Category.Name;
+
+            return this.View(post);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmation(int postId)
+        {
             await this.postsService.DeletePostAsync(postId);
 
             return this.RedirectToAction("All", "Posts");

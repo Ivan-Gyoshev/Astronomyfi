@@ -3,9 +3,11 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using Astronomyfi.Data.Models;
+    using Astronomyfi.Services.Mapping;
     using Astronomyfi.Web.ViewModels.Comments;
 
-    public class PostDetailsViewModel
+    public class PostDetailsViewModel : IMapFrom<Post>, IMapFrom<Category>
     {
         public int Id { get; set; }
 

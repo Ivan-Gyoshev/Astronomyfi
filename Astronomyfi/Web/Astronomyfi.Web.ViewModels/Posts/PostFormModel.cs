@@ -3,12 +3,16 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using Astronomyfi.Data.Models;
     using Astronomyfi.Data.Models.Enums;
+    using Astronomyfi.Services.Mapping;
 
     using static Astronomyfi.Data.Models.Common.DataConstants;
 
-    public class PostFormModel
+    public class PostFormModel : IMapFrom<Post>
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(PostTitleMaxLength, MinimumLength = PostTitleMinLength)]
         public string Title { get; set; }

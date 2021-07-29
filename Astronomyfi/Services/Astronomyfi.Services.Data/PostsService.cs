@@ -8,6 +8,7 @@
     using Astronomyfi.Data.Common.Repositories;
     using Astronomyfi.Data.Models;
     using Astronomyfi.Data.Models.Enums;
+    using Astronomyfi.Services.Mapping;
     using Astronomyfi.Web.ViewModels.Posts;
 
     public class PostsService : IPostsService
@@ -103,8 +104,15 @@
             .Cast<TypeOfPost>()
             .ToList();
 
+        public T GetById<T>(int postId)
+            => this.postsRepository.All()
+            .Where(p => p.Id == postId)
+            .To<T>()
+            .FirstOrDefault();
+
         public Post GetById(int postId)
             => this.postsRepository.All()
-            .FirstOrDefault(p => p.Id == postId);
+            .Where(p => p.Id == postId)
+            .FirstOrDefault();
     }
 }

@@ -1,6 +1,9 @@
 ﻿namespace Astronomyfi.Web.ViewModels.Comments
 {
-    public class PostCommentsViewModel
+    using Astronomyfi.Data.Models;
+    using Astronomyfi.Services.Mapping;
+
+    public class PostCommentsViewModel : IMapFrom<Comment>
     {
         public string Author { get; set; }
 

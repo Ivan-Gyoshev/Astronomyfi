@@ -17,6 +17,8 @@
 
         Task EditPostAsync(PostFormModel post, int postId);
 
+        T GetById<T>(int postId);
+
         Post GetById(int postId);
 
         Task DeletePostAsync(int postId);
