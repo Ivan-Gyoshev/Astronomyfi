@@ -1,7 +1,7 @@
 ﻿@model PostDetailsViewModel
 
 @{
-    this.ViewData["Title"] = $"Post Details";
+    this.ViewData["Title"] = "Post Details";
 }
 
 <div class="blog-single gray-bg">
@@ -9,49 +9,27 @@
         <div class="row align-items-start">
             <div class="col-lg-2"></div>
             <div class="col-lg-8 m-15px-tb">
-                <article class="article">
-                    <div class="article-title">
-                        <h6>
-                            <a asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@Model.CategoryId">@Model.Category</a>
-                        </h6>
-                        <h2>@Model.Title</h2>
-                        <div class="media">
-                            <div class="avatar">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" title="" alt="">
-                            </div>
-                            <div class="media-body">
-                                <label>@Model.Author</label>
-                                <span>@Model.CreatedOn</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="article-content">
-                        @Model.Content
-                    </div>
-                    <div class="nav tag-cloud">
-                        <a class="disabled">@Model.Type</a>
-                    </div>
+                <div class="text-right">
                     <ul class="list-inline m-0">
                         <li class="list-inline-item">
-                            <a 
-                                    asp-controller="Posts"
-                                    asp-action="Edit"
-                                    asp-route-postId="@Model.Id"
-                                    class="btn btn-outline-primary btn-sm rounded-0 mb-2" type="submit" data-toggle="tooltip" data-placement="top" title="Edit">
-                            <i class="fa fa-edit"></i>
+                            <a asp-controller="Posts"
+                               asp-action="Edit"
+                               asp-route-postId="@Model.Id"
+                               class="btn btn-outline-primary btn-sm rounded-0 mb-2" type="submit" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <i class="fa fa-edit"></i>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <button 
-                                    asp-controller="Posts"
-                                    asp-action="Delete"
-                                    asp-route-postId="@Model.Id"
-                                    class="btn btn-outline-danger btn-sm rounded-0 mb-2" type="submit" data-toggle="tooltip" data-placement="top" title="Delete">
+                            <a asp-controller="Posts"
+                               asp-action="Delete"
+                               asp-route-postId="@Model.Id"
+                               class="btn btn-outline-danger btn-sm rounded-0 mb-2" type="submit" data-toggle="tooltip" data-placement="top" title="Delete">
                                 <i class="fa fa-trash"></i>
-                            </button>
+                            </a>
                         </li>
                     </ul>
-                </article>
+                </div>
+                <partial name="_PostInfoPartial" model="@Model" />
                 <div class="contact-form article-comment">
                     <div class="row">
                         <h4 class="col-9">Comments</h4>
@@ -76,7 +54,9 @@
                                 <li class="list-inline-item">
                                     <button asp-controller="Comments"
                                             asp-action="Delete"
-                                            class="btn btn-outline-danger btn-sm rounded-0 mb-2" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                                            class="btn btn-outline-danger btn-sm rounded-0 mb-2" type="button" data-toggle="tooltip" data-placement="top" title="Delete">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
                                 </li>
                             </ul>
                         </div>
@@ -90,7 +70,9 @@
                         <textarea name="Content" class="feedback-input" placeholder="Comment"></textarea>
                         <div class="tag-cloud">
                             <button asp-controller="Comments"
-                                    asp-action="Create" class="btn borderButton col-6 font-weight-bold font-italic">Add comment</button>
+                                    asp-action="Create" class="btn borderButton col-6 font-weight-bold font-italic">
+                                Add comment
+                            </button>
                         </div>
                     </form>
                 </div>

@@ -1,0 +1,25 @@
+﻿@model PostDetailsViewModel
+
+<article class="article">
+    <div class="article-title">
+        <h6>
+            <a asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@Model.CategoryId">@Model.Category</a>
+        </h6>
+        <h2>@Model.Title</h2>
+        <div class="media">
+            <div class="avatar">
+                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" title="" alt="">
+            </div>
+            <div class="media-body">
+                <label>@Model.Author</label>
+                <span>@Model.CreatedOn</span>
+            </div>
+        </div>
+    </div>
+    <div class="article-content">
+        @Model.Content
+    </div>
+    <div class="nav tag-cloud">
+        <a class="disabled">@Model.Type</a>
+    </div>
+</article>
