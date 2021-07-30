@@ -19,5 +19,9 @@
         // Comments Constants
         public const int CommentMinLength = 2;
         public const int CommentMaxLength = 150;
+
+        // Users
+        public const int UsernameMinLength = 6;
+        public const int UsernameMaxLength = 20;
     }
 }

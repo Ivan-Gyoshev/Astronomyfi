@@ -495,3 +495,10 @@ h6 {
         -webkit-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out
     }
+
+.media .avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+}
