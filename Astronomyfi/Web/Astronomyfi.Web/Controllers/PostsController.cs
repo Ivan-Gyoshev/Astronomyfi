@@ -64,7 +64,6 @@
             return this.RedirectToAction("All", "Posts");
         }
 
-        [Authorize]
         public async Task<IActionResult> Edit(int postId)
         {
             var user = await this.userManager.GetUserAsync(this.User);
@@ -83,10 +82,21 @@
             return this.View(post);
         }
 
-        //public async Task<IActionResult> Edit(PostFormModel post, int postId)
-        //{
-        //    var
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Edit(PostFormModel post, int postId)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                post.Categories = this.categoryService.GetCategoriesById();
+                post.Types = this.postsService.GetPostTypes();
+
+                return this.View(post);
+            }
+
+            await this.postsService.EditPostAsync(post, postId);
+
+            return this.RedirectToAction("Details", "Posts", new { postId = postId });
+        }
 
         public async Task<IActionResult> Delete(int postId)
         {

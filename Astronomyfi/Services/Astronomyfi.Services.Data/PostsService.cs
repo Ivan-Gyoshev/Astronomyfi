@@ -41,7 +41,7 @@
 
         public async Task EditPostAsync(PostFormModel post, int postId)
         {
-            var currentPost = this.postsRepository.All().First(p => p.Id == postId);
+            var currentPost = this.GetById(postId);
 
             currentPost.Title = post.Title;
             currentPost.CategoryId = post.CategoryId;
