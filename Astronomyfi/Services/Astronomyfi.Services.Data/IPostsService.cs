@@ -5,17 +5,16 @@
 
     using Astronomyfi.Data.Models;
     using Astronomyfi.Data.Models.Enums;
-    using Astronomyfi.Web.ViewModels.Posts;
 
     public interface IPostsService
     {
+        IEnumerable<TModel> GetAllPosts<TModel>();
+
         IEnumerable<TypeOfPost> GetPostTypes();
 
-        IEnumerable<PostListingViewModel> GetAllPosts();
+        Task AddPostAsync(int id, string title, string content, int categoryId, TypeOfPost type, string userId);
 
-        Task AddPostAsync(PostFormModel post, string userId);
-
-        Task EditPostAsync(PostFormModel post, int postId);
+        Task EditPostAsync(int postId, string title, string content, int categoryId, TypeOfPost type);
 
         T GetById<T>(int postId);
 
@@ -23,6 +22,6 @@
 
         Task DeletePostAsync(int postId);
 
-        PostDetailsViewModel GetPost(int postId);
+        TModel GetPost<TModel>(int postId);
     }
 }

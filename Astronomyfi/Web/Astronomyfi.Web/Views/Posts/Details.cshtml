@@ -44,7 +44,7 @@
                         <div class="container com-bg">
                             <div class="row">
                                 <h4 class="col-9">@comment.Author</h4>
-                                <span class="col-3 text-secondary">@comment.CreatedOn</span>
+                                <span class="col-3 text-secondary">@comment.CreatedOn.ToString("dd/MM/yyyy HH:mm")</span>
                             </div>
                             <p>@comment.Content</p>
                             <ul class="list-inline m-0">

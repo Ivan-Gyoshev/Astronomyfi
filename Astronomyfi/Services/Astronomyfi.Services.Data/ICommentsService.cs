@@ -9,6 +9,6 @@
     {
         Task CreateCommentAsync(string content, string userId, int postId);
 
-        IEnumerable<PostCommentsViewModel> ListComments(int postId);
+        IEnumerable<TModel> ListComments<TModel>(int postId);
     }
 }

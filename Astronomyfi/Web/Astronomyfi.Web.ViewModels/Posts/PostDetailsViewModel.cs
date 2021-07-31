@@ -1,5 +1,6 @@
 ﻿namespace Astronomyfi.Web.ViewModels.Posts
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -19,12 +20,12 @@
 
         public int CategoryId { get; set; }
 
-        public string Category { get; set; }
+        public Category Category { get; set; }
 
         public string Author { get; set; }
 
         [Display(Name = "Created On")]
-        public string CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public IEnumerable<PostCommentsViewModel> Comments { get; set; }
     }

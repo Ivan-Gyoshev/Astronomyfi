@@ -29,7 +29,7 @@
 
         public IActionResult All()
         {
-            var posts = this.postsService.GetAllPosts();
+            var posts = this.postsService.GetAllPosts<PostListingViewModel>();
             return this.View(posts);
         }
 
@@ -59,7 +59,13 @@
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            await this.postsService.AddPostAsync(post, user.Id);
+            await this.postsService.AddPostAsync(
+                post.Id,
+                post.Title,
+                post.Content,
+                post.CategoryId,
+                post.Type,
+                user.Id);
 
             return this.RedirectToAction("All", "Posts");
         }
@@ -93,7 +99,12 @@
                 return this.View(post);
             }
 
-            await this.postsService.EditPostAsync(post, postId);
+            await this.postsService.EditPostAsync(
+                postId,
+                post.Title,
+                post.Content,
+                post.CategoryId,
+                post.Type);
 
             return this.RedirectToAction("Details", "Posts", new { postId = postId });
         }
@@ -116,8 +127,6 @@
 
             var post = this.postsService.GetById<PostDetailsViewModel>(postId);
 
-            post.Category = postModel.Category.Name;
-
             return this.View(post);
         }
 
@@ -131,7 +140,7 @@
 
         public IActionResult Details(int postId)
         {
-            var currentPost = this.postsService.GetPost(postId);
+            var currentPost = this.postsService.GetPost<PostDetailsViewModel>(postId);
 
             return this.View(currentPost);
         }

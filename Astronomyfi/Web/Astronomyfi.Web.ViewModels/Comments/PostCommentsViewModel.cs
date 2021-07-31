@@ -1,5 +1,7 @@
 ﻿namespace Astronomyfi.Web.ViewModels.Comments
 {
+    using System;
+
     using Astronomyfi.Data.Models;
     using Astronomyfi.Services.Mapping;
 
@@ -9,6 +11,6 @@
 
         public string Content { get; set; }
 
-        public string CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }

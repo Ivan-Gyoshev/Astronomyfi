@@ -3,7 +3,7 @@
 <article class="article">
     <div class="article-title">
         <h6>
-            <a asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@Model.CategoryId">@Model.Category</a>
+            <a asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@Model.CategoryId">@Model.Category.Name</a>
         </h6>
         <h2>@Model.Title</h2>
         <div class="media">
@@ -12,7 +12,7 @@
             </div>
             <div class="media-body">
                 <label>@Model.Author</label>
-                <span>@Model.CreatedOn</span>
+                <span>@Model.CreatedOn.ToString("dd/MM/yyyy HH:mm")</span>
             </div>
         </div>
     </div>

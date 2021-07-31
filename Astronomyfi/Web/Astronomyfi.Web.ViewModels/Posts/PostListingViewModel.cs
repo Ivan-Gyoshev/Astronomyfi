@@ -3,7 +3,10 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class PostListingViewModel
+    using Astronomyfi.Data.Models;
+    using Astronomyfi.Services.Mapping;
+
+    public class PostListingViewModel : IMapFrom<Post>
     {
         public int Id { get; set; }
 

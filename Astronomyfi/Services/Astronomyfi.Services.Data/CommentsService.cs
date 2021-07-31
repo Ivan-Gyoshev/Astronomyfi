@@ -6,6 +6,7 @@
 
     using Astronomyfi.Data.Common.Repositories;
     using Astronomyfi.Data.Models;
+    using Astronomyfi.Services.Mapping;
     using Astronomyfi.Web.ViewModels.Comments;
 
     public class CommentsService : ICommentsService
@@ -30,18 +31,20 @@
             await this.commentsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<PostCommentsViewModel> ListComments(int postId)
+        public IEnumerable<TModel> ListComments<TModel>(int postId)
         {
             var comments = this.commentsRepository
                 .All()
                 .Where(c => c.PostId == postId)
-                .Select(c => new PostCommentsViewModel
-                {
-                    Content = c.Content,
-                    CreatedOn = c.CreatedOn.ToString("dd-MM-yyy HH:mm"),
-                    Author = c.Author.UserName,
-                })
+                .To<TModel>()
                 .ToList();
+                //.Select(c => new PostCommentsViewModel
+                //{
+                //    Content = c.Content,
+                //    CreatedOn = c.CreatedOn.ToString("dd-MM-yyy HH:mm"),
+                //    Author = c.Author.UserName,
+                //})
+                //.ToList();
 
             return comments;
         }
