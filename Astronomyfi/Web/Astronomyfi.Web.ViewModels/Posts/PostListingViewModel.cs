@@ -16,9 +16,9 @@
         public int CommentsCount { get; set; }
 
         [Display(Name = "Created On")]
-        public string CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
 
-        public string Author { get; set; }
+        public ApplicationUser Author { get; set; }
 
         public string Type { get; set; }
     }

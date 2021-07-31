@@ -1,16 +1,16 @@
 ﻿@model Astronomyfi.Web.ViewModels.Categories.CategorySpecifyViewModel
 @{
-    this.ViewData["Title"] = $"{Model.Title} Forum";
+    this.ViewData["Title"] = $"{Model.Name} Forum";
 }
 
 <section class="py-5">
     <div class="row">
         <div class="col-2 img-fluid">
-            <img class="border" src="@Model.Image" alt="Alternate Text" />
+            <img class="border" src="@Model.ImageUrl" alt="Alternate Text" />
         </div>
         <div class="col-8">
-            <h3>@Model.Title</h3>
-            <h4>@Model.Content</h4>
+            <h3>@Model.Name</h3>
+            <h4>@Model.Description</h4>
         </div>
     </div>
     <div class="container row mt-lg-5">
@@ -36,7 +36,7 @@
                 <table class="table table-hover">
                     <thead class="th">
                         <tr>
-                            <th class="text-center" width="10%" scope="col">Author</th>
+                            <th width="10%" scope="col">Author</th>
                             <th width="35%" scope="col">Topic</th>
                             <th scope="col">Comments</th>
                             <th width="10%">Type</th>
@@ -49,14 +49,18 @@
                         {
                             <tr>
                                 <td height="40%">
-                                    <h6 class="text-center">Image</h6>
+                                    <div class="media">
+                                        <div class="avatar">
+                                            <img src="@post.Author.AvatarImgUrl" title="" alt="Avatar image">
+                                        </div>
+                                    </div>
                                 </td>
                                 <td height="40%">@post.Title</td>
                                 <td height="40%">@post.CommentsCount</td>
                                 <td height="40%">
                                     <button class="btn disabled btn-outline-info font-weight-bold">@post.Type</button>
                                 </td>
-                                <td scope="col">@post.CreatedOn</td>
+                                <td scope="col">@post.CreatedOn.ToString("dd/MM/yyyy HH:mm")</td>
                                 <td height="40%">
                                     <div class="button-holder">
                                         <a asp-controller="Posts" asp-action="Details" asp-route-postId="@post.Id" class="btn btn-info text-uppercase">Read More</a>

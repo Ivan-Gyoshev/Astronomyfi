@@ -6,7 +6,6 @@
     using Astronomyfi.Data.Common.Repositories;
     using Astronomyfi.Data.Models;
     using Astronomyfi.Services.Data;
-    using Astronomyfi.Services.Mapping;
     using Astronomyfi.Web.ViewModels.Posts;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -36,7 +35,7 @@
         [Authorize]
         public IActionResult Create() => this.View(new PostFormModel
         {
-            Categories = this.categoryService.GetCategoriesById(),
+            Categories = this.categoryService.GetCategoriesById<PostCategoryViewModel>(),
             Types = this.postsService.GetPostTypes(),
         });
 
@@ -51,7 +50,7 @@
 
             if (!this.ModelState.IsValid)
             {
-                post.Categories = this.categoryService.GetCategoriesById();
+                post.Categories = this.categoryService.GetCategoriesById<PostCategoryViewModel>();
                 post.Types = this.postsService.GetPostTypes();
 
                 return this.View(post);
@@ -83,7 +82,7 @@
             var post = this.postsService.GetById<PostFormModel>(postId);
 
             post.Types = this.postsService.GetPostTypes();
-            post.Categories = this.categoryService.GetCategoriesById();
+            post.Categories = this.categoryService.GetCategoriesById<PostCategoryViewModel>();
 
             return this.View(post);
         }
@@ -93,7 +92,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                post.Categories = this.categoryService.GetCategoriesById();
+                post.Categories = this.categoryService.GetCategoriesById<PostCategoryViewModel>();
                 post.Types = this.postsService.GetPostTypes();
 
                 return this.View(post);

@@ -6,6 +6,7 @@
 
     using Astronomyfi.Data.Common.Repositories;
     using Astronomyfi.Data.Models;
+    using Astronomyfi.Services.Mapping;
     using Astronomyfi.Web.ViewModels.Categories;
     using Astronomyfi.Web.ViewModels.Posts;
 
@@ -20,71 +21,41 @@
             this.postsRepository = postsRepository;
         }
 
-        public IEnumerable<ListCategoriesViewModel> GetCategories()
+        public IEnumerable<TModel> GetCategories<TModel>()
         {
             var categories = this.categoriesRepository.All()
-                .Select(c => new ListCategoriesViewModel
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    Description = c.Description,
-                    ImageUrl = c.ImageUrl,
-                    PostsCount = this.postsRepository.All().Where(p => p.Category.Name == c.Name)
-                    .Count(),
-                })
+                .To<TModel>()
                 .ToList();
 
             return categories;
         }
 
-        public async Task AddCategoryAsync(AddCategoryViewModel category)
+        public async Task AddCategoryAsync(string name, string description, string imageUrl)
         {
             var categoryData = new Category
             {
-                Name = category.Name,
-                Description = category.Description,
-                ImageUrl = category.ImageUrl,
+                Name = name,
+                Description = description,
+                ImageUrl = imageUrl,
             };
 
             await this.categoriesRepository.AddAsync(categoryData);
             await this.categoriesRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<PostCategoryViewModel> GetCategoriesById()
+        public IEnumerable<TModel> GetCategoriesById<TModel>()
           => this.categoriesRepository.All()
-            .Select(c => new PostCategoryViewModel
-            {
-                Id = c.Id,
-                Name = c.Name,
-            })
+            .To<TModel>()
             .ToList();
 
-        public CategorySpecifyViewModel GetPostsByCategory(int categoryId)
+        public TModel GetPostsByCategory<TModel>(int categoryId)
         {
-            var currentCategory = this.categoriesRepository.All().FirstOrDefault(c => c.Id == categoryId);
 
             if (this.postsRepository.All().Any(p => p.CategoryId == categoryId))
             {
-                var categoryPosts = this.postsRepository.All()
-                 .Where(p => p.CategoryId == categoryId)
-                 .Select(p => new CategorySpecifyViewModel
-                 {
-                     Title = currentCategory.Name,
-                     Content = currentCategory.Description,
-                     Image = currentCategory.ImageUrl,
-                     Posts = this.postsRepository.All()
-                     .Where(p => p.CategoryId == categoryId)
-                     .Select(p => new PostListingViewModel
-                     {
-                         Id = p.Id,
-                         Author = p.Author.UserName,
-                         Title = p.Title,
-                         Type = p.Type.ToString(),
-                         CommentsCount = p.Comments.Count(),
-                         CreatedOn = p.CreatedOn.ToString("dd/MM/yyy/ hh:mm"),
-                     })
-                     .ToList(),
-                 })
+                var categoryPosts = this.categoriesRepository.All()
+                 .Where(p => p.Id == categoryId)
+                 .To<TModel>()
                  .FirstOrDefault();
 
                 return categoryPosts;
@@ -93,13 +64,7 @@
             {
                 var emptyCategory = this.categoriesRepository.All()
                     .Where(c => c.Id == categoryId)
-                    .Select(c => new CategorySpecifyViewModel
-                    {
-                        Title = currentCategory.Name,
-                        Content = currentCategory.Description,
-                        Image = currentCategory.ImageUrl,
-                        Posts = new List<PostListingViewModel>(),
-                    })
+                    .To<TModel>()
                     .FirstOrDefault();
 
                 return emptyCategory;

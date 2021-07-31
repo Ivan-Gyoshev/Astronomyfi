@@ -8,12 +8,12 @@
 
     public interface ICategoriesService
     {
-        IEnumerable<ListCategoriesViewModel> GetCategories();
+        IEnumerable<TModel> GetCategories<TModel>();
 
-        IEnumerable<PostCategoryViewModel> GetCategoriesById();
+        IEnumerable<TModel> GetCategoriesById<TModel>();
 
-        Task AddCategoryAsync(AddCategoryViewModel category);
+        Task AddCategoryAsync(string name, string description, string imageUrl);
 
-        CategorySpecifyViewModel GetPostsByCategory(int categoryId);
+        TModel GetPostsByCategory<TModel>(int categoryId);
     }
 }

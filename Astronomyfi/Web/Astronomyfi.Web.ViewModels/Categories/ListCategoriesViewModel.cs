@@ -1,6 +1,9 @@
 ﻿namespace Astronomyfi.Web.ViewModels.Categories
 {
-    public class ListCategoriesViewModel
+    using Astronomyfi.Data.Models;
+    using Astronomyfi.Services.Mapping;
+
+    public class ListCategoriesViewModel : IMapFrom<Category>
     {
         public int Id { get; set; }
 

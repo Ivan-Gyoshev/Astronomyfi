@@ -13,7 +13,6 @@
     public class PostsService : IPostsService
     {
         private readonly IDeletableEntityRepository<Post> postsRepository;
-        private readonly ICommentsService commentsService;
 
         public PostsService(IDeletableEntityRepository<Post> postsRepository)
         {

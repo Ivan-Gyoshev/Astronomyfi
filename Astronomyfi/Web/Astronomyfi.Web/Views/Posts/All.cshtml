@@ -37,7 +37,7 @@
                             <td height="40%">
                                 <div class="media">
                                     <div class="avatar">
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" title="" alt="">
+                                        <img src="@post.Author.AvatarImgUrl" title="" alt="">
                                     </div>
                                 </div>
                             </td>
@@ -46,7 +46,7 @@
                             <td height="40%">
                                 <button class="btn disabled btn-outline-info font-weight-bold">@post.Type</button>
                             </td>
-                            <td scope="col">@post.CreatedOn</td>
+                            <td scope="col">@post.CreatedOn.ToString("dd/MM/yyyy HH:mm")</td>
                             <td height="40%">
                                 <div class="button-holder">
                                     <a asp-controller="Posts" asp-action="Details" asp-route-postId="@post.Id" class="btn btn-info text-uppercase">Read More</a>

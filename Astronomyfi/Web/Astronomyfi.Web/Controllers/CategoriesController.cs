@@ -4,6 +4,7 @@
 
     using Astronomyfi.Services.Data;
     using Astronomyfi.Web.ViewModels.Categories;
+    using Astronomyfi.Web.ViewModels.Posts;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -11,11 +12,14 @@
     {
         private readonly ICategoriesService categoryService;
 
-        public CategoriesController(ICategoriesService categoryService) => this.categoryService = categoryService;
+        public CategoriesController(ICategoriesService categoryService)
+        {
+            this.categoryService = categoryService;
+        }
 
         public IActionResult All()
         {
-            var categories = this.categoryService.GetCategories();
+            var categories = this.categoryService.GetCategories<ListCategoriesViewModel>();
             return this.View(categories);
         }
 
@@ -31,14 +35,17 @@
                 return this.View();
             }
 
-            await this.categoryService.AddCategoryAsync(category);
+            await this.categoryService.AddCategoryAsync(
+                category.Name,
+                category.Description,
+                category.ImageUrl);
 
             return this.RedirectToAction("All", "Categories");
         }
 
         public IActionResult Specify(int categoryId)
         {
-            var posts = this.categoryService.GetPostsByCategory(categoryId);
+            var posts = this.categoryService.GetPostsByCategory<CategorySpecifyViewModel>(categoryId);
 
             return this.View(posts);
         }
