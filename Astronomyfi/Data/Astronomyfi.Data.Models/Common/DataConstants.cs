@@ -23,5 +23,7 @@
         // Users
         public const int UsernameMinLength = 6;
         public const int UsernameMaxLength = 20;
+
+        public const string UserDefaultAvatar = "https://res.cloudinary.com/astronomyfi/image/upload/v1626003872/2299015_vkpw7z.png";
     }
 }

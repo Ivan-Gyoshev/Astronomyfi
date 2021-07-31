@@ -8,6 +8,8 @@ namespace Astronomyfi.Data.Models
 
     using Microsoft.AspNetCore.Identity;
 
+    using static Astronomyfi.Data.Models.Common.DataConstants;
+
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
         public ApplicationUser()
@@ -16,6 +18,7 @@ namespace Astronomyfi.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+            this.AvatarImgUrl = UserDefaultAvatar;
         }
 
         // Audit info
@@ -27,6 +30,10 @@ namespace Astronomyfi.Data.Models
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        public string AvatarImgUrl { get; set; }
+
+        public int AccountScore { get; set; }
 
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 

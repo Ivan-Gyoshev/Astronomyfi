@@ -80,6 +80,7 @@
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IPostsService, PostsService>();
             services.AddTransient<ICommentsService, CommentsService>();
+            services.AddTransient<IUsersService, UsersService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
