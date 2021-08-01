@@ -36,5 +36,21 @@
             return this.RedirectToAction("Details", "Posts", new { postId = comment.PostId });
         }
 
+        [Authorize]
+        public async Task<IActionResult> Edit(int postId, int commentId)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            var commentModel = this.commentsService.GetById(postId, commentId);
+
+            if (commentModel.AuthorId != user.Id)
+            {
+                return this.Unauthorized();
+            }
+
+            var comment = this.commentsService.GetById<EditCommentViewModel>(postId, commentId);
+
+            return this.View(comment);
+        }
+
     }
 }

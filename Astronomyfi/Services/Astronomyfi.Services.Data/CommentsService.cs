@@ -31,6 +31,15 @@
             await this.commentsRepository.SaveChangesAsync();
         }
 
+        public async Task EditCommentAsync(string content, int postId, int commentId)
+        {
+            var comment = this.GetById(postId, commentId);
+
+            comment.Content = content;
+
+            await this.commentsRepository.SaveChangesAsync();
+        }
+
         public IEnumerable<TModel> ListComments<TModel>(int postId)
         {
             var comments = this.commentsRepository
@@ -38,15 +47,19 @@
                 .Where(c => c.PostId == postId)
                 .To<TModel>()
                 .ToList();
-                //.Select(c => new PostCommentsViewModel
-                //{
-                //    Content = c.Content,
-                //    CreatedOn = c.CreatedOn.ToString("dd-MM-yyy HH:mm"),
-                //    Author = c.Author.UserName,
-                //})
-                //.ToList();
 
             return comments;
         }
+
+        public T GetById<T>(int postId, int commentId)
+           => this.commentsRepository.All()
+           .Where(c => c.PostId == postId & c.Id == commentId)
+           .To<T>()
+           .FirstOrDefault();
+
+        public Comment GetById(int postId, int commentId)
+          => this.commentsRepository.All()
+                .FirstOrDefault(c => c.PostId == postId
+                && c.Id == commentId);
     }
 }

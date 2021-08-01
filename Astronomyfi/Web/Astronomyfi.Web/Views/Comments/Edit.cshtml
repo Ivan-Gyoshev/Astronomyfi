@@ -1,0 +1,18 @@
+﻿@model EditCommentViewModel
+
+@{ 
+    this.ViewData["Title"] = "Edit comment";
+}
+
+<div class="contact-form article-comment mt-3 text-center">
+    <h4>Edit your comment</h4>
+    <form method="post">
+        <textarea asp-for="@this.Model.Content" class="feedback-input" placeholder="Comment"></textarea>
+        <div class="tag-cloud">
+            <button asp-controller="Comments"
+                    asp-action="Edit" asp-route-commentId="@this.Model.Id" class="btn borderButton col-6 font-weight-bold font-italic">
+                Edit
+            </button>
+        </div>
+    </form>
+</div>
