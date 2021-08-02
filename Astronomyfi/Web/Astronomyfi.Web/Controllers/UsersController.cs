@@ -4,7 +4,7 @@
 
     using Astronomyfi.Data.Models;
     using Astronomyfi.Services.Data;
-    using Astronomyfi.Web.ViewModels;
+    using Astronomyfi.Web.ViewModels.Users;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +23,7 @@
         {
             var currentUser = await this.userManager.GetUserAsync(this.User);
 
-            var userView = this.usersService.GetUser<AccountDetailsViewModel>(currentUser.Id);
+            var userView = this.usersService.GetUser<UsersDetailsViewModel>(currentUser.Id);
 
             return this.View(userView);
         }

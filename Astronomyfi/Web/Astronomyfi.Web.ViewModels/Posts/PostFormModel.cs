@@ -9,7 +9,7 @@
 
     using static Astronomyfi.Data.Models.Common.DataConstants;
 
-    public class PostFormModel : IMapFrom<Post>
+    public class PostFormModel : IMapFrom<Post>, IMapFrom<Category>
     {
         public int Id { get; set; }
 

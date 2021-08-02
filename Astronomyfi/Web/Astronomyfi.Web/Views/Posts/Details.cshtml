@@ -56,11 +56,13 @@
                                        class="btn btn-outline-primary btn-sm rounded-0 mb-2" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
                                 </li>
                                 <li class="list-inline-item">
-                                    <button asp-controller="Comments"
+                                    <a asp-controller="Comments"
                                             asp-action="Delete"
+                                            asp-route-commentId="@comment.Id"
+                                            asp-route-postId="@this.Model.Id"
                                             class="btn btn-outline-danger btn-sm rounded-0 mb-2" type="button" data-toggle="tooltip" data-placement="top" title="Delete">
                                         <i class="fa fa-trash"></i>
-                                    </button>
+                                    </a>
                                 </li>
                             </ul>
                         </div>

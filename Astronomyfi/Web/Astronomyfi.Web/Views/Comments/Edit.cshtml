@@ -10,7 +10,7 @@
         <textarea asp-for="@this.Model.Content" class="feedback-input" placeholder="Comment"></textarea>
         <div class="tag-cloud">
             <button asp-controller="Comments"
-                    asp-action="Edit" asp-route-commentId="@this.Model.Id" class="btn borderButton col-6 font-weight-bold font-italic">
+                    asp-action="Edit" asp-route-id="@this.Model.Id" asp-route-postId="@this.Model.PostId" class="btn borderButton col-6 font-weight-bold font-italic">
                 Edit
             </button>
         </div>

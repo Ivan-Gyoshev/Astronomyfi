@@ -52,5 +52,49 @@
             return this.View(comment);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditCommentViewModel comment)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(comment);
+            }
+
+            await this.commentsService.EditCommentAsync(
+                comment.Content,
+                comment.PostId,
+                comment.Id);
+
+            return this.RedirectToAction("Details", "Posts", new { postId = comment.PostId });
+        }
+
+        public async Task<IActionResult> Delete(int postId, int commentId)
+        {
+            var commentModel = this.commentsService.GetById(postId, commentId);
+
+            if (commentModel == null)
+            {
+                return this.NotFound();
+            }
+
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            if (user.Id != commentModel.AuthorId)
+            {
+                return this.Unauthorized();
+            }
+
+            var post = this.commentsService.GetById<DeleteCommentViewModel>(postId, commentId);
+
+            return this.View(post);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmation(int postId, int commentId)
+        {
+            await this.commentsService.DeleteCommentAsync(postId, commentId);
+
+            return this.RedirectToAction("Details", "Posts", new { postId = postId });
+        }
     }
 }

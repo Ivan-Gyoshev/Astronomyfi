@@ -1,9 +1,9 @@
-﻿namespace Astronomyfi.Web.ViewModels
+﻿namespace Astronomyfi.Web.ViewModels.Users
 {
     using Astronomyfi.Data.Models;
     using Astronomyfi.Services.Mapping;
 
-    public class AccountDetailsViewModel : IMapFrom<ApplicationUser>
+    public class UsersDetailsViewModel : IMapFrom<ApplicationUser>
     {
         public string Username { get; set; }
 

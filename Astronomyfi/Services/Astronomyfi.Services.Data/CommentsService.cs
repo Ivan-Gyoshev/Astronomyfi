@@ -1,5 +1,6 @@
 ﻿namespace Astronomyfi.Services.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -49,6 +50,16 @@
                 .ToList();
 
             return comments;
+        }
+
+        public async Task DeleteCommentAsync(int postId, int commentId)
+        {
+            var comment = this.GetById(postId, commentId);
+
+            comment.IsDeleted = true;
+            comment.DeletedOn = DateTime.UtcNow;
+
+            await this.commentsRepository.SaveChangesAsync();
         }
 
         public T GetById<T>(int postId, int commentId)
