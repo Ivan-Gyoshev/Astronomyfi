@@ -8,6 +8,7 @@
     using Astronomyfi.Data.Models;
     using Astronomyfi.Data.Repositories;
     using Astronomyfi.Data.Seeding;
+    using Astronomyfi.Services;
     using Astronomyfi.Services.Data;
     using Astronomyfi.Services.Mapping;
     using Astronomyfi.Services.Messaging;
@@ -81,6 +82,7 @@
             services.AddTransient<IPostsService, PostsService>();
             services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<ICloudinaryService, CloudinaryService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

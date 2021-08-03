@@ -22,7 +22,7 @@
 
         public Category Category { get; set; }
 
-        public string Author { get; set; }
+        public ApplicationUser Author { get; set; }
 
         [Display(Name = "Created On")]
         public DateTime CreatedOn { get; set; }

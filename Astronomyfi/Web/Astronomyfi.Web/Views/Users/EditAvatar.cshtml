@@ -1,0 +1,44 @@
+﻿@model EditAvatarViewModel
+
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-xl-6 col-md-12">
+                <div class="card user-card-full">
+                    <div class="row m-l-0 m-r-0">
+                        <div class="col-sm-4 bg-c-lite-green user-profile">
+                            <div class="card-block text-center text-white">
+                                <div class="m-b-25"> <img src="@this.Model.AvatarImgUrl" class="img-radius" alt="User-Profile-Image"> </div>
+                                <div class="">
+                                    <p><u>Username</u></p>
+                                    <h6 class="text-white f-w-400 font-weight-bold">@this.Model.Username</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="card-block">
+                                <form method="post" enctype="multipart/form-data">
+                                    <div class="container text-center">
+                                        <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Upload New Image</h6>
+                                        <input asp-for="NewImage"
+                                               type="file"
+                                               name="NewImage"
+                                               id="newImage" accept=".png,.jpg,.jpeg" style="display: none;" />
+                                        <input class="btn btn-outline-dark" type="button" value="+ Upload +" onclick="document.getElementById('newImage').click();" />
+                                    </div>
+                                    <div class="container text-center" style="margin-top:100px;">
+                                        <button class="btn btn-info btn-sm" type="submit"
+                                           asp-controller="Users"
+                                           asp-action="EditAvatarConfirm"
+                                           asp-route-id="@this.Model.Id"> Edit profile</button>
+                                        <a class="btn btn-danger btn-sm" href="/Users/AccountDetails"> Cancel</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

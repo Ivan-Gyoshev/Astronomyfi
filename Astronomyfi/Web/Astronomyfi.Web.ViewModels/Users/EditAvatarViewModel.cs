@@ -2,17 +2,16 @@
 {
     using Astronomyfi.Data.Models;
     using Astronomyfi.Services.Mapping;
+    using Microsoft.AspNetCore.Http;
 
-    public class UsersDetailsViewModel : IMapFrom<ApplicationUser>
+    public class EditAvatarViewModel : IMapFrom<ApplicationUser>
     {
         public string Id { get; set; }
-        
-        public string Username { get; set; }
 
-        public string Email { get; set; }
+        public string Username { get; set; }
 
         public string AvatarImgUrl { get; set; }
 
-        public int AccountScore { get; set; }
+        public IFormFile NewImage { get; set; }
     }
 }
