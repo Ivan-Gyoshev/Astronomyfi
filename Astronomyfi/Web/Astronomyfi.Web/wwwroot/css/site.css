@@ -214,13 +214,13 @@ th {
         .article .article-title .media {
             padding-top: 15px;
             border-bottom: 1px dashed #ddd;
-            padding-bottom: 20px;
+            padding-bottom: 10px;
         }
 
             .article .article-title .media .avatar {
-                width: 45px;
-                height: 45px;
-                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+                border-image: auto;
                 overflow: hidden;
             }
 
@@ -497,8 +497,8 @@ h6 {
     }
 
 .media .avatar {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 45px;
     border-radius: 100%;
     overflow: hidden;
 }
