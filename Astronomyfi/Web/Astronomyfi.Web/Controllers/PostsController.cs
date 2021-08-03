@@ -13,12 +13,12 @@
 
     public class PostsController : Controller
     {
-        private readonly UserManager<ApplicationUser> userManager;
+        private readonly UserManager<ForumUser> userManager;
         private readonly ICategoriesService categoryService;
         private readonly IPostsService postsService;
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
 
-        public PostsController(ICategoriesService categoryService, IPostsService postsService, IDeletableEntityRepository<Category> categoriesRepository, UserManager<ApplicationUser> userManager)
+        public PostsController(ICategoriesService categoryService, IPostsService postsService, IDeletableEntityRepository<Category> categoriesRepository, UserManager<ForumUser> userManager)
         {
             this.categoryService = categoryService;
             this.postsService = postsService;
@@ -57,6 +57,8 @@
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
+
+            user.AccountScore++;
 
             await this.postsService.AddPostAsync(
                 post.Id,

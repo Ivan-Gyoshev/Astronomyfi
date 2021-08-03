@@ -10,23 +10,23 @@ namespace Astronomyfi.Data.Models
 
     using static Astronomyfi.Data.Models.Common.DataConstants;
 
-    public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
+    public class ForumUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
-        public ApplicationUser()
+        public ForumUser()
         {
             this.Id = Guid.NewGuid().ToString();
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+            this.Posts = new HashSet<Post>();
+            this.Comments = new HashSet<Comment>();
             this.AvatarImgUrl = UserDefaultAvatar;
         }
 
-        // Audit info
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
 
-        // Deletable entity
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
@@ -34,6 +34,10 @@ namespace Astronomyfi.Data.Models
         public string AvatarImgUrl { get; set; }
 
         public int AccountScore { get; set; }
+
+        public ICollection<Post> Posts { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 

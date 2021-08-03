@@ -9,7 +9,7 @@
     {
         TModel GetUser<TModel>(string userId);
 
-        ApplicationUser GetUser(string userId);
+        ForumUser GetUser(string userId);
 
         Task UpdateAvatarAsync(EditAvatarViewModel input);
     }

@@ -51,8 +51,8 @@
 
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddDefaultIdentity<ApplicationUser>(IdentityOptionsProvider.GetIdentityOptions)
-                .AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<ForumUser>(IdentityOptionsProvider.GetIdentityOptions)
+                .AddRoles<ForumRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.Configure<CookiePolicyOptions>(
                 options =>

@@ -12,9 +12,9 @@
     public class CommentsController : Controller
     {
         private readonly ICommentsService commentsService;
-        private readonly UserManager<ApplicationUser> userManager;
+        private readonly UserManager<ForumUser> userManager;
 
-        public CommentsController(ICommentsService commentsService, UserManager<ApplicationUser> userManager)
+        public CommentsController(ICommentsService commentsService, UserManager<ForumUser> userManager)
         {
             this.commentsService = commentsService;
             this.userManager = userManager;
@@ -30,6 +30,8 @@
             {
                 return this.RedirectToAction("Details", "Posts", new { postId = comment.PostId });
             }
+
+            user.AccountScore++;
 
             await this.commentsService.CreateCommentAsync(comment.Content, user.Id, comment.PostId);
 

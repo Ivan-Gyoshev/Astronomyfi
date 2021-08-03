@@ -11,9 +11,9 @@
     public class UsersController : Controller
     {
         private readonly IUsersService usersService;
-        private readonly UserManager<ApplicationUser> userManager;
+        private readonly UserManager<ForumUser> userManager;
 
-        public UsersController(IUsersService usersService, UserManager<ApplicationUser> userManager)
+        public UsersController(IUsersService usersService, UserManager<ForumUser> userManager)
         {
             this.usersService = usersService;
             this.userManager = userManager;

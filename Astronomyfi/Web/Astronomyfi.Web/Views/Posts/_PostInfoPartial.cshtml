@@ -3,23 +3,37 @@
 <article class="article">
     <div class="article-title">
         <h6>
-            <a asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@Model.CategoryId">@Model.Category.Name</a>
+            <a asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@this.Model.CategoryId">@this.Model.Category.Name</a>
         </h6>
-        <h2>@Model.Title</h2>
+        <h2>@this.Model.Title</h2>
         <div class="media">
             <div class="avatar">
                 <img src="@this.Model.Author.AvatarImgUrl" title="" alt="">
             </div>
             <div class="media-body">
-                <label>@Model.Author</label>
-                <span>@Model.CreatedOn.ToString("dd/MM/yyyy HH:mm")</span>
+                <label>@this.Model.Author</label>
+                <span>@this.Model.CreatedOn.ToString("dd/MM/yyyy HH:mm")</span>
             </div>
         </div>
     </div>
     <div class="article-content">
-        @Model.Content
+        @this.Model.Content
+    </div>
+    <div class="text-lg-right small ml-3">
+        <form id="votesForm" method="post"></form>
+        <div>
+            <a href="#" onclick="sendVote(@this.Model.Id, true)">
+                <i class="fa fa-thumbs-up"></i>
+            </a>
+        </div>
+        <div id="votesCount">@this.Model.VotesCount</div>
+        <div>
+            <a href="#" onclick="sendVote(@this.Model.Id, false)">
+                <i class="fa fa-thumbs-down"></i>
+            </a>
+        </div>
     </div>
     <div class="nav tag-cloud">
-        <a class="disabled">@Model.Type</a>
+        <a class="disabled">@this.Model.Type</a>
     </div>
 </article>

@@ -18,11 +18,13 @@
 
         public string Type { get; set; }
 
+        public int VotesCount { get; set; }
+
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }
 
-        public ApplicationUser Author { get; set; }
+        public ForumUser Author { get; set; }
 
         [Display(Name = "Created On")]
         public DateTime CreatedOn { get; set; }

@@ -7,14 +7,14 @@ namespace Astronomyfi.Data.Models
 
     using Microsoft.AspNetCore.Identity;
 
-    public class ApplicationRole : IdentityRole, IAuditInfo, IDeletableEntity
+    public class ForumRole : IdentityRole, IAuditInfo, IDeletableEntity
     {
-        public ApplicationRole()
+        public ForumRole()
             : this(null)
         {
         }
 
-        public ApplicationRole(string name)
+        public ForumRole(string name)
             : base(name)
         {
             this.Id = Guid.NewGuid().ToString();

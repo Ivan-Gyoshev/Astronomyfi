@@ -4,9 +4,9 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-    public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
+    public class ApplicationUserConfiguration : IEntityTypeConfiguration<ForumUser>
     {
-        public void Configure(EntityTypeBuilder<ApplicationUser> appUser)
+        public void Configure(EntityTypeBuilder<ForumUser> appUser)
         {
             appUser
                 .HasMany(e => e.Claims)

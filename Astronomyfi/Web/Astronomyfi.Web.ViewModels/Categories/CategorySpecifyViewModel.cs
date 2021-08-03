@@ -12,7 +12,7 @@
 
         public string Description { get; set; }
 
-        public ApplicationUser Author { get; set; }
+        public ForumUser Author { get; set; }
 
         public string ImageUrl { get; set; }
 
