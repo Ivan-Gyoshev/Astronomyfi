@@ -51,8 +51,8 @@
 
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddDefaultIdentity<ForumUser>(IdentityOptionsProvider.GetIdentityOptions)
-                .AddRoles<ForumRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<ApplicationUser>(IdentityOptionsProvider.GetIdentityOptions)
+                .AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.Configure<CookiePolicyOptions>(
                 options =>
@@ -66,6 +66,12 @@
                     {
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
                     }).AddRazorRuntimeCompilation();
+
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-CSRF-TOKEN";
+            });
+
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -82,6 +88,7 @@
             services.AddTransient<IPostsService, PostsService>();
             services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient<IUsersService, UsersService>();
+            services.AddTransient<IVotesService, VoteService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
         }
 

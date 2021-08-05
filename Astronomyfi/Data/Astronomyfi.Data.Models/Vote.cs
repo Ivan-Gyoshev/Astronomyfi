@@ -12,7 +12,7 @@
         [Required]
         public string AuthorId { get; set; }
 
-        public ForumUser Author { get; set; }
+        public ApplicationUser Author { get; set; }
 
         [Required]
         public int PostId { get; set; }

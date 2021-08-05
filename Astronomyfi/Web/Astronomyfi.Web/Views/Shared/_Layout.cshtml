@@ -31,8 +31,8 @@
                             <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="Captures" asp-action="Index">Space Captures</a>
                         </li>
                         @*<li class="nav-item">
-                            <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="" asp-action="">Chat</a>
-                        </li>*@
+                                <a class="nav-link text-light font-weight-bold" asp-area="" asp-controller="" asp-action="">Chat</a>
+                            </li>*@
                     </ul>
                 </div>
             </div>
@@ -52,11 +52,13 @@
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" asp-append-version="true"></script>
-    <script src="~/js/site.min.js" asp-append-version="true"></script>
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js" asp-append-version="true"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
     @await this.RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

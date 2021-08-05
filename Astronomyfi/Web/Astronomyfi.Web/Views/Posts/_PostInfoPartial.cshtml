@@ -2,9 +2,16 @@
 
 <article class="article">
     <div class="article-title">
-        <h6>
-            <a asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@this.Model.CategoryId">@this.Model.Category.Name</a>
-        </h6>
+        <div class="row">
+            <h6 class="col-6">
+                <a asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@this.Model.CategoryId">@this.Model.Category.Name</a>
+            </h6>
+            <div style="color: #20247b" class="font-weight-bold text-right col-6">
+                Upvotes :
+                <h4 id="votesCount" style="color: #20247b" class="font-weight-bold text-right">>>@this.Model.VotesCount<<</h4>
+            </div>
+            
+        </div>
         <h2>@this.Model.Title</h2>
         <div class="media">
             <div class="avatar">
@@ -18,20 +25,6 @@
     </div>
     <div class="article-content">
         @this.Model.Content
-    </div>
-    <div class="text-lg-right small ml-3">
-        <form id="votesForm" method="post"></form>
-        <div>
-            <a href="#" onclick="sendVote(@this.Model.Id, true)">
-                <i class="fa fa-thumbs-up"></i>
-            </a>
-        </div>
-        <div id="votesCount">@this.Model.VotesCount</div>
-        <div>
-            <a href="#" onclick="sendVote(@this.Model.Id, false)">
-                <i class="fa fa-thumbs-down"></i>
-            </a>
-        </div>
     </div>
     <div class="nav tag-cloud">
         <a class="disabled">@this.Model.Type</a>
