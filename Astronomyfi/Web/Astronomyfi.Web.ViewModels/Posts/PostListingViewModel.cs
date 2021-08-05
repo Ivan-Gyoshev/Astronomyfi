@@ -18,7 +18,7 @@
         [Display(Name = "Created On")]
         public DateTime CreatedOn { get; set; }
 
-        public ForumUser Author { get; set; }
+        public ApplicationUser Author { get; set; }
 
         public string Type { get; set; }
     }

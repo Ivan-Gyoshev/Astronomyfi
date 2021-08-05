@@ -3,7 +3,7 @@
     using Astronomyfi.Data.Models;
     using Astronomyfi.Services.Mapping;
 
-    public class UsersDetailsViewModel : IMapFrom<ForumUser>
+    public class UsersDetailsViewModel : IMapFrom<ApplicationUser>
     {
         public string Id { get; set; }
 

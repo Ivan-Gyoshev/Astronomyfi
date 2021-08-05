@@ -11,10 +11,10 @@
 
     public class UsersService : IUsersService
     {
-        private readonly IRepository<ForumUser> usersRepository;
+        private readonly IRepository<ApplicationUser> usersRepository;
         private readonly ICloudinaryService cloudinaryService;
 
-        public UsersService(IRepository<ForumUser> usersRepository, ICloudinaryService cloudinaryService)
+        public UsersService(IRepository<ApplicationUser> usersRepository, ICloudinaryService cloudinaryService)
         {
             this.usersRepository = usersRepository;
             this.cloudinaryService = cloudinaryService;
@@ -27,7 +27,7 @@
             .To<TModel>()
             .FirstOrDefault();
 
-        public ForumUser GetUser(string userId)
+        public ApplicationUser GetUser(string userId)
           => this.usersRepository.All()
             .FirstOrDefault(u => u.Id == userId);
 

@@ -23,14 +23,14 @@ namespace Astronomyfi.Web.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<ForumUser> signInManager;
-        private readonly UserManager<ForumUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly ILogger<RegisterModel> logger;
         private readonly IEmailSender emailSender;
 
         public RegisterModel(
-            UserManager<ForumUser> userManager,
-            SignInManager<ForumUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -59,7 +59,7 @@ namespace Astronomyfi.Web.Areas.Identity.Pages.Account
             this.ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (this.ModelState.IsValid)
             {
-                var user = new ForumUser
+                var user = new ApplicationUser
                 {
                     UserName = this.Input.Username,
                     Email = this.Input.Email,

@@ -12,9 +12,9 @@
     public class CommentsController : Controller
     {
         private readonly ICommentsService commentsService;
-        private readonly UserManager<ForumUser> userManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public CommentsController(ICommentsService commentsService, UserManager<ForumUser> userManager)
+        public CommentsController(ICommentsService commentsService, UserManager<ApplicationUser> userManager)
         {
             this.commentsService = commentsService;
             this.userManager = userManager;

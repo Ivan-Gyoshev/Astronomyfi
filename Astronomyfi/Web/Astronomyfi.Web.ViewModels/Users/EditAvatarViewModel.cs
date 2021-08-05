@@ -4,7 +4,7 @@
     using Astronomyfi.Services.Mapping;
     using Microsoft.AspNetCore.Http;
 
-    public class EditAvatarViewModel : IMapFrom<ForumUser>
+    public class EditAvatarViewModel : IMapFrom<ApplicationUser>
     {
         public string Id { get; set; }
 

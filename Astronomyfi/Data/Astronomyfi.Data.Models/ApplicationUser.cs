@@ -10,9 +10,9 @@ namespace Astronomyfi.Data.Models
 
     using static Astronomyfi.Data.Models.Common.DataConstants;
 
-    public class ForumUser : IdentityUser, IAuditInfo, IDeletableEntity
+    public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
-        public ForumUser()
+        public ApplicationUser()
         {
             this.Id = Guid.NewGuid().ToString();
             this.Roles = new HashSet<IdentityUserRole<string>>();
