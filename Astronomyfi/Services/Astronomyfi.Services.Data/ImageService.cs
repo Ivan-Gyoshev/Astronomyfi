@@ -1,5 +1,6 @@
 ﻿namespace Astronomyfi.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -50,6 +51,11 @@
             .Where(i => i.Id == imageId)
             .To<TModel>()
             .FirstOrDefault();
+
+        public IEnumerable<TModel> GetAllImages<TModel>()
+            => this.imagesRepository.All()
+            .To<TModel>()
+            .ToList();
 
         private Image GetImage(int id)
             => this.imagesRepository.All()

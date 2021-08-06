@@ -29,7 +29,12 @@
             return this.View(input);
         }
 
-        public IActionResult All() => this.View();
+        public IActionResult All()
+        {
+            var images = this.imagesService.GetAllImages<ImageListingViewModel>();
+
+            return this.View(images);
+        }
 
         [Authorize]
         public IActionResult Post() => this.View();
