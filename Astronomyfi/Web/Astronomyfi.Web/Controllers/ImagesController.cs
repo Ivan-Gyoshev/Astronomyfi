@@ -3,7 +3,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    public class CapturesController : Controller
+    public class ImagesController : Controller
     {
         public IActionResult Index() => this.View();
 

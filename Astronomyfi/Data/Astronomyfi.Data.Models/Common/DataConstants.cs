@@ -25,5 +25,9 @@
         public const int UsernameMaxLength = 20;
 
         public const string UserDefaultAvatar = "https://res.cloudinary.com/astronomyfi/image/upload/v1627982431/artboard_fgoarx.png";
+
+        // Image
+        public const int ImageDescriptionMinLength = 10;
+        public const int ImageDescriptionMaxLength = 70;
     }
 }

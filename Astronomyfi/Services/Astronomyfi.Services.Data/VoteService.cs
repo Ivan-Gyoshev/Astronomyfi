@@ -18,8 +18,7 @@
 
         public async Task VoteAsync(int postId, string userId, bool isUpVote)
         {
-            var vote = this.votesRepository.All()
-                .FirstOrDefault(v => v.PostId == postId && v.AuthorId == userId);
+            var vote = this.GetVote(postId, userId);
 
             if (vote != null)
             {
@@ -44,6 +43,10 @@
            => this.votesRepository.All()
             .Where(v => v.PostId == postId)
             .Sum(v => (int)v.Type);
+
+        private Vote GetVote(int postId , string userId)
+           => this.votesRepository.All()
+                .FirstOrDefault(v => v.PostId == postId && v.AuthorId == userId);
 
     }
 }
