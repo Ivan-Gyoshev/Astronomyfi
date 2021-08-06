@@ -9,7 +9,12 @@
     using Astronomyfi.Data.Repositories;
     using Astronomyfi.Data.Seeding;
     using Astronomyfi.Services;
-    using Astronomyfi.Services.Data;
+    using Astronomyfi.Services.Data.Categories;
+    using Astronomyfi.Services.Data.Comments;
+    using Astronomyfi.Services.Data.Images;
+    using Astronomyfi.Services.Data.Posts;
+    using Astronomyfi.Services.Data.Users;
+    using Astronomyfi.Services.Data.Votes;
     using Astronomyfi.Services.Mapping;
     using Astronomyfi.Services.Messaging;
     using Astronomyfi.Web.ViewModels;

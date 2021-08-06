@@ -2,9 +2,8 @@
 {
     using System.Threading.Tasks;
 
-    using Astronomyfi.Services.Data;
+    using Astronomyfi.Services.Data.Categories;
     using Astronomyfi.Web.ViewModels.Categories;
-    using Astronomyfi.Web.ViewModels.Posts;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 

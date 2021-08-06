@@ -1,4 +1,4 @@
-﻿namespace Astronomyfi.Services.Data
+﻿namespace Astronomyfi.Services.Data.Categories
 {
     using System.Collections.Generic;
     using System.Linq;

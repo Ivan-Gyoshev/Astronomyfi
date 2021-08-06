@@ -1,4 +1,4 @@
-﻿namespace Astronomyfi.Services.Data
+﻿namespace Astronomyfi.Services.Data.Comments
 {
     using System;
     using System.Collections.Generic;

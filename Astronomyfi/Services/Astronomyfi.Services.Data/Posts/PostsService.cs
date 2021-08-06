@@ -1,4 +1,4 @@
-﻿namespace Astronomyfi.Services.Data
+﻿namespace Astronomyfi.Services.Data.Posts
 {
     using System;
     using System.Collections.Generic;
@@ -50,13 +50,9 @@
         }
 
         public IEnumerable<TModel> GetAllPosts<TModel>()
-        {
-            var posts = this.postsRepository.All()
+            => this.postsRepository.All()
                  .To<TModel>()
                  .ToList();
-
-            return posts;
-        }
 
         public async Task DeletePostAsync(int postId)
         {
@@ -69,14 +65,10 @@
         }
 
         public TModel GetPost<TModel>(int postId)
-        {
-            var currentPost = this.postsRepository.All()
+             => this.postsRepository.All()
                 .Where(p => p.Id == postId)
                 .To<TModel>()
                 .FirstOrDefault();
-
-            return currentPost;
-        }
 
         public IEnumerable<TypeOfPost> GetPostTypes()
              => Enum.GetValues(typeof(TypeOfPost))
@@ -84,7 +76,7 @@
             .ToList();
 
         public T GetById<T>(int postId)
-            => this.postsRepository.All()
+             => this.postsRepository.All()
             .Where(p => p.Id == postId)
             .To<T>()
             .FirstOrDefault();

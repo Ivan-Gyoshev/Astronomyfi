@@ -5,7 +5,8 @@
 
     using Astronomyfi.Data.Common.Repositories;
     using Astronomyfi.Data.Models;
-    using Astronomyfi.Services.Data;
+    using Astronomyfi.Services.Data.Categories;
+    using Astronomyfi.Services.Data.Posts;
     using Astronomyfi.Web.ViewModels.Posts;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;

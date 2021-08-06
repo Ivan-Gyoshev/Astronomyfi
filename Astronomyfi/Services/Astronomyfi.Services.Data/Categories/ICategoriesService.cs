@@ -1,10 +1,7 @@
-﻿namespace Astronomyfi.Services.Data
+﻿namespace Astronomyfi.Services.Data.Categories
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using Astronomyfi.Web.ViewModels.Categories;
-    using Astronomyfi.Web.ViewModels.Posts;
 
     public interface ICategoriesService
     {

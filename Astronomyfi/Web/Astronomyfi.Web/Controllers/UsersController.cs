@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
 
     using Astronomyfi.Data.Models;
-    using Astronomyfi.Services.Data;
+    using Astronomyfi.Services.Data.Users;
     using Astronomyfi.Web.ViewModels.Users;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;

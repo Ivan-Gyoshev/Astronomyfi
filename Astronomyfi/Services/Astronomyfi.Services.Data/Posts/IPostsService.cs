@@ -1,4 +1,4 @@
-﻿namespace Astronomyfi.Services.Data
+﻿namespace Astronomyfi.Services.Data.Posts
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

@@ -1,4 +1,4 @@
-﻿namespace Astronomyfi.Services.Data
+﻿namespace Astronomyfi.Services.Data.Votes
 {
     using System.Linq;
     using System.Threading.Tasks;
