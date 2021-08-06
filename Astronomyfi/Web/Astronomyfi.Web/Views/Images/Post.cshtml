@@ -1,0 +1,24 @@
+﻿@model AddImageInputModel
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <h3>Submit your image here:</h3>
+        <h5 class="mb-4">If the admins approve your image you will see it listed in the Space Captures page :)</h5>
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" rows="4" class="form-control" placeholder="Write down description here..."></textarea>
+                <span asp-validation-for="Description" class="small text-danger"></span>
+            </div>
+
+            <label>Upload your Image :</label>
+            <input asp-for="NewImage"
+                   type="file"
+                   name="NewImage"
+                   id="newImage" accept=".png,.jpg,.jpeg" style="display: none;" />
+            <input class="btn btn-outline-dark" type="button" value="Select from your computer" onclick="document.getElementById('newImage').click();" />
+
+            <input asp-controller="Images" asp-action="Post" class="btn btn-info" type="submit" value="Submit" />
+        </form>
+    </div>
+</div>

@@ -89,6 +89,7 @@
             services.AddTransient<ICommentsService, CommentsService>();
             services.AddTransient<IUsersService, UsersService>();
             services.AddTransient<IVotesService, VoteService>();
+            services.AddTransient<IImagesService, ImageService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
         }
 

@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Astronomyfi.Common\Astronomyfi.Common.csproj" />
     <ProjectReference Include="..\..\Data\Astronomyfi.Data.Models\Astronomyfi.Data.Models.csproj" />
     <ProjectReference Include="..\..\Services\Astronomyfi.Services.Mapping\Astronomyfi.Services.Mapping.csproj" />
   </ItemGroup>

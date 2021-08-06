@@ -8,7 +8,6 @@
 
     public class Image : BaseDeletableModel<int>
     {
-
         [Required]
         [MaxLength(ImageDescriptionMaxLength)]
         public string Description { get; set; }
@@ -17,7 +16,7 @@
         public string ImageUrl { get; set; }
 
         [Required]
-        public int AuthorId { get; set; }
+        public string AuthorId { get; set; }
 
         public ApplicationUser Author { get; set; }
 
