@@ -1,9 +1,6 @@
-﻿@model AddCategoryViewModel
-@{
-    ViewData["Title"] = "Add Category";
-}
+﻿@model CategoryInputModel
 
-<h3 class="text-center mt-2">Create a new Category</h3>
+<h2 class="heading-margin text-center">@this.ViewBag.Title</h2>
 <div class="row mt-4 mb-6">
     <div class="col-3"></div>
     <form class="col-6 col-lg-6" method="post">
@@ -24,6 +21,6 @@
             <span asp-validation-for="ImageUrl" class="small text-danger"></span>
         </div>
 
-        <button type="submit" asp-controller="Categories" asp-action="Add" class="btn btn-block btn-outline-dark">Create Category</button>
+        <input type="submit" asp-controller="Categories" asp-action="@this.ViewBag.Title" asp-route-categoryId="@this.Model.Id" class="btn btn-block btn-outline-dark" value="Submit">
     </form>
 </div>

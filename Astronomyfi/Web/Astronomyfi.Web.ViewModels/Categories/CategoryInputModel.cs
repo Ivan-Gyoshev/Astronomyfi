@@ -2,10 +2,15 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using Astronomyfi.Data.Models;
+    using Astronomyfi.Services.Mapping;
+
     using static Astronomyfi.Data.Models.Common.DataConstants;
 
-    public class AddCategoryViewModel
+    public class CategoryInputModel : IMapFrom<Category>
     {
+        public int Id { get; set; }
+
         [Required]
         [StringLength(CategoryMaxLength, MinimumLength = CategoryMinLength)]
         public string Name { get; set; }

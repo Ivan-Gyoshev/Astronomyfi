@@ -6,6 +6,8 @@
 
         public const string AdministratorRoleName = "Administrator";
 
+        public const string AdministratorAreaName = "Administration";
+
         public const string CloudFolderForUserImages = "user_images";
 
         public const string CloudFolderForSpaceImages = "space_images";

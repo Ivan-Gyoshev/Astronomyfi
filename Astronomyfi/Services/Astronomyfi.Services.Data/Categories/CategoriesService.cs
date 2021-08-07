@@ -1,5 +1,6 @@
 ﻿namespace Astronomyfi.Services.Data.Categories
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -7,8 +8,6 @@
     using Astronomyfi.Data.Common.Repositories;
     using Astronomyfi.Data.Models;
     using Astronomyfi.Services.Mapping;
-    using Astronomyfi.Web.ViewModels.Categories;
-    using Astronomyfi.Web.ViewModels.Posts;
 
     public class CategoriesService : ICategoriesService
     {
@@ -43,6 +42,27 @@
             await this.categoriesRepository.SaveChangesAsync();
         }
 
+        public async Task EditCategoryAsync(string name, string description, string imageUrl, int categoryId)
+        {
+            var category = this.GetCategoryById(categoryId);
+
+            category.Name = name;
+            category.Description = description;
+            category.ImageUrl = imageUrl;
+
+            await this.categoriesRepository.SaveChangesAsync();
+        }
+
+        public async Task DeleteCategoryAsync(int categoryId)
+        {
+            var category = this.GetCategoryById(categoryId);
+
+            category.IsDeleted = true;
+            category.DeletedOn = DateTime.UtcNow;
+
+            await this.categoriesRepository.SaveChangesAsync();
+        }
+
         public IEnumerable<TModel> GetCategoriesById<TModel>()
           => this.categoriesRepository.All()
             .To<TModel>()
@@ -50,7 +70,6 @@
 
         public TModel GetPostsByCategory<TModel>(int categoryId)
         {
-
             if (this.postsRepository.All().Any(p => p.CategoryId == categoryId))
             {
                 var categoryPosts = this.categoriesRepository.All()
@@ -70,5 +89,20 @@
                 return emptyCategory;
             }
         }
+
+        public T GetCategoryById<T>(int categoryId)
+            => this.categoriesRepository.All()
+            .Where(c => c.Id == categoryId)
+            .To<T>()
+            .FirstOrDefault();
+
+        public Category GetCategoryById(int categoryId)
+            => this.categoriesRepository.All()
+            .Where(c => c.Id == categoryId)
+            .FirstOrDefault();
+
+        public bool IsExisting(int categoryId)
+            => this.categoriesRepository.All()
+            .Any(c => c.Id == categoryId);
     }
 }

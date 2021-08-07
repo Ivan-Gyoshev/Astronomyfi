@@ -1,0 +1,29 @@
+﻿@model CategoryDetailsViewModel
+@{
+    this.ViewData["Title"] = "Delete Confirmation";
+}
+
+<h3>Hello @this.User.Identity.Name</h3>
+<h4>Are you sure that you want to delete this item ? </h4>
+<form method="post">
+    <button asp-controller="Categories"
+            asp-action="DeleteConfirmation"
+            asp-route-postId="@Model.Id"
+            class="btn btn-outline-danger font-weight-bold">
+        Yes
+    </button>
+    <a asp-controller="Categories"
+       asp-action="All"
+       asp-route-postId="@Model.Id"
+       class="btn btn-outline-primary">No</a>
+</form>
+
+<div class="row">
+    <ul class="card-wrapper-image">
+        <li class="card-img">
+            <img class="img-card" src='@this.Model.ImageUrl' alt=''>
+            <h3 class="ml-2">@this.Model.Name</h3>
+            <p class="ml-2">@this.Model.Description</p>
+        </li>
+    </ul>
+</div>

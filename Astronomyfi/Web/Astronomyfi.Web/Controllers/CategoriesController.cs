@@ -9,42 +9,22 @@
 
     public class CategoriesController : Controller
     {
-        private readonly ICategoriesService categoryService;
+        private readonly ICategoriesService categoriesService;
 
         public CategoriesController(ICategoriesService categoryService)
         {
-            this.categoryService = categoryService;
+            this.categoriesService = categoryService;
         }
 
         public IActionResult All()
         {
-            var categories = this.categoryService.GetCategories<ListCategoriesViewModel>();
+            var categories = this.categoriesService.GetCategories<ListCategoriesViewModel>();
             return this.View(categories);
-        }
-
-        [Authorize]
-        public IActionResult Add() => this.View();
-
-        [HttpPost]
-        [Authorize]
-        public async Task<IActionResult> Add(AddCategoryViewModel category)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View();
-            }
-
-            await this.categoryService.AddCategoryAsync(
-                category.Name,
-                category.Description,
-                category.ImageUrl);
-
-            return this.RedirectToAction("All", "Categories");
         }
 
         public IActionResult Specify(int categoryId)
         {
-            var posts = this.categoryService.GetPostsByCategory<CategorySpecifyViewModel>(categoryId);
+            var posts = this.categoriesService.GetPostsByCategory<CategorySpecifyViewModel>(categoryId);
 
             return this.View(posts);
         }
