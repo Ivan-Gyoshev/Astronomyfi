@@ -13,6 +13,12 @@
         public CategoriesController(ICategoriesService categoriesService)
             => this.categoriesService = categoriesService;
 
+        public IActionResult All()
+        {
+            var categories = this.categoriesService.GetCategories<ListCategoriesViewModel>();
+            return this.View(categories);
+        }
+
         public IActionResult Add() => this.View();
 
         [HttpPost]
@@ -55,8 +61,22 @@
             return this.RedirectToAction("All", "Categories");
         }
 
-        [HttpPost]
         public async Task<IActionResult> Delete(int id)
+        {
+            var categoryModel = this.categoriesService.GetCategoryById(id);
+
+            if (categoryModel == null)
+            {
+                return this.NotFound();
+            }
+
+            var post = this.categoriesService.GetCategoryById<CategoryDetailsViewModel>(id);
+
+            return this.View(post);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmation(int id)
         {
             var isExisting = this.categoriesService.IsExisting(id);
             if (!isExisting)

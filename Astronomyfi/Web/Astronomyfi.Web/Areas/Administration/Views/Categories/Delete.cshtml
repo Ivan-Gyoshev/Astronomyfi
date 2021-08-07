@@ -8,13 +8,13 @@
 <form method="post">
     <button asp-controller="Categories"
             asp-action="DeleteConfirmation"
-            asp-route-postId="@Model.Id"
+            asp-route-id="@this.Model.Id"
             class="btn btn-outline-danger font-weight-bold">
         Yes
     </button>
     <a asp-controller="Categories"
        asp-action="All"
-       asp-route-postId="@Model.Id"
+       asp-route-categoryId="@Model.Id"
        class="btn btn-outline-primary">No</a>
 </form>
 

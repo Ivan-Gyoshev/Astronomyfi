@@ -1,0 +1,40 @@
+﻿@{ 
+    this.ViewData["Title"] = "Administration";
+}
+
+<div class="container text-center">
+    <h2>Welcome <strong>@this.User.Identity.Name</strong> to the administration panel!</h2>
+    <h4>You can modify different things by using the panel below.</h4>
+</div>
+<div class="row mt-lg-5">
+    <div class="col-md-4">
+        <div class="card">
+            <h5 class="card-header" style="background-image:linear-gradient(#ffffff, #0094ff)">Categories</h5>
+            <div class="card-body">
+                <h5 class="card-title">Manage categories</h5>
+                <p class="card-text">Using this panel you can Create/Edit or Delete certain category.</p>
+                <a asp-area="Administration" asp-controller="Categories" asp-action="All" class="btn btn-outline-primary">Continue</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <h5 class="card-header" style="background-image:linear-gradient(#ffffff, #0094ff)">Image requests</h5>
+            <div class="card-body">
+                <h5 class="card-title">Manage Image requests</h5>
+                <p class="card-text">Using this panel you can approve or reject a image request.</p>
+                <a href="#" class="btn btn-outline-primary">Continue</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <h5 class="card-header" style="background-image:linear-gradient(#ffffff, #0094ff)">Users</h5>
+            <div class="card-body">
+                <h5 class="card-title">Manage Users</h5>
+                <p class="card-text">Using this panel you can suspend users that break the rules.</p>
+                <a href="#" class="btn btn-outline-primary">Continue</a>
+            </div>
+        </div>
+    </div>
+</div>

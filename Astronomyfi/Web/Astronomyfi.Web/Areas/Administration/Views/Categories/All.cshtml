@@ -1,0 +1,42 @@
+﻿@model List<ListCategoriesViewModel>
+
+<div class="container">
+    <div class="container category">
+        <div class="row">
+            <ul class="card-wrapper-image">
+
+                @foreach (var category in Model)
+                {
+                    <li class="card-img">
+                        <img class="img-card" src='@category.ImageUrl' alt=''>
+                        <h3 class="ml-2">@category.Name</h3>
+                        <p class="ml-2">@category.Description</p>
+                        <a asp-area="Administration"
+                           asp-controller="Categories"
+                           asp-action="Edit"
+                           asp-route-id="@category.Id"
+                           class="btn btn-outline-primary btn-sm rounded-0 mb-2" type="submit" data-toggle="tooltip" data-placement="top" title="Edit">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a asp-area="Administration"
+                           asp-controller="Categories"
+                           asp-action="Delete"
+                           asp-route-id="@category.Id"
+                           class="btn btn-outline-danger btn-sm rounded-0 mb-2" type="submit" data-toggle="tooltip" data-placement="top" title="Delete">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="mb-5"></div>
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-3">
+                <form class="" asp-area="Administration" asp-controller="Categories" asp-action="Add">
+                    <button type="submit" class="btn-outline-dark form-control nav-link btn btn-light text-ligh font-weight-bold">Create New Category</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
