@@ -12,6 +12,8 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
+    using static Astronomyfi.Web.Infrastructure.Extensions.ClaimsPrincipalExtensions;
+
     public class PostsController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -77,7 +79,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             var postModel = this.postsService.GetById(postId);
 
-            if (postModel.AuthorId != user.Id)
+            if (postModel.AuthorId != user.Id && !this.User.IsAdministrator())
             {
                 return this.Unauthorized();
             }
@@ -122,7 +124,7 @@
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            if (user.Id != postModel.AuthorId)
+            if (user.Id != postModel.AuthorId && !this.User.IsAdministrator())
             {
                 return this.Unauthorized();
             }

@@ -9,6 +9,8 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
+    using static Astronomyfi.Web.Infrastructure.Extensions.ClaimsPrincipalExtensions;
+
     public class CommentsController : Controller
     {
         private readonly ICommentsService commentsService;
@@ -44,7 +46,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             var commentModel = this.commentsService.GetById(postId, commentId);
 
-            if (commentModel.AuthorId != user.Id)
+            if (commentModel.AuthorId != user.Id && !this.User.IsAdministrator())
             {
                 return this.Unauthorized();
             }
@@ -81,7 +83,7 @@
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            if (user.Id != commentModel.AuthorId)
+            if (user.Id != commentModel.AuthorId && !this.User.IsAdministrator())
             {
                 return this.Unauthorized();
             }

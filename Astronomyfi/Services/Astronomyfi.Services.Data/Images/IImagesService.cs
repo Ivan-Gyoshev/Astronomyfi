@@ -12,6 +12,6 @@
 
         TModel GetImage<TModel>(int imageId);
 
-        IEnumerable<TModel> GetAllImages<TModel>();
+        IEnumerable<TModel> GetAllApprovedImages<TModel>();
     }
 }

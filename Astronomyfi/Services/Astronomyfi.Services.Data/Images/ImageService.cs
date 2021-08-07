@@ -52,8 +52,9 @@
             .To<TModel>()
             .FirstOrDefault();
 
-        public IEnumerable<TModel> GetAllImages<TModel>()
+        public IEnumerable<TModel> GetAllApprovedImages<TModel>()
             => this.imagesRepository.All()
+            .Where(i => i.IsApproved)
             .To<TModel>()
             .ToList();
 
