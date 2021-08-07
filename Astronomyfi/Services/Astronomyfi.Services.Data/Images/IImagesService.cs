@@ -10,8 +10,12 @@
     {
         Task PostAsync(AddImageInputModel input);
 
+        Task ApproveAsync(int imageId);
+
         TModel GetImage<TModel>(int imageId);
 
         IEnumerable<TModel> GetAllApprovedImages<TModel>();
+
+        IEnumerable<TModel> GetAllUnapprovedImages<TModel>();
     }
 }

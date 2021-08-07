@@ -46,6 +46,15 @@
             await this.imagesRepository.SaveChangesAsync();
         }
 
+        public async Task ApproveAsync(int imageId)
+        {
+            var image = this.GetImage(imageId);
+
+            image.IsApproved = true;
+
+            await this.imagesRepository.SaveChangesAsync();
+        }
+
         public TModel GetImage<TModel>(int imageId)
             => this.imagesRepository.All()
             .Where(i => i.Id == imageId)
@@ -55,6 +64,12 @@
         public IEnumerable<TModel> GetAllApprovedImages<TModel>()
             => this.imagesRepository.All()
             .Where(i => i.IsApproved)
+            .To<TModel>()
+            .ToList();
+
+        public IEnumerable<TModel> GetAllUnapprovedImages<TModel>()
+             => this.imagesRepository.All()
+            .Where(i => !i.IsApproved)
             .To<TModel>()
             .ToList();
 

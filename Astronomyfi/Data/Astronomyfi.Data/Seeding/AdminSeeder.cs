@@ -1,6 +1,7 @@
 ﻿namespace Astronomyfi.Data.Seeding
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Astronomyfi.Common;
@@ -8,25 +9,30 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
 
-    //public class AdminSeeder : ISeeder
-    //{
-    //    public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
-    //    {
-    //        var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+    public class AdminSeeder : ISeeder
+    {
+        public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
+        {
+            if (dbContext.Users.Any(u => u.Email == "admin@astronomyfi.com"))
+            {
+                return;
+            }
 
-    //        const string adminEmail = "admin@astronomyfi.com";
-    //        const string adminUserName = "AstroA";
-    //        const string adminPassword = "admin12";
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-    //        var user = new ApplicationUser
-    //        {
-    //            Email = adminEmail,
-    //            UserName = adminUserName,
-    //        };
+            const string adminEmail = "admin@astronomyfi.com";
+            const string adminUserName = "AstroA";
+            const string adminPassword = "admin12";
 
-    //        await userManager.CreateAsync(user, adminPassword);
+            var user = new ApplicationUser
+            {
+                Email = adminEmail,
+                UserName = adminUserName,
+            };
 
-    //        await userManager.AddToRoleAsync(user, GlobalConstants.AdministratorRoleName);
-    //    }
-    //}
+            await userManager.CreateAsync(user, adminPassword);
+
+            await userManager.AddToRoleAsync(user, GlobalConstants.AdministratorRoleName);
+        }
+    }
 }

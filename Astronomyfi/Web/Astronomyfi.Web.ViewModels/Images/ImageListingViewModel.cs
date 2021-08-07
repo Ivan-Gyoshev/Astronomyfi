@@ -5,6 +5,8 @@
 
     public class ImageListingViewModel : IMapFrom<Image>
     {
+        public int Id { get; set; }
+
         public string Description { get; set; }
 
         public ApplicationUser Author { get; set; }
