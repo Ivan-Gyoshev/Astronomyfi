@@ -1,5 +1,7 @@
 ﻿namespace Astronomyfi.Services.Data.Users
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -19,6 +21,21 @@
             this.usersRepository = usersRepository;
             this.cloudinaryService = cloudinaryService;
         }
+
+        public async Task BanUserAsync(string userId)
+        {
+            var user = this.GetUser(userId);
+
+            user.IsDeleted = true;
+            user.DeletedOn = DateTime.UtcNow;
+
+            await this.usersRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<TModel> GetAllUsers<TModel>()
+            => this.usersRepository.All()
+            .To<TModel>()
+            .ToList();
 
         public TModel GetUser<TModel>(string userId)
             => this.usersRepository

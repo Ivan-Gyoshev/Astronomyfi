@@ -1,0 +1,35 @@
+﻿@model List<UsersListingViewModel>
+
+@{ 
+    this.ViewData["Title"] = "Administration";
+}
+
+<div class="container">
+    <div class="row">
+        <table class="table table-hover">
+            <thead class="th">
+                <tr>
+                    <th width="10%" scope="col">Username</th>
+                    <th width="35%" scope="col">Email</th>
+                    <th width="30%" scope="col">Date Of Registration</th>
+                    <th width="15%">Manage</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td height="40%">@user.Username</td>
+                        <td height="40%">@user.Email</td>
+                        <td scope="col">@user.CreatedOn.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td height="40%">
+                            <div class="button-holder">
+                                <a asp-area="Administration" asp-controller="UsersManager" asp-action="Ban" asp-route-userId="@user.Id" class="btn btn-danger text-uppercase">Ban</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
