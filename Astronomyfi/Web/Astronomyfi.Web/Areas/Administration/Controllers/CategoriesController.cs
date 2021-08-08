@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
 
     using Astronomyfi.Services.Data.Categories;
+    using Astronomyfi.Web.ViewModels.Administration.Categories;
     using Astronomyfi.Web.ViewModels.Categories;
     using Microsoft.AspNetCore.Mvc;
 

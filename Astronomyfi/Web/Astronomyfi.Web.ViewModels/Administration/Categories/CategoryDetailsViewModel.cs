@@ -1,4 +1,4 @@
-﻿namespace Astronomyfi.Web.ViewModels.Categories
+﻿namespace Astronomyfi.Web.ViewModels.Administration.Categories
 {
     using Astronomyfi.Data.Models;
     using Astronomyfi.Services.Mapping;

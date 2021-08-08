@@ -1,4 +1,4 @@
-﻿namespace Astronomyfi.Web.ViewModels.Categories
+﻿namespace Astronomyfi.Web.ViewModels.Administration.Categories
 {
     using System.ComponentModel.DataAnnotations;
 

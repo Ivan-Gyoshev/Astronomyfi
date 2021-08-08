@@ -42,15 +42,12 @@
         }
 
         public IEnumerable<TModel> ListComments<TModel>(int postId)
-        {
-            var comments = this.commentsRepository
+           => this.commentsRepository
                 .All()
                 .Where(c => c.PostId == postId)
                 .To<TModel>()
                 .ToList();
 
-            return comments;
-        }
 
         public async Task DeleteCommentAsync(int postId, int commentId)
         {
