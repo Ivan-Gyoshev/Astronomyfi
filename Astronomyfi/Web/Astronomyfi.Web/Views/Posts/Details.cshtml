@@ -9,26 +9,29 @@
         <div class="row align-items-start">
             <div class="col-lg-2"></div>
             <div class="col-lg-8 m-15px-tb">
-                <div class="text-right">
-                    <ul class="list-inline m-0">
-                        <li class="list-inline-item">
-                            <a asp-controller="Posts"
-                               asp-action="Edit"
-                               asp-route-postId="@Model.Id"
-                               class="btn btn-outline-primary btn-sm rounded-0 mb-2" type="submit" data-toggle="tooltip" data-placement="top" title="Edit">
-                                <i class="fa fa-edit"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a asp-controller="Posts"
-                               asp-action="Delete"
-                               asp-route-postId="@Model.Id"
-                               class="btn btn-outline-danger btn-sm rounded-0 mb-2" type="submit" data-toggle="tooltip" data-placement="top" title="Delete">
-                                <i class="fa fa-trash"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                @if (this.Model.Author.UserName == this.User.Identity.Name || this.User.IsInRole("Administrator"))
+                {
+                    <div class="text-right">
+                        <ul class="list-inline m-0">
+                            <li class="list-inline-item">
+                                <a asp-controller="Posts"
+                                   asp-action="Edit"
+                                   asp-route-postId="@Model.Id"
+                                   class="btn btn-outline-primary btn-sm rounded-0 mb-2" type="submit" data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a asp-controller="Posts"
+                                   asp-action="Delete"
+                                   asp-route-postId="@Model.Id"
+                                   class="btn btn-outline-danger btn-sm rounded-0 mb-2" type="submit" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                }
                 <partial name="_PostInfoPartial" model="@Model" />
 
                 <div class="article">
@@ -65,24 +68,27 @@
                                 <span class="col-3 text-secondary">@comment.CreatedOn.ToString("dd/MM/yyyy HH:mm")</span>
                             </div>
                             <p>@comment.Content</p>
-                            <ul class="list-inline m-0">
-                                <li class="list-inline-item">
-                                    <a asp-controller="Comments"
-                                       asp-action="Edit"
-                                       asp-route-commentId="@comment.Id"
-                                       asp-route-postId="@this.Model.Id"
-                                       class="btn btn-outline-primary btn-sm rounded-0 mb-2" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a asp-controller="Comments"
-                                       asp-action="Delete"
-                                       asp-route-commentId="@comment.Id"
-                                       asp-route-postId="@this.Model.Id"
-                                       class="btn btn-outline-danger btn-sm rounded-0 mb-2" type="button" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </li>
-                            </ul>
+                            @if (comment.Author == this.User.Identity.Name || this.User.IsInRole("Administrator"))
+                            {
+                                <ul class="list-inline m-0">
+                                    <li class="list-inline-item">
+                                        <a asp-controller="Comments"
+                                           asp-action="Edit"
+                                           asp-route-commentId="@comment.Id"
+                                           asp-route-postId="@this.Model.Id"
+                                           class="btn btn-outline-primary btn-sm rounded-0 mb-2" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a asp-controller="Comments"
+                                           asp-action="Delete"
+                                           asp-route-commentId="@comment.Id"
+                                           asp-route-postId="@this.Model.Id"
+                                           class="btn btn-outline-danger btn-sm rounded-0 mb-2" type="button" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            }
                         </div>
                         <hr class="my-2" />
                     }
@@ -105,7 +111,7 @@
     </div>
 </div>
 
-@section Scripts { 
+@section Scripts {
     <script>
         function sendVote(postId, isUpVote) {
             var token = $("#votesForm input[name=__RequestVerificationToken]").val();
