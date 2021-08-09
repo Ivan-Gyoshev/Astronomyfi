@@ -10,7 +10,7 @@ The Forum is mainly focused on events that have occurred or will occur in Europe
 # 🛠 Built with:
 * [.NET Core 5.0](https://github.com/dotnet/core)
 * [ASP.NET Core 5.0](https://github.com/dotnet/aspnetcore)
-* [Entity Framework Core 3.1](https://github.com/dotnet/efcore)
+* [Entity Framework Core 5.0](https://github.com/dotnet/efcore)
 * [AutoMapper](https://github.com/AutoMapper/AutoMapper)
 * [Cloudinary](https://github.com/cloudinary/CloudinaryDotNet)
 * [Bootstrap](https://github.com/twbs/bootstrap)
