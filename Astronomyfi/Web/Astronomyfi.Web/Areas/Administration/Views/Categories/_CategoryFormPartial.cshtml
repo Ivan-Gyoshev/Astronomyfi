@@ -12,7 +12,7 @@
         <div class="form-group">
             <label asp-for="Description"></label>
             <textarea asp-for="Description" class="form-control" placeholder="Write your description here"></textarea>
-            <span asp-validation-for="Description" class="small text-danger"></span>
+           <span asp-validation-for="Description" class="small text-danger"></span>
         </div>
 
         <div class="form-group">
@@ -24,3 +24,7 @@
         <input type="submit" asp-controller="Categories" asp-action="@this.ViewBag.Title" class="btn btn-block btn-outline-dark" value="Submit">
     </form>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

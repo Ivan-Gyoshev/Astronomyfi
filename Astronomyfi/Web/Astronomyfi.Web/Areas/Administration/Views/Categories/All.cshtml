@@ -1,12 +1,12 @@
 ﻿@model List<ListCategoriesViewModel>
-@{ 
+@{
     this.ViewData["Title"] = "Administration";
 }
+
 <div class="container">
     <div class="container category">
         <div class="row">
             <ul class="card-wrapper-image">
-
                 @foreach (var category in Model)
                 {
                     <li class="card-img">

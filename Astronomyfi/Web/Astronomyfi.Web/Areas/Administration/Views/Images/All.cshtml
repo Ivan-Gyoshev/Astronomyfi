@@ -3,14 +3,28 @@
 @{
     this.ViewData["Title"] = "Administration";
 }
-<ul class="card-wrapper-image">
-    @foreach (var image in Model)
-    {
-        <li class="card-img">
-            <img class="img-card" src='@image.ImageUrl' alt='image'>
-            <h3>@image.Description</h3>
-            <p class="text-muted"> - @image.Author.UserName</p>
-            <a asp-area="Administration" asp-controller="Images" asp-action="Approve" asp-route-imageId="@image.Id" class="btn btn-outline-success">Approve</a>
-        </li>
-    }
-</ul>
+
+@if (this.Model.Count == 0)
+{
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">No images to approve!</h1>
+            <hr class="my-4">
+            <p class="lead">When a person post one it will immediately here.</p>
+        </div>
+    </div>
+}
+else
+{
+    <ul class="card-wrapper-image">
+        @foreach (var image in Model)
+        {
+            <li class="card-img">
+                <img class="img-card" src='@image.ImageUrl' alt='image'>
+                <h3>@image.Description</h3>
+                <p class="text-muted"> - @image.Author.UserName</p>
+                <a asp-area="Administration" asp-controller="Images" asp-action="Approve" asp-route-imageId="@image.Id" class="btn btn-outline-success">Approve</a>
+            </li>
+        }
+    </ul>
+}
