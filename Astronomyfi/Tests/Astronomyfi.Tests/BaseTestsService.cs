@@ -11,8 +11,11 @@
     using Astronomyfi.Services.Data.Posts;
     using Astronomyfi.Services.Data.Users;
     using Astronomyfi.Services.Data.Votes;
+    using CloudinaryDotNet;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
+
+    using Account = CloudinaryDotNet.Account;
 
     public abstract class BaseTestsService : IDisposable
     {
@@ -37,6 +40,15 @@
         private static ServiceCollection SetServices()
         {
             var services = new ServiceCollection();
+
+            Account claudinaryInformation = new(
+              "Cloudinary:CloudName",
+              "Cloudinary:ApiKey",
+              "Cloudinary:ApiSecret");
+
+            Cloudinary cloudinary = new(claudinaryInformation);
+
+            services.AddSingleton(cloudinary);
 
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseInMemoryDatabase(Guid.NewGuid().ToString()));

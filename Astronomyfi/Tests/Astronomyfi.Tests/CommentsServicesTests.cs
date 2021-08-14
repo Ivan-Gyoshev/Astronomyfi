@@ -1,14 +1,21 @@
-﻿using Astronomyfi.Data.Models;
-using Astronomyfi.Data.Repositories;
-using Astronomyfi.Services.Data.Comments;
-using Astronomyfi.Services.Data.Tests.Common;
-using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace Astronomyfi.Services.Data.Tests
+﻿namespace Astronomyfi.Services.Data.Tests
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Threading.Tasks;
+
+    using Astronomyfi.Data.Models;
+    using Astronomyfi.Data.Repositories;
+    using Astronomyfi.Services.Data.Comments;
+    using Astronomyfi.Services.Data.Tests.Common;
+    using Astronomyfi.Services.Mapping;
+    using Astronomyfi.Web.ViewModels;
+    using Astronomyfi.Web.ViewModels.Comments;
+    using Microsoft.Extensions.DependencyInjection;
+    using Moq;
+    using Xunit;
+
     public class CommentsServicesTests : BaseTestsService
     {
         private ICommentsService Service
@@ -66,6 +73,12 @@ namespace Astronomyfi.Services.Data.Tests
 
             Assert.True(this.DbContext.Comments.Count() == 0);
         }
+
+        //[Fact]
+        //public async Task ListAllCommentsShouldWorkCorrectly()
+        //{
+           
+        //}
 
         private async Task<Comment> CreateCommentAsync()
         {
