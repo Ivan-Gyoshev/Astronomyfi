@@ -12,9 +12,17 @@ The Forum is mainly focused on events that have occurred or will occur in Europe
 * [ASP.NET Core 5.0](https://github.com/dotnet/aspnetcore)
 * [Entity Framework Core 5.0](https://github.com/dotnet/efcore)
 * [AutoMapper](https://github.com/AutoMapper/AutoMapper)
+* [xUnit](https://github.com/xunit/xunit)
 * [Cloudinary](https://github.com/cloudinary/CloudinaryDotNet)
 * [Bootstrap](https://github.com/twbs/bootstrap)
 
 # License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
+
+# Acknowledgments
+
+* Built with [ASP.NET-MVC-Template](https://github.com/NikolayIT/ASP.NET-Core-Template) by <br>
+* [Nikolay Kostov](https://github.com/NikolayIT) <br>
+* [Vladislav Karamfilov](https://github.com/vladislav-karamfilov) <br>
+* [Stoyan Shopov](https://github.com/StoyanShopov) <br>
