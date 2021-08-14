@@ -23,6 +23,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) f
 # Acknowledgments
 
 * Built with [ASP.NET-MVC-Template](https://github.com/NikolayIT/ASP.NET-Core-Template) by <br>
-* [Nikolay Kostov](https://github.com/NikolayIT) <br>
-* [Vladislav Karamfilov](https://github.com/vladislav-karamfilov) <br>
-* [Stoyan Shopov](https://github.com/StoyanShopov) <br>
+[Nikolay Kostov](https://github.com/NikolayIT) <br>
+[Vladislav Karamfilov](https://github.com/vladislav-karamfilov) <br>
+[Stoyan Shopov](https://github.com/StoyanShopov) <br>
