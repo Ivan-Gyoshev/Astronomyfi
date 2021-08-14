@@ -110,7 +110,7 @@
                 post.CategoryId,
                 post.Type);
 
-            return this.RedirectToAction("Details", "Posts", new { postId = postId });
+            return this.RedirectToAction("Details", "Posts", new { postId });
         }
 
         public async Task<IActionResult> Delete(int postId)

@@ -12,12 +12,10 @@
 
     public class PostsService : IPostsService
     {
-        private readonly IDeletableEntityRepository<Post> postsRepository;
+        private readonly IRepository<Post> postsRepository;
 
-        public PostsService(IDeletableEntityRepository<Post> postsRepository)
-        {
-            this.postsRepository = postsRepository;
-        }
+        public PostsService(IRepository<Post> postsRepository) 
+            => this.postsRepository = postsRepository;
 
         public async Task AddPostAsync(int id, string title, string content, int categoryId, TypeOfPost type, string userId)
         {
@@ -51,6 +49,7 @@
 
         public IEnumerable<TModel> GetAllPosts<TModel>()
             => this.postsRepository.All()
+                  .OrderByDescending(c => c.CreatedOn)
                  .To<TModel>()
                  .ToList();
 

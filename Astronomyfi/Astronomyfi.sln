@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox", "Tests\Sandbox\Sa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Astronomyfi.Web.ViewModels", "Web\Astronomyfi.Web.ViewModels\Astronomyfi.Web.ViewModels.csproj", "{13B7AACB-9C85-4409-8D4B-95A67D0DFFF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Astronomyfi.Tests", "Tests\Astronomyfi.Tests\Astronomyfi.Tests.csproj", "{A3816071-E409-4AF7-BA68-9BFD32AC94C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Astronomyfi.Services.Data.Tests", "Tests\Astronomyfi.Tests\Astronomyfi.Services.Data.Tests.csproj", "{A3816071-E409-4AF7-BA68-9BFD32AC94C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
