@@ -24,7 +24,6 @@
 
         public async Task PostAsync(AddImageInputModel input)
         {
-
             var image = new Image
             {
                 Description = input.Description,

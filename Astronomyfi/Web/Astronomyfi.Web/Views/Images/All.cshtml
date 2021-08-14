@@ -3,13 +3,30 @@
 @{
     this.ViewData["Title"] = "Space captures";
 }
-<ul class="card-wrapper-image">
-    @foreach (var image in Model)
+
+<div class="container">
+    @if (this.Model.Count() == 0)
     {
-        <li class="card-img">
-            <img class="img-card" src='@image.ImageUrl' alt='image'>
-            <h3>@image.Description</h3>
-            <p class="text-muted"> - @image.Author.UserName</p>
-        </li>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">No added images yet!</h1>
+                <hr class="my-4">
+                <p class="lead">Go to <a href="/Images/Post">Post</a> Image page and submit yours!</p>
+            </div>
+        </div>
     }
-</ul>
+    else
+    {
+
+        <ul class="card-wrapper-image">
+            @foreach (var image in Model)
+            {
+                <li class="card-img" style="max-width: 350px">
+                    <img class="img-card" src='@image.ImageUrl' alt='image'>
+                    <h3>@image.Description</h3>
+                    <p class="text-muted"> - @image.Author.UserName</p>
+                </li>
+            }
+        </ul>
+    }
+</div>

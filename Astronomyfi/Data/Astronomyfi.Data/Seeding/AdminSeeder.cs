@@ -21,7 +21,7 @@
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
             const string adminEmail = "admin@astronomyfi.com";
-            const string adminUserName = "AstroA";
+            const string adminUserName = "AstroAdmin";
             const string adminPassword = "admin12";
 
             var user = new ApplicationUser

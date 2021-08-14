@@ -14,7 +14,7 @@
     {
         private readonly IRepository<Post> postsRepository;
 
-        public PostsService(IRepository<Post> postsRepository) 
+        public PostsService(IRepository<Post> postsRepository)
             => this.postsRepository = postsRepository;
 
         public async Task AddPostAsync(int id, string title, string content, int categoryId, TypeOfPost type, string userId)

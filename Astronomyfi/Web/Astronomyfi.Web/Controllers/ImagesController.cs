@@ -31,7 +31,7 @@
 
         public IActionResult All()
         {
-            var images = this.imagesService.GetAllApprovedImages <ImageListingViewModel>();
+            var images = this.imagesService.GetAllApprovedImages<ImageListingViewModel>();
 
             return this.View(images);
         }
