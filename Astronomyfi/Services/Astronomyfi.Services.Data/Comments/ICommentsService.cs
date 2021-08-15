@@ -18,6 +18,5 @@
         T GetById<T>(int postId, int commentId);
 
         Comment GetById(int postId, int commentId);
-
     }
 }

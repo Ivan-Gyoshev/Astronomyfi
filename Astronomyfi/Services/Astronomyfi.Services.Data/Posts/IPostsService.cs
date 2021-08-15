@@ -8,19 +8,19 @@
 
     public interface IPostsService
     {
-        IEnumerable<TModel> GetAllPosts<TModel>();
-
-        IEnumerable<TypeOfPost> GetPostTypes();
-
         Task AddPostAsync(int id, string title, string content, int categoryId, TypeOfPost type, string userId);
 
         Task EditPostAsync(int postId, string title, string content, int categoryId, TypeOfPost type);
 
+        Task DeletePostAsync(int postId);
+
+        IEnumerable<TModel> GetAllPosts<TModel>();
+
+        IEnumerable<TypeOfPost> GetPostTypes();
+
         T GetById<T>(int postId);
 
         Post GetById(int postId);
-
-        Task DeletePostAsync(int postId);
 
         TModel GetPost<TModel>(int postId);
     }

@@ -22,6 +22,21 @@
             this.cloudinaryService = cloudinaryService;
         }
 
+        public async Task UpdateAvatarAsync(EditAvatarViewModel input)
+        {
+            var user = this.GetUser(input.Id);
+
+            if (input.NewImage != null)
+            {
+                var imageUrl = await this.cloudinaryService.UploadPhotoAsync(input.NewImage, input.Id, GlobalConstants.CloudFolderForUserImages);
+
+                user.AvatarImgUrl = imageUrl;
+            }
+
+            this.usersRepository.Update(user);
+            await this.usersRepository.SaveChangesAsync();
+        }
+
         public async Task BanUserAsync(string userId)
         {
             var user = this.GetUser(userId);
@@ -47,20 +62,5 @@
         public ApplicationUser GetUser(string userId)
           => this.usersRepository.All()
             .FirstOrDefault(u => u.Id == userId);
-
-        public async Task UpdateAvatarAsync(EditAvatarViewModel input)
-        {
-            var user = this.GetUser(input.Id);
-
-            if (input.NewImage != null)
-            {
-                var imageUrl = await this.cloudinaryService.UploadPhotoAsync(input.NewImage, input.Id, GlobalConstants.CloudFolderForUserImages);
-
-                user.AvatarImgUrl = imageUrl;
-            }
-
-            this.usersRepository.Update(user);
-            await this.usersRepository.SaveChangesAsync();
-        }
     }
 }

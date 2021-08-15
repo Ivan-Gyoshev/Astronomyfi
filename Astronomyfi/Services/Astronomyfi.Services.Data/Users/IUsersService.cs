@@ -8,14 +8,14 @@
 
     public interface IUsersService
     {
+        Task UpdateAvatarAsync(EditAvatarViewModel input);
+
+        Task BanUserAsync(string userId);
+
         TModel GetUser<TModel>(string userId);
 
         IEnumerable<TModel> GetAllUsers<TModel>();
 
-        Task BanUserAsync(string userId);
-
         ApplicationUser GetUser(string userId);
-
-        Task UpdateAvatarAsync(EditAvatarViewModel input);
     }
 }

@@ -47,12 +47,6 @@
             await this.postsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<TModel> GetAllPosts<TModel>()
-            => this.postsRepository.All()
-                  .OrderByDescending(c => c.CreatedOn)
-                 .To<TModel>()
-                 .ToList();
-
         public async Task DeletePostAsync(int postId)
         {
             var post = this.GetById(postId);
@@ -62,6 +56,12 @@
 
             await this.postsRepository.SaveChangesAsync();
         }
+
+        public IEnumerable<TModel> GetAllPosts<TModel>()
+            => this.postsRepository.All()
+                  .OrderByDescending(c => c.CreatedOn)
+                 .To<TModel>()
+                 .ToList();
 
         public TModel GetPost<TModel>(int postId)
              => this.postsRepository.All()

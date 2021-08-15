@@ -11,10 +11,8 @@
     {
         private readonly IDeletableEntityRepository<Vote> votesRepository;
 
-        public VoteService(IDeletableEntityRepository<Vote> votesRepository)
-        {
-            this.votesRepository = votesRepository;
-        }
+        public VoteService(IDeletableEntityRepository<Vote> votesRepository) 
+            => this.votesRepository = votesRepository;
 
         public async Task VoteAsync(int postId, string userId, bool isUpVote)
         {
@@ -44,9 +42,8 @@
             .Where(v => v.PostId == postId)
             .Sum(v => (int)v.Type);
 
-        private Vote GetVote(int postId , string userId)
+        private Vote GetVote(int postId, string userId)
            => this.votesRepository.All()
                 .FirstOrDefault(v => v.PostId == postId && v.AuthorId == userId);
-
     }
 }

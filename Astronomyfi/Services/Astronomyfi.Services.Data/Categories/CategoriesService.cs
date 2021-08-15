@@ -20,15 +20,6 @@
             this.postsRepository = postsRepository;
         }
 
-        public IEnumerable<TModel> GetCategories<TModel>()
-        {
-            var categories = this.categoriesRepository.All()
-                .To<TModel>()
-                .ToList();
-
-            return categories;
-        }
-
         public async Task AddCategoryAsync(string name, string description, string imageUrl)
         {
             var categoryData = new Category
@@ -61,6 +52,15 @@
             category.DeletedOn = DateTime.UtcNow;
 
             await this.categoriesRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<TModel> GetCategories<TModel>()
+        {
+            var categories = this.categoriesRepository.All()
+                .To<TModel>()
+                .ToList();
+
+            return categories;
         }
 
         public IEnumerable<TModel> GetCategoriesById<TModel>()

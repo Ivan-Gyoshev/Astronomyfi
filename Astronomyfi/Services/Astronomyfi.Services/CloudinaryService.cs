@@ -12,9 +12,7 @@
         private readonly Cloudinary cloudinary;
 
         public CloudinaryService(Cloudinary cloudinary)
-        {
-            this.cloudinary = cloudinary;
-        }
+            => this.cloudinary = cloudinary;
 
         public async Task<string> UploadPhotoAsync(IFormFile file, string fileName, string folder)
         {

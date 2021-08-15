@@ -14,10 +14,8 @@
     {
         private readonly IDeletableEntityRepository<Comment> commentsRepository;
 
-        public CommentsService(IDeletableEntityRepository<Comment> commentsRepository)
-        {
-            this.commentsRepository = commentsRepository;
-        }
+        public CommentsService(IDeletableEntityRepository<Comment> commentsRepository) 
+            => this.commentsRepository = commentsRepository;
 
         public async Task CreateCommentAsync(string content, string userId, int postId)
         {
@@ -47,7 +45,6 @@
                 .Where(c => c.PostId == postId)
                 .To<TModel>()
                 .ToList();
-
 
         public async Task DeleteCommentAsync(int postId, int commentId)
         {

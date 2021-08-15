@@ -7,15 +7,15 @@
 
     public interface ICategoriesService
     {
-        IEnumerable<TModel> GetCategories<TModel>();
-
-        IEnumerable<TModel> GetCategoriesById<TModel>();
-
         Task AddCategoryAsync(string name, string description, string imageUrl);
 
         Task EditCategoryAsync(string name, string description, string imageUrl, int categoryId);
 
         Task DeleteCategoryAsync(int categoryId);
+
+        IEnumerable<TModel> GetCategories<TModel>();
+
+        IEnumerable<TModel> GetCategoriesById<TModel>();
 
         T GetCategoryById<T>(int categoryId);
 
