@@ -11,7 +11,7 @@
     {
         private readonly IDeletableEntityRepository<Vote> votesRepository;
 
-        public VoteService(IDeletableEntityRepository<Vote> votesRepository) 
+        public VoteService(IDeletableEntityRepository<Vote> votesRepository)
             => this.votesRepository = votesRepository;
 
         public async Task VoteAsync(int postId, string userId, bool isUpVote)

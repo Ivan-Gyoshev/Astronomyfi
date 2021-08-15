@@ -1,7 +1,5 @@
 ﻿namespace Astronomyfi.Web.Controllers
 {
-    using System.Threading.Tasks;
-
     using Astronomyfi.Services.Data.Categories;
     using Astronomyfi.Web.ViewModels.Categories;
     using Microsoft.AspNetCore.Authorization;
@@ -12,9 +10,7 @@
         private readonly ICategoriesService categoriesService;
 
         public CategoriesController(ICategoriesService categoryService)
-        {
-            this.categoriesService = categoryService;
-        }
+            => this.categoriesService = categoryService;
 
         public IActionResult All()
         {

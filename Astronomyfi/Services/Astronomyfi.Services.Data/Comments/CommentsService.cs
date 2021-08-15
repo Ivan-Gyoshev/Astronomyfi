@@ -14,7 +14,7 @@
     {
         private readonly IDeletableEntityRepository<Comment> commentsRepository;
 
-        public CommentsService(IDeletableEntityRepository<Comment> commentsRepository) 
+        public CommentsService(IDeletableEntityRepository<Comment> commentsRepository)
             => this.commentsRepository = commentsRepository;
 
         public async Task CreateCommentAsync(string content, string userId, int postId)

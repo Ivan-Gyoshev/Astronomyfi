@@ -62,7 +62,7 @@
             return this.RedirectToAction("All", "Categories");
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
             var categoryModel = this.categoriesService.GetCategoryById(id);
 

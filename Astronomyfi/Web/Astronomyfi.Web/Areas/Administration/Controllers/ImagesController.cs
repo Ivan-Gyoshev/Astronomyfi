@@ -1,9 +1,10 @@
 ﻿namespace Astronomyfi.Web.Areas.Administration.Controllers
 {
+    using System.Threading.Tasks;
+
     using Astronomyfi.Services.Data.Images;
     using Astronomyfi.Web.ViewModels.Images;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
 
     public class ImagesController : AdministrationController
     {
