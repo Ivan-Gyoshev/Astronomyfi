@@ -7,6 +7,7 @@
 
     public class Vote : BaseDeletableModel<int>
     {
+        [Required]
         public TypeOfVote Type { get; set; }
 
         [Required]
