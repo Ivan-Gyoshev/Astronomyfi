@@ -1,5 +1,6 @@
 ﻿namespace Astronomyfi.Services.Data.Tests
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@
     using Astronomyfi.Data.Repositories;
     using Astronomyfi.Services.Data.Categories;
     using Astronomyfi.Services.Data.Tests.Common;
+    using Astronomyfi.Web.ViewModels.Categories;
     using Microsoft.Extensions.DependencyInjection;
     using Xunit;
 
@@ -45,7 +47,7 @@
         {
             var category = await this.CreateCategoryAsync();
 
-            await this.Service.EditCategoryAsync(name, description, imageUrl,1);
+            await this.Service.EditCategoryAsync(name, description, imageUrl, 1);
 
             Assert.True(category.Name == name);
             Assert.True(category.Description == description);
@@ -82,6 +84,39 @@
             Assert.True(result);
         }
 
+        [Fact]
+        public async Task GetPostByCategoryShouldWorkCorrectly()
+        {
+            var category = await this.CreateCategoryAsync();
+
+            var result = this.Service.GetPostsByCategory<CategorySpecifyViewModel>(category.Id);
+            var postsCount = 0;
+
+            Assert.True(result.Posts.Count() == postsCount);
+        }
+
+        [Fact]
+        public async Task GetCategoriesShouldWorkCorrectly()
+        {
+            var category = await this.CreateCategoryAsync();
+
+            var result = this.Service.GetCategories<ListCategoriesViewModel>();
+            var expected = 1;
+
+            Assert.True(result.Count() == expected);
+        }
+
+        [Fact]
+        public async Task GetCategoriesByIdShouldWorkCorrectly()
+        {
+            var category = await this.CreateCategoryAsync();
+
+            var result = this.Service.GetCategoriesById<ListCategoriesViewModel>();
+            var expected = 1;
+
+            Assert.True(result.Count() == expected);
+        }
+
         private async Task<Category> CreateCategoryAsync()
         {
             var category = new Category
@@ -90,6 +125,7 @@
                 Name = "TestName",
                 Description = "TetstDescription",
                 ImageUrl = "TestImageUrl",
+                Posts = new List<Post>(),
             };
 
             await this.DbContext.AddAsync(category);

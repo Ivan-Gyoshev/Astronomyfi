@@ -74,11 +74,15 @@
             Assert.True(this.DbContext.Comments.Count() == 0);
         }
 
-        //[Fact]
-        //public async Task ListAllCommentsShouldWorkCorrectly()
-        //{
-           
-        //}
+        [Fact]
+        public async Task GetCommentByIdGenericShouldWorkCorrectly()
+        {
+            var comment = await this.CreateCommentAsync();
+
+            var result = this.Service.GetById<EditCommentViewModel>(comment.PostId, comment.Id);
+
+            Assert.True(result.Content == comment.Content);
+        }
 
         private async Task<Comment> CreateCommentAsync()
         {

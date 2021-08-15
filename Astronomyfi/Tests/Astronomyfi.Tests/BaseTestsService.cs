@@ -1,6 +1,7 @@
 ﻿namespace Astronomyfi.Services.Data.Tests
 {
     using System;
+    using System.Reflection;
 
     using Astronomyfi.Data;
     using Astronomyfi.Data.Common.Repositories;
@@ -11,6 +12,9 @@
     using Astronomyfi.Services.Data.Posts;
     using Astronomyfi.Services.Data.Users;
     using Astronomyfi.Services.Data.Votes;
+    using Astronomyfi.Services.Mapping;
+    using Astronomyfi.Web;
+    using Astronomyfi.Web.ViewModels;
     using CloudinaryDotNet;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
@@ -50,8 +54,12 @@
 
             services.AddSingleton(cloudinary);
 
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseInMemoryDatabase(Guid.NewGuid().ToString()));
+
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
 
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));

@@ -1,8 +1,8 @@
 ﻿namespace Astronomyfi.Services.Data.Tests
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
     using System.Threading.Tasks;
 
     using Astronomyfi.Data.Models;
@@ -10,9 +10,6 @@
     using Astronomyfi.Data.Repositories;
     using Astronomyfi.Services.Data.Posts;
     using Astronomyfi.Services.Data.Tests.Common;
-    using Astronomyfi.Services.Data.Tests.Mocks;
-    using Astronomyfi.Services.Mapping;
-    using Astronomyfi.Web.ViewModels;
     using Astronomyfi.Web.ViewModels.Posts;
     using Microsoft.Extensions.DependencyInjection;
     using Moq;
@@ -96,23 +93,6 @@
             Assert.True(listTypes.Count() == postTypes.Count());
         }
 
-        [Fact]
-        public async Task GetAllPostsShouldWorkCorrectl()
-        {
-            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
-
-            var post = await this.CreatePostAsync();
-
-            var mockPostsService = new MockPostsService(this.DbContext);
-
-            var posts = mockPostsService.GetAllPosts<PostListingViewModel>().ToList();
-
-            var actualResult = posts.Count();
-            var expectedCount = 1;
-
-            Assert.True(actualResult == expectedCount);
-        }
-
         private async Task<Post> CreatePostAsync()
         {
             var post = new Post
@@ -123,6 +103,7 @@
                 CategoryId = 1,
                 Type = (TypeOfPost)1,
                 AuthorId = "TestUserId",
+                CreatedOn = DateTime.UtcNow,
             };
 
             await this.DbContext.AddAsync(post);
