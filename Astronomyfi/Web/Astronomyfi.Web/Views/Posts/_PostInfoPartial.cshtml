@@ -19,6 +19,9 @@
             </div>
             <div class="media-body">
                 <label>@this.Model.Author</label>
+                <div class="nav tag-cloud">
+                    Score <a class="ml-1 disabled">@this.Model.Author.AccountScore</a>
+                </div>
                 <span>@this.Model.CreatedOn.ToString("dd/MM/yyyy HH:mm")</span>
             </div>
         </div>

@@ -13,16 +13,16 @@
             <a asp-controller="Categories" asp-action="All">>>here<<</a>
         </h3>
         <div class="container text-center">
-            <a asp-controller="Posts" asp-action="Create" class="btn btn-outline-dark font-weight-bold mb-3 mt-3 text-md-center">> Add new Post <</a>
+            <a asp-controller="Posts" asp-action="Create" class="btn btn-outline-primary font-weight-bold mb-3 mt-3 text-md-center"> Add new Post </a>
             <div class="row">
                 <div class="col-md-12">
                     @if (!this.User.Identity.IsAuthenticated)
                     {
-                        <p >You have to <a href="/Identity/Account/Login">Log in </a>to post Comments!</p>
+                        <p>You have to <a href="/Identity/Account/Login">Log in </a>to post in the Forum !</p>
                     }
-                </div>              
+                </div>
             </div>
-        </div>      
+        </div>
     </div>
     <div class="container">
         <div class="row">
@@ -34,7 +34,7 @@
                         <th scope="col">Comments</th>
                         <th width="10%">Type</th>
                         <th width="10%" scope="col">Created on</th>
-                        <th class="t" width="15%">Details</th>
+                        <th width="15%">Details</th>
                     </tr>
                 </thead>
                 <tbody>
