@@ -20,13 +20,9 @@
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> Index(IndexPageViewModel input)
+        public IActionResult Index()
         {
-            var user = await this.userManager.GetUserAsync(this.User);
-
-            input.UserId = user.Id;
-
-            return this.View(input);
+            return this.View();
         }
 
         public IActionResult All()

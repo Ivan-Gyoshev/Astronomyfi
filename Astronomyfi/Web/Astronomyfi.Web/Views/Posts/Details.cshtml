@@ -34,23 +34,25 @@
                 }
                 <partial name="_PostInfoPartial" model="@Model" />
 
-                <div class="article">
-                    <h3 style="color: #20247b">Do you like this post ?</h3>
-                    <div class="text-sm-center small ml-3 row">
-                        <form id="votesForm" method="post"></form>
-                        <div>
-                            <a class="btn btn-outline-info" onclick="sendVote(@this.Model.Id, true)">
-                                <i class="fa fa-thumbs-up"></i>
-                            </a>
-                        </div>
-                        <div>
-                            <a class="btn btn-outline-info ml-3" onclick="sendVote(@this.Model.Id, false)">
-                                <i class="fa fa-thumbs-down"></i>
-                            </a>
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <div class="article">
+                        <h3 style="color: #20247b">Do you like this post ?</h3>
+                        <div class="text-sm-center small ml-3 row">
+                            <form id="votesForm" method="post"></form>
+                            <div>
+                                <a class="btn btn-outline-info" onclick="sendVote(@this.Model.Id, true)">
+                                    <i class="fa fa-thumbs-up"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="btn btn-outline-info ml-3" onclick="sendVote(@this.Model.Id, false)">
+                                    <i class="fa fa-thumbs-down"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                }
                 <div class="contact-form article-comment">
                     <div class="row">
                         <h4 class="col-9">Comments</h4>
@@ -104,6 +106,10 @@
                                 Add comment
                             </button>
                         </div>
+                        @if (!this.User.Identity.IsAuthenticated)
+                        {
+                            <p>You have to <a href="/Identity/Account/Login">Log in </a>to post Comments!</p>
+                        }
                     </form>
                 </div>
             </div>
