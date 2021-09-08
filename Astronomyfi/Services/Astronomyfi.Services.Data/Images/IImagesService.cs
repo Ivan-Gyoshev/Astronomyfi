@@ -12,6 +12,8 @@
 
         Task ApproveAsync(int imageId);
 
+        Task DeclineAsync(int imageId);
+
         TModel GetImage<TModel>(int imageId);
 
         IEnumerable<TModel> GetAllApprovedImages<TModel>();

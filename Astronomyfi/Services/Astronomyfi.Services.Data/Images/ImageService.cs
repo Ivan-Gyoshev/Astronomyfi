@@ -1,5 +1,6 @@
 ﻿namespace Astronomyfi.Services.Data.Images
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -9,7 +10,6 @@
     using Astronomyfi.Data.Models;
     using Astronomyfi.Services.Mapping;
     using Astronomyfi.Web.ViewModels.Images;
-    using Microsoft.AspNetCore.Identity;
 
     public class ImageService : IImagesService
     {
@@ -50,6 +50,16 @@
             var image = this.GetImage(imageId);
 
             image.IsApproved = true;
+
+            await this.imagesRepository.SaveChangesAsync();
+        }
+
+        public async Task DeclineAsync(int imageId)
+        {
+            var image = this.GetImage(imageId);
+
+            image.IsDeleted = true;
+            image.DeletedOn = DateTime.UtcNow;
 
             await this.imagesRepository.SaveChangesAsync();
         }

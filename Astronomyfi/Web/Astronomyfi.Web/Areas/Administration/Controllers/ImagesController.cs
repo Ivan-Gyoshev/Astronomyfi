@@ -25,5 +25,12 @@
 
             return this.Redirect("All");
         }
+
+        public async Task<IActionResult> Decline(int imageId)
+        {
+            await this.imagesService.DeclineAsync(imageId);
+
+            return this.Redirect("All");
+        }
     }
 }
