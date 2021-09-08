@@ -15,7 +15,7 @@
 
         IEnumerable<TModel> ListComments<TModel>(int postId);
 
-        T GetById<T>(int postId, int commentId);
+        TModel GetById<TModel>(int postId, int commentId);
 
         Comment GetById(int postId, int commentId);
     }

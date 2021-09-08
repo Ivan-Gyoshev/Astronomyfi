@@ -38,7 +38,7 @@
         [Authorize]
         public IActionResult Create() => this.View(new PostFormModel
         {
-            Categories = this.categoryService.GetCategoriesById<PostCategoryViewModel>(),
+            Categories = this.categoryService.GetCategories<PostCategoryViewModel>(),
             Types = this.postsService.GetPostTypes(),
         });
 
@@ -53,7 +53,7 @@
 
             if (!this.ModelState.IsValid)
             {
-                post.Categories = this.categoryService.GetCategoriesById<PostCategoryViewModel>();
+                post.Categories = this.categoryService.GetCategories<PostCategoryViewModel>();
                 post.Types = this.postsService.GetPostTypes();
 
                 return this.View(post);
@@ -84,10 +84,10 @@
                 return this.Unauthorized();
             }
 
-            var post = this.postsService.GetById<PostFormModel>(postId);
+            var post = this.postsService.GetPost<PostFormModel>(postId);
 
             post.Types = this.postsService.GetPostTypes();
-            post.Categories = this.categoryService.GetCategoriesById<PostCategoryViewModel>();
+            post.Categories = this.categoryService.GetCategories<PostCategoryViewModel>();
 
             return this.View(post);
         }
@@ -97,7 +97,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                post.Categories = this.categoryService.GetCategoriesById<PostCategoryViewModel>();
+                post.Categories = this.categoryService.GetCategories<PostCategoryViewModel>();
                 post.Types = this.postsService.GetPostTypes();
 
                 return this.View(post);
@@ -129,7 +129,7 @@
                 return this.Unauthorized();
             }
 
-            var post = this.postsService.GetById<PostDetailsViewModel>(postId);
+            var post = this.postsService.GetPost<PostDetailsViewModel>(postId);
 
             return this.View(post);
         }

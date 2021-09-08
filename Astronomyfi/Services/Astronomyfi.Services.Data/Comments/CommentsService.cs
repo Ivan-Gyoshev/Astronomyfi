@@ -56,10 +56,10 @@
             await this.commentsRepository.SaveChangesAsync();
         }
 
-        public T GetById<T>(int postId, int commentId)
+        public TModel GetById<TModel>(int postId, int commentId)
            => this.commentsRepository.All()
            .Where(c => c.PostId == postId & c.Id == commentId)
-           .To<T>()
+           .To<TModel>()
            .FirstOrDefault();
 
         public Comment GetById(int postId, int commentId)

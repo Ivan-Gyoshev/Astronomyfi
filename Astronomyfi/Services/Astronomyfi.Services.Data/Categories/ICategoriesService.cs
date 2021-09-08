@@ -15,8 +15,6 @@
 
         IEnumerable<TModel> GetCategories<TModel>();
 
-        IEnumerable<TModel> GetCategoriesById<TModel>();
-
         T GetCategoryById<T>(int categoryId);
 
         Category GetCategoryById(int categoryId);

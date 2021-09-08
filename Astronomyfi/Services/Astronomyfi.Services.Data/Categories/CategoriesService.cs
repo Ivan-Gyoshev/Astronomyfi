@@ -55,15 +55,6 @@
         }
 
         public IEnumerable<TModel> GetCategories<TModel>()
-        {
-            var categories = this.categoriesRepository.All()
-                .To<TModel>()
-                .ToList();
-
-            return categories;
-        }
-
-        public IEnumerable<TModel> GetCategoriesById<TModel>()
           => this.categoriesRepository.All()
             .To<TModel>()
             .ToList();

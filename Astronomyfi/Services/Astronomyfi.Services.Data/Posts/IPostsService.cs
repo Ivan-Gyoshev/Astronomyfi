@@ -18,8 +18,6 @@
 
         IEnumerable<TypeOfPost> GetPostTypes();
 
-        T GetById<T>(int postId);
-
         Post GetById(int postId);
 
         TModel GetPost<TModel>(int postId);

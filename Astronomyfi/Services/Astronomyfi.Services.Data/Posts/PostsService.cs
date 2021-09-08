@@ -74,12 +74,6 @@
             .Cast<TypeOfPost>()
             .ToList();
 
-        public T GetById<T>(int postId)
-             => this.postsRepository.All()
-            .Where(p => p.Id == postId)
-            .To<T>()
-            .FirstOrDefault();
-
         public Post GetById(int postId)
             => this.postsRepository.All()
             .Where(p => p.Id == postId)
