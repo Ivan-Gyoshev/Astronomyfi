@@ -8,38 +8,32 @@
 <section class="py-5">
     <div class="container row">
         <img class="img-fluid" src="~/assets/img/forum-head.png" alt="Photo" />
-        <h3 class="text-dark">
-            If you want to specify your readings, you can see all the categories
-            <a asp-controller="Categories" asp-action="All">>>here<<</a>
-        </h3>
-        <form method="get" class="col-md-5">
+        <form method="get" class="col-md-4">
             <div class="row">
-                <div class="form-group">
-                    <label asp-for="SearchTerm"></label>
+                <div class="form-group ml-lg-5">
+                    <h3><label asp-for="SearchTerm"></label></h3>
                     <input asp-for="SearchTerm" class="form-control" placeholder="Search...">
                 </div>
-                <a asp-controller="Posts" asp-action="Create"
-                   class="btn btn-outline-primary font-weight-bold mb-3 mt-3 text-md-center col-md-3"> Add new Post </a>
-                <div class="row">
-                    <div class="col-md-12">
-                        @if (!this.User.Identity.IsAuthenticated)
-                        {
-                            <p>You have to <a href="/Identity/Account/Login">Log in </a>to post in the Forum !</p>
-                        }
-                    </div>
-                </div>
-                @*<div class="form-group col-md-4">
-                        <div class="form-group">
-                            <label asp-for="Sorting"></label>
-                            <select asp-for="Sorting" class="form-control">
-                                <option value="0" selected>Date Created</option>
-                                <option value="1">Year</option>
-                                <option value="2">Brand And Model</option>
-                            </select>
-                        </div>
-                    </div>*@
             </div>
         </form>
+        <div class="text-center col-md-4">
+            <a asp-controller="Posts" asp-action="Create"
+               class="btn page-btn text-light font-weight-bold mb-3 mt-3 text-md-center"> Add new Post </a>
+            <div class="row">
+                <div class="col-md-12">
+                    @if (!this.User.Identity.IsAuthenticated)
+                    {
+                        <p>You have to <a href="/Identity/Account/Login">Log in </a>to post in the Forum !</p>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="text-center col-md-4">
+            <h3>Filter by</h3>
+            <a class="btn page-btn font-weight-bold text-light" asp-controller="Categories" asp-action="All">
+                Categories
+            </a>
+        </div>
     </div>
     <div class="container">
         <div class="row">
