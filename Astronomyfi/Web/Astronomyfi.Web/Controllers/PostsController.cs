@@ -29,10 +29,13 @@
             this.userManager = userManager;
         }
 
-        public IActionResult All()
+        public IActionResult All([FromQuery] AllPostsQueryModel query)
         {
-            var posts = this.postsService.GetAllPosts<PostListingViewModel>();
-            return this.View(posts);
+            var queryResult = this.postsService.AllPosts(query.SearchTerm, query.CurrentPage, AllPostsQueryModel.PostsPerPage);
+
+            query.Posts = queryResult.Posts;
+
+            return this.View(query);
         }
 
         [Authorize]

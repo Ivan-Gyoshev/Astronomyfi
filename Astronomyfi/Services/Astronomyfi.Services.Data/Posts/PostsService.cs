@@ -8,7 +8,9 @@
     using Astronomyfi.Data.Common.Repositories;
     using Astronomyfi.Data.Models;
     using Astronomyfi.Data.Models.Enums;
+    using Astronomyfi.Services.Data.Posts.ServiceModels;
     using Astronomyfi.Services.Mapping;
+    using Astronomyfi.Web.ViewModels.Posts;
 
     public class PostsService : IPostsService
     {
@@ -57,11 +59,36 @@
             await this.postsRepository.SaveChangesAsync();
         }
 
+        public PostQueryServiceModel AllPosts(string searchTerm = null, int currentPage = 1, int postsPerPage = int.MaxValue)
+        {
+            var postsQuery = this.postsRepository.All();
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                postsQuery = postsQuery.Where(p => p.Title.ToLower().Contains(searchTerm.ToLower()));
+            }
+
+            var posts = this.GetPosts(postsQuery.Skip((currentPage - 1) * postsPerPage)
+                .Take(postsPerPage));
+
+            return new PostQueryServiceModel
+            {
+                CurrentPage = currentPage,
+                PostsPerPage = postsPerPage,
+                Posts = posts,
+            };
+        }
+
         public IEnumerable<TModel> GetAllPosts<TModel>()
             => this.postsRepository.All()
                   .OrderByDescending(c => c.CreatedOn)
                  .To<TModel>()
                  .ToList();
+
+        private IEnumerable<PostListingViewModel> GetPosts(IQueryable<Post> postQuery)
+            => postQuery
+                .To<PostListingViewModel>()
+                .ToList();
 
         public TModel GetPost<TModel>(int postId)
              => this.postsRepository.All()

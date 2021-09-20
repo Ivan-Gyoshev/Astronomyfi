@@ -5,6 +5,7 @@
 
     using Astronomyfi.Data.Models;
     using Astronomyfi.Data.Models.Enums;
+    using Astronomyfi.Services.Data.Posts.ServiceModels;
 
     public interface IPostsService
     {
@@ -15,6 +16,8 @@
         Task DeletePostAsync(int postId);
 
         IEnumerable<TModel> GetAllPosts<TModel>();
+
+        PostQueryServiceModel AllPosts(string searchTerm = null, int currentPage = 1, int postsPerPage = int.MaxValue);
 
         IEnumerable<TypeOfPost> GetPostTypes();
 

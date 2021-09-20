@@ -1,4 +1,4 @@
-﻿@model List<PostListingViewModel>
+﻿@model AllPostsQueryModel
 
 @{
     this.ViewData["Title"] = "Forum";
@@ -12,21 +12,39 @@
             If you want to specify your readings, you can see all the categories
             <a asp-controller="Categories" asp-action="All">>>here<<</a>
         </h3>
-        <div class="container text-center">
-            <a asp-controller="Posts" asp-action="Create" class="btn btn-outline-primary font-weight-bold mb-3 mt-3 text-md-center"> Add new Post </a>
-            <div class="row">
-                <div class="col-md-12">
-                    @if (!this.User.Identity.IsAuthenticated)
-                    {
-                        <p>You have to <a href="/Identity/Account/Login">Log in </a>to post in the Forum !</p>
-                    }
+            <form method="get" class="col-md-5">
+                <div class="row">
+                    <div class="form-group">
+                        <label asp-for="SearchTerm"></label>
+                        <input asp-for="SearchTerm" class="form-control" placeholder="Search...">
+                    </div>
+
+                    @*<div class="form-group col-md-4">
+                        <div class="form-group">
+                            <label asp-for="Sorting"></label>
+                            <select asp-for="Sorting" class="form-control">
+                                <option value="0" selected>Date Created</option>
+                                <option value="1">Year</option>
+                                <option value="2">Brand And Model</option>
+                            </select>
+                        </div>
+                    </div>*@
                 </div>
-            </div>
-        </div>
+            </form>
+                <a asp-controller="Posts" asp-action="Create"
+                   class="btn btn-outline-primary font-weight-bold mb-3 mt-3 text-md-center col-md-5"> Add new Post </a>
+                <div class="row">
+                    <div class="col-md-12">
+                        @if (!this.User.Identity.IsAuthenticated)
+                        {
+                            <p>You have to <a href="/Identity/Account/Login">Log in </a>to post in the Forum !</p>
+                        }
+                    </div>
+                </div>
     </div>
     <div class="container">
         <div class="row">
-            <table class="table table-hover">
+            <table class="table table-hover" style="background-color: white">
                 <thead class="th">
                     <tr>
                         <th width="12%" scope="col">Author</th>
@@ -38,7 +56,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var post in Model)
+                    @foreach (var post in Model.Posts)
                     {
                         <tr>
                             <td height="40%">
