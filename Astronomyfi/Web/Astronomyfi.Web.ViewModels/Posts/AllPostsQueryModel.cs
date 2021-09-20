@@ -7,6 +7,8 @@
     {
         public const int PostsPerPage = 6;
 
+        public int TotalPosts { get; set; }
+
         [Display(Name = "Search by text")]
         public string SearchTerm { get; set; }
 

@@ -501,3 +501,7 @@ h6 {
     border-radius: 100%;
     overflow: hidden;
 }
+
+.page-btn {
+   background-color: midnightblue;
+}

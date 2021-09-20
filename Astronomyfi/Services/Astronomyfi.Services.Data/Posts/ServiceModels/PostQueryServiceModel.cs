@@ -6,6 +6,8 @@
 
     public class PostQueryServiceModel
     {
+        public int TotalPosts { get; set; }
+
         public int CurrentPage { get; set; }
 
         public int PostsPerPage { get; set; }

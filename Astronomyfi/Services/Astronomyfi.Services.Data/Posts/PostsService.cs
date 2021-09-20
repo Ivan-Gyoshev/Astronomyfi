@@ -65,14 +65,17 @@
 
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                postsQuery = postsQuery.Where(p => p.Title.ToLower().Contains(searchTerm.ToLower()));
+                postsQuery = postsQuery.Where(p => p.Title.ToLower().Contains(searchTerm.ToLower()) || p.Author.UserName.ToLower().Contains(searchTerm.ToLower()));
             }
+
+            var totalPosts = postsQuery.Count();
 
             var posts = this.GetPosts(postsQuery.Skip((currentPage - 1) * postsPerPage)
                 .Take(postsPerPage));
 
             return new PostQueryServiceModel
             {
+                TotalPosts = totalPosts,
                 CurrentPage = currentPage,
                 PostsPerPage = postsPerPage,
                 Posts = posts,
