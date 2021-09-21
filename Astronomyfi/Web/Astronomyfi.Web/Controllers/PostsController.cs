@@ -34,6 +34,7 @@
             var queryResult = this.postsService.AllPosts(query.SearchTerm, query.CurrentPage, AllPostsQueryModel.PostsPerPage);
 
             query.Posts = queryResult.Posts;
+            query.TotalPosts = queryResult.TotalPosts;
 
             return this.View(query);
         }
