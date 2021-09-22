@@ -14,12 +14,14 @@
     public class UsersService : IUsersService
     {
         private readonly IRepository<ApplicationUser> usersRepository;
+        private readonly IRepository<Post> postsRepository;
         private readonly ICloudinaryService cloudinaryService;
 
-        public UsersService(IRepository<ApplicationUser> usersRepository, ICloudinaryService cloudinaryService)
+        public UsersService(IRepository<ApplicationUser> usersRepository, ICloudinaryService cloudinaryService, IRepository<Post> postsRepository)
         {
             this.usersRepository = usersRepository;
             this.cloudinaryService = cloudinaryService;
+            this.postsRepository = postsRepository;
         }
 
         public async Task UpdateAvatarAsync(EditAvatarViewModel input)
@@ -40,6 +42,13 @@
         public async Task DeleteUserAsync(string userId)
         {
             var user = this.GetUser(userId);
+
+            var postsToDelete = this.postsRepository.All().Where(p => p.AuthorId == user.Id).ToList();
+
+            foreach (var post in postsToDelete)
+            {
+                this.postsRepository.Delete(post);
+            }
 
             this.usersRepository.Delete(user);
 
