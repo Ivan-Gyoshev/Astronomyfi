@@ -7,7 +7,10 @@
 
     using Astronomyfi.Data.Common.Repositories;
     using Astronomyfi.Data.Models;
+    using Astronomyfi.Services.Data.Categories.ServiceModels;
     using Astronomyfi.Services.Mapping;
+    using Astronomyfi.Web.ViewModels.Categories;
+    using Astronomyfi.Web.ViewModels.Posts;
 
     public class CategoriesService : ICategoriesService
     {
@@ -18,6 +21,24 @@
         {
             this.categoriesRepository = categoriesRepository;
             this.postsRepository = postsRepository;
+        }
+
+        public CategoryQueryServiceModel Filter(int categoryId, int currentPage = 1, int postsPerPage = int.MaxValue)
+        {
+            var postsQuery = this.categoriesRepository.All();
+
+            var totalPosts = postsQuery.Count();
+
+            var posts = this.GetPosts(postsQuery.Skip((currentPage - 1) * postsPerPage)
+                .Take(postsPerPage));
+
+            return new CategoryQueryServiceModel
+            {
+                TotalPosts = totalPosts,
+                CurrentPage = currentPage,
+                PostsPerPage = postsPerPage,
+                Posts = posts,
+            };
         }
 
         public async Task AddCategoryAsync(string name, string description, string imageUrl)
@@ -95,5 +116,10 @@
         public bool IsExisting(int categoryId)
             => this.categoriesRepository.All()
             .Any(c => c.Id == categoryId);
+
+        private CategorySpecifyViewModel GetPosts(IQueryable<Category> categoryQuery)
+           => categoryQuery
+               .To<CategorySpecifyViewModel>()
+               .FirstOrDefault();
     }
 }

@@ -88,10 +88,10 @@
                  .To<TModel>()
                  .ToList();
 
-        private IEnumerable<PostListingViewModel> GetPosts(IQueryable<Post> postQuery)
-            => postQuery
-                .To<PostListingViewModel>()
-                .ToList();
+        public IEnumerable<TypeOfPost> GetPostTypes()
+             => Enum.GetValues(typeof(TypeOfPost))
+            .Cast<TypeOfPost>()
+            .ToList();
 
         public TModel GetPost<TModel>(int postId)
              => this.postsRepository.All()
@@ -99,14 +99,14 @@
                 .To<TModel>()
                 .FirstOrDefault();
 
-        public IEnumerable<TypeOfPost> GetPostTypes()
-             => Enum.GetValues(typeof(TypeOfPost))
-            .Cast<TypeOfPost>()
-            .ToList();
-
         public Post GetById(int postId)
             => this.postsRepository.All()
             .Where(p => p.Id == postId)
             .FirstOrDefault();
+
+        private IEnumerable<PostListingViewModel> GetPosts(IQueryable<Post> postQuery)
+            => postQuery
+                .To<PostListingViewModel>()
+                .ToList();
     }
 }

@@ -18,11 +18,14 @@
             return this.View(categories);
         }
 
-        public IActionResult Specify(int categoryId)
+        public IActionResult Specify([FromQuery] CategoryPostsQueryModel query, int categoryId)
         {
-            var posts = this.categoriesService.GetPostsByCategory<CategorySpecifyViewModel>(categoryId);
+            var queryResult = this.categoriesService.Filter(query.CurrentPage, CategoryPostsQueryModel.PostsPerPage, categoryId);
 
-            return this.View(posts);
+            query.Categories = this.categoriesService.GetPostsByCategory<CategorySpecifyViewModel>(categoryId);
+            query.TotalPosts = queryResult.TotalPosts;
+
+            return this.View(query);
         }
     }
 }

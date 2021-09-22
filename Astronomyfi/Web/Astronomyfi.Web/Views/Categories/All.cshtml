@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 text-center">
-            <img class="img-fluid text-center" alt="Photo" src="~/assets/img/categories.png" />
+            <img class="img-fluid text-center mt-3" alt="Photo" src="~/assets/img/categories.png" />
             <h1 class="display-4 text-dark border btn-outline-light">Select the forum that you want to read </h1>
         </div>
         <div class="col-sm-1"></div>
@@ -17,13 +17,20 @@
 
                 @foreach (var category in Model)
                 {
-                <li class="card-img">
-                    <img class="img-card" src='@category.ImageUrl' alt=''>
-                    <h3 class="ml-2">@category.Name</h3>
-                    <p class="ml-2">@category.Description</p>
-                    <p class="ml-2"><strong>Posts in this category: @category.PostsCount</strong></p>
-                    <a style="background-image: url('../assets/img/background.jpg')" asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@category.Id" class="btn text-light ml-2">Proceed to Forum</a>
-                </li>
+                    <li class="card-img row">
+                        <img class="img-card" src='@category.ImageUrl' alt=''>
+                        <div class="">
+                            <h3 class="ml-2">@category.Name</h3>
+                            <p class="ml-2">@category.Description</p>
+                        </div>
+                        <div>
+                            <p class="ml-2"><strong>Posts in this category: @category.PostsCount</strong></p>
+                        </div>
+                        <div class="">
+                            <a style="background-image: url('../assets/img/background.jpg')" asp-controller="Categories" asp-action="Specify" asp-route-categoryId="@category.Id"
+                               class="btn text-light ml-2">Proceed to Forum</a>
+                        </div>
+                    </li>
                 }
             </ul>
         </div>
