@@ -10,7 +10,7 @@ namespace Astronomyfi.Data.Models
 
     using static Astronomyfi.Data.Models.Common.DataConstants;
 
-    public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
+    public class ApplicationUser : IdentityUser, IAuditInfo
     {
         public ApplicationUser()
         {
@@ -26,10 +26,6 @@ namespace Astronomyfi.Data.Models
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
-
-        public bool IsDeleted { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
 
         public string AvatarImgUrl { get; set; }
 

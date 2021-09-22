@@ -106,16 +106,16 @@
             Assert.True(result.Count() == expected);
         }
 
-        [Fact]
-        public async Task GetCategoriesByIdShouldWorkCorrectly()
-        {
-            var category = await this.CreateCategoryAsync();
+        //[Fact]
+        //public async Task GetCategoriesByIdShouldWorkCorrectly()
+        //{
+        //    var category = await this.CreateCategoryAsync();
 
-            var result = this.Service.GetCategoriesById<ListCategoriesViewModel>();
-            var expected = 1;
+        //    var result = this.Service.GetCategoriesById<ListCategoriesViewModel>();
+        //    var expected = 1;
 
-            Assert.True(result.Count() == expected);
-        }
+        //    Assert.True(result.Count() == expected);
+        //}
 
         private async Task<Category> CreateCategoryAsync()
         {

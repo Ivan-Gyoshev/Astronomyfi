@@ -37,12 +37,11 @@
             await this.usersRepository.SaveChangesAsync();
         }
 
-        public async Task BanUserAsync(string userId)
+        public async Task DeleteUserAsync(string userId)
         {
             var user = this.GetUser(userId);
 
-            user.IsDeleted = true;
-            user.DeletedOn = DateTime.UtcNow;
+            this.usersRepository.Delete(user);
 
             await this.usersRepository.SaveChangesAsync();
         }

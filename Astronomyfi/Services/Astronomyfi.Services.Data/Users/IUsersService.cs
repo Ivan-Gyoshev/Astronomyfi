@@ -10,7 +10,7 @@
     {
         Task UpdateAvatarAsync(EditAvatarViewModel input);
 
-        Task BanUserAsync(string userId);
+        Task DeleteUserAsync(string userId);
 
         TModel GetUser<TModel>(string userId);
 

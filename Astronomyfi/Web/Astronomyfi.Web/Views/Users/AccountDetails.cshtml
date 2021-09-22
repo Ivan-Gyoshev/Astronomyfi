@@ -10,12 +10,13 @@
                     <div class="row m-l-0 m-r-0">
                         <div class="col-sm-4 bg-c-lite-green user-profile">
                             <div class="card-block text-center text-white">
-                                <a class="btn btn-sm btn-outline-light" asp-controller="Users" asp-action="EditAvatar" asp-route-id="@this.Model.Id">Change image</a>
+                                <a class="btn btn-sm btn-outline-light" asp-controller="Users" asp-action="EditAvatar">Change image</a>
                                 <div class="m-b-25 mt-2"> <img src="@Model.AvatarImgUrl" class="img-radius" alt="User-Profile-Image"> </div>
                                 <div class="">
                                     <p><u>Username</u></p>
                                     <h6 class="text-white f-w-400 font-weight-bold">@Model.Username</h6>
                                 </div>
+                                <a class="btn btn-sm btn-danger mt-lg-5" asp-controller="Users" asp-action="Delete">Delete Account</a>
                             </div>
                         </div>
                         <div class="col-sm-8">

@@ -28,7 +28,7 @@
 
         public async Task<IActionResult> Ban(string userId)
         {
-            await this.usersService.BanUserAsync(userId);
+            await this.usersService.DeleteUserAsync(userId);
 
             return this.RedirectToAction("All");
         }

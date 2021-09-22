@@ -11,12 +11,14 @@
     public class UsersController : Controller
     {
         private readonly IUsersService usersService;
+        private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public UsersController(IUsersService usersService, UserManager<ApplicationUser> userManager)
+        public UsersController(IUsersService usersService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             this.usersService = usersService;
             this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
         public async Task<IActionResult> AccountDetails()
@@ -50,6 +52,31 @@
             await this.usersService.UpdateAvatarAsync(input);
 
             return this.RedirectToAction("AccountDetails", "Users", new { userId = input.Id });
+        }
+
+        public async Task<IActionResult> Delete()
+        {
+            var currentUser = await this.userManager.GetUserAsync(this.User);
+
+            var userView = this.usersService.GetUser<UsersDetailsViewModel>(currentUser.Id);
+
+            return this.View(userView);
+        }
+
+        public async Task<IActionResult> DeleteConfirmation()
+        {
+            var currentUser = await this.userManager.GetUserAsync(this.User);
+
+            if (currentUser.UserName == null)
+            {
+                return this.BadRequest();
+            }
+
+            await this.usersService.DeleteUserAsync(currentUser.Id);
+
+            await this.signInManager.SignOutAsync();
+
+            return this.RedirectToAction("Index", "Home");
         }
     }
 }
