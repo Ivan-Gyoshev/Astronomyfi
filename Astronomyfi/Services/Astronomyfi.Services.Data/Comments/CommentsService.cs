@@ -34,6 +34,11 @@
         {
             var comment = this.GetById(postId, commentId);
 
+            if (content == null)
+            {
+                return;
+            }
+
             comment.Content = content;
 
             await this.commentsRepository.SaveChangesAsync();
