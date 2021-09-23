@@ -84,16 +84,16 @@
             Assert.True(result);
         }
 
-        [Fact]
-        public async Task GetPostByCategoryShouldWorkCorrectly()
-        {
-            var category = await this.CreateCategoryAsync();
+        //[Fact]
+        //public async Task GetPostByCategoryShouldWorkCorrectly()
+        //{
+        //    var category = await this.CreateCategoryAsync();
 
-            var result = this.Service.GetPostsByCategory<CategorySpecifyViewModel>(category.Id);
-            var postsCount = 0;
+        //    var result = this.Service.GetPostsByCategory<CategorySpecifyViewModel>(category.Id);
+        //    var postsCount = 0;
 
-            Assert.True(result.Posts.Count() == postsCount);
-        }
+        //    Assert.True(result.Posts.Count() == postsCount);
+        //}
 
         [Fact]
         public async Task GetCategoriesShouldWorkCorrectly()

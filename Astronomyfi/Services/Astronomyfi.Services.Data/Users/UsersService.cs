@@ -15,13 +15,19 @@
     {
         private readonly IRepository<ApplicationUser> usersRepository;
         private readonly IRepository<Post> postsRepository;
+        private readonly IRepository<Image> imagesRepository;
+        private readonly IRepository<Comment> commentsRepository;
+        private readonly IRepository<Vote> votesRepository;
         private readonly ICloudinaryService cloudinaryService;
 
-        public UsersService(IRepository<ApplicationUser> usersRepository, ICloudinaryService cloudinaryService, IRepository<Post> postsRepository)
+        public UsersService(IRepository<ApplicationUser> usersRepository, ICloudinaryService cloudinaryService, IRepository<Post> postsRepository, IRepository<Image> imagesRepository, IRepository<Comment> commentsRepository, IRepository<Vote> votesRepository)
         {
             this.usersRepository = usersRepository;
             this.cloudinaryService = cloudinaryService;
             this.postsRepository = postsRepository;
+            this.imagesRepository = imagesRepository;
+            this.commentsRepository = commentsRepository;
+            this.votesRepository = votesRepository;
         }
 
         public async Task UpdateAvatarAsync(EditAvatarViewModel input)
@@ -43,11 +49,44 @@
         {
             var user = this.GetUser(userId);
 
-            var postsToDelete = this.postsRepository.All().Where(p => p.AuthorId == user.Id).ToList();
-
-            foreach (var post in postsToDelete)
+            if (this.postsRepository.All().Any(p => p.AuthorId == user.Id))
             {
-                this.postsRepository.Delete(post);
+                var postsToDelete = this.postsRepository.All().Where(p => p.AuthorId == user.Id).ToList();
+
+                foreach (var post in postsToDelete)
+                {
+                    this.postsRepository.Delete(post);
+                }
+            }
+
+            if (this.imagesRepository.All().Any(i => i.AuthorId == user.Id))
+            {
+                var imagesToDelete = this.imagesRepository.All().Where(i => i.AuthorId == user.Id).ToList();
+
+                foreach (var image in imagesToDelete)
+                {
+                    this.imagesRepository.Delete(image);
+                }
+            }
+
+            if (this.commentsRepository.All().Any(c => c.AuthorId == user.Id))
+            {
+                var commentsToDelete = this.commentsRepository.All().Where(i => i.AuthorId == user.Id).ToList();
+
+                foreach (var comment in commentsToDelete)
+                {
+                    this.commentsRepository.Delete(comment);
+                }
+            }
+
+            if (this.votesRepository.All().Any(c => c.AuthorId == user.Id))
+            {
+                var votesToDelete = this.votesRepository.All().Where(i => i.AuthorId == user.Id).ToList();
+
+                foreach (var vote in votesToDelete)
+                {
+                    this.votesRepository.Delete(vote);
+                }
             }
 
             this.usersRepository.Delete(user);

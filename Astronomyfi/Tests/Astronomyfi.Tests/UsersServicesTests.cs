@@ -32,18 +32,18 @@
             Assert.True(user == result);
         }
 
-        [Fact]
-        public async Task BanUserShouldWorkCorrectly()
-        {
-            var user = await this.CreateUserAsync();
+        //[Fact]
+        //public async Task BanUserShouldWorkCorrectly()
+        //{
+        //    var user = await this.CreateUserAsync();
 
-            await this.Service.BanUserAsync(user.Id);
+        //    await this.Service.BanUserAsync(user.Id);
 
-            var result = this.DbContext.Users.Count();
-            var expected = 0;
+        //    var result = this.DbContext.Users.Count();
+        //    var expected = 0;
 
-            Assert.True(result == expected);
-        }
+        //    Assert.True(result == expected);
+        //}
 
         [Fact]
         public async Task UpdateAvatarAsyncShouldWorkCorrectlyWhenNewImageIsNull()
