@@ -6,7 +6,7 @@
 
     using static Astronomyfi.Data.Models.Common.DataConstants;
 
-    public class Image : BaseDeletableModel<int>
+    public class Image : BaseModel<int>
     {
         [Required]
         [MaxLength(ImageDescriptionMaxLength)]

@@ -13,10 +13,10 @@
 
     public class ImageService : IImagesService
     {
-        private readonly IDeletableEntityRepository<Image> imagesRepository;
+        private readonly IRepository<Image> imagesRepository;
         private readonly ICloudinaryService cloudinaryService;
 
-        public ImageService(IDeletableEntityRepository<Image> imagesRepository, ICloudinaryService cloudinaryService)
+        public ImageService(IRepository<Image> imagesRepository, ICloudinaryService cloudinaryService)
         {
             this.imagesRepository = imagesRepository;
             this.cloudinaryService = cloudinaryService;
@@ -58,8 +58,7 @@
         {
             var image = this.GetImage(imageId);
 
-            image.IsDeleted = true;
-            image.DeletedOn = DateTime.UtcNow;
+            this.imagesRepository.Delete(image);
 
             await this.imagesRepository.SaveChangesAsync();
         }
