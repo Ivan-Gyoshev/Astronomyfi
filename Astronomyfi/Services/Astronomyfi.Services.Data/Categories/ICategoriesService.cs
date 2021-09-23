@@ -22,8 +22,6 @@
 
         Category GetCategoryById(int categoryId);
 
-        TModel GetPostsByCategory<TModel>(int categoryId);
-
         bool IsExisting(int categoryId);
     }
 }

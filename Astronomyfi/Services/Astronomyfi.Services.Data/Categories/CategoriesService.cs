@@ -25,18 +25,20 @@
 
         public CategoryQueryServiceModel Filter(int categoryId, int currentPage = 1, int postsPerPage = int.MaxValue)
         {
-            var postsQuery = this.categoriesRepository.All();
+            var postQuery = this.postsRepository.All().Where(p => p.CategoryId == categoryId);
 
-            var totalPosts = postsQuery.Count();
+            var totalPosts = postQuery.ToList().Count();
 
-            var posts = this.GetPosts(postsQuery.Skip((currentPage - 1) * postsPerPage)
-                .Take(postsPerPage));
+            var category = this.GetCategory(categoryId);
+
+            var posts = this.GetPosts(postQuery.Skip((currentPage - 1) * postsPerPage).Take(postsPerPage));
 
             return new CategoryQueryServiceModel
             {
                 TotalPosts = totalPosts,
                 CurrentPage = currentPage,
                 PostsPerPage = postsPerPage,
+                Categories = category,
                 Posts = posts,
             };
         }
@@ -80,28 +82,6 @@
             .To<TModel>()
             .ToList();
 
-        public TModel GetPostsByCategory<TModel>(int categoryId)
-        {
-            if (this.postsRepository.All().Any(p => p.CategoryId == categoryId))
-            {
-                var categoryPosts = this.categoriesRepository.All()
-                 .Where(p => p.Id == categoryId)
-                 .To<TModel>()
-                 .FirstOrDefault();
-
-                return categoryPosts;
-            }
-            else
-            {
-                var emptyCategory = this.categoriesRepository.All()
-                    .Where(c => c.Id == categoryId)
-                    .To<TModel>()
-                    .FirstOrDefault();
-
-                return emptyCategory;
-            }
-        }
-
         public T GetCategoryById<T>(int categoryId)
             => this.categoriesRepository.All()
             .Where(c => c.Id == categoryId)
@@ -117,9 +97,16 @@
             => this.categoriesRepository.All()
             .Any(c => c.Id == categoryId);
 
-        private CategorySpecifyViewModel GetPosts(IQueryable<Category> categoryQuery)
-           => categoryQuery
-               .To<CategorySpecifyViewModel>()
-               .FirstOrDefault();
+        private IEnumerable<PostListingViewModel> GetPosts(IQueryable<Post> postQuery)
+           => postQuery
+               .To<PostListingViewModel>()
+               .ToList();
+
+        private CategorySpecifyViewModel GetCategory(int categoryId)
+            => this.categoriesRepository
+            .All()
+            .Where(c => c.Id == categoryId)
+            .To<CategorySpecifyViewModel>()
+            .FirstOrDefault();
     }
 }

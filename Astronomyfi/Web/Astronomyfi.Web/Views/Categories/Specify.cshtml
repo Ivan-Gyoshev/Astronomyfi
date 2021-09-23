@@ -1,16 +1,16 @@
 ﻿@model Astronomyfi.Web.ViewModels.Categories.CategoryPostsQueryModel
 @{
-    this.ViewData["Title"] = $"{Model.Categories.Name} Forum";
+    this.ViewData["Title"] = $"{Model.Category.Name} Forum";
 }
 
 <section class="py-5 row">
     <div class="row">
         <div class="col-2 img-fluid">
-            <img class="border" src="@Model.Categories.ImageUrl" alt="Alternate Text" />
+            <img class="border" src="@Model.Category.ImageUrl" alt="Alternate Text" />
         </div>
         <div class="col-8">
-            <h3>@Model.Categories.Name</h3>
-            <h4>@Model.Categories.Description</h4>
+            <h3>@Model.Category.Name</h3>
+            <h4>@Model.Category.Description</h4>
         </div>
     </div>
     <div class="text-center offset-5">
@@ -27,7 +27,7 @@
     </div>
     <div class="container">
         <div class="row">
-            @if (Model.Categories.Posts.Count() == 0)
+            @if (Model.Posts.Count() == 0)
             {
                 <div class="jumbotron jumbotron-fluid">
                     <div class="container">
@@ -51,7 +51,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var post in Model.Categories.Posts)
+                        @foreach (var post in Model.Posts)
                         {
                             <tr>
                                 <td height="40%">
@@ -89,15 +89,17 @@
                     <a class="btn page-btn font-weight-bold text-light @(Model.CurrentPage == 1 ? "disabled" : string.Empty)"
                        asp-controller="Categories"
                        asp-action="Specify"
+                       asp-route-categoryId="@Model.Category.Id"
                        asp-route-currentPage="@previousPage">&lt;&lt; Page</a>
                 </div>
 
-                var buttonDisable = Model.CurrentPage == maxPage || !Model.Categories.Posts.Any();
+                var buttonDisable = Model.CurrentPage == maxPage || !Model.Posts.Any();
 
                 <div class="col-lg-2">
                     <a class="btn page-btn font-weight-bold text-light float-sm-right @(buttonDisable ? "disabled" : string.Empty)"
                        asp-controller="Categories"
                        asp-action="Specify"
+                       asp-route-categoryId="@Model.Category.Id"
                        asp-route-currentPage="@(Model.CurrentPage + 1)">Page >></a>
                 </div>
             }

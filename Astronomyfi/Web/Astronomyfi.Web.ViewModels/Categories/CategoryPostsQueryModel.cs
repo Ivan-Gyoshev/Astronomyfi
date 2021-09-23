@@ -12,6 +12,8 @@
 
         public int CurrentPage { get; set; } = 1;
 
-        public CategorySpecifyViewModel Categories { get; set; }
+        public CategorySpecifyViewModel Category { get; set; }
+
+        public IEnumerable<PostListingViewModel> Posts { get; set; }
     }
 }

@@ -13,6 +13,8 @@
 
         public int PostsPerPage { get; set; }
 
-        public CategorySpecifyViewModel Posts { get; set; }
+        public CategorySpecifyViewModel Categories { get; set; }
+
+        public IEnumerable<PostListingViewModel> Posts { get; set; }
     }
 }

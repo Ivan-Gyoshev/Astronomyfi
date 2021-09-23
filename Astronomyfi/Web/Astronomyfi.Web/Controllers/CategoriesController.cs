@@ -20,10 +20,11 @@
 
         public IActionResult Specify([FromQuery] CategoryPostsQueryModel query, int categoryId)
         {
-            var queryResult = this.categoriesService.Filter(query.CurrentPage, CategoryPostsQueryModel.PostsPerPage, categoryId);
+            var queryResult = this.categoriesService.Filter(categoryId, query.CurrentPage, CategoryPostsQueryModel.PostsPerPage);
 
-            query.Categories = this.categoriesService.GetPostsByCategory<CategorySpecifyViewModel>(categoryId);
+            query.Category = queryResult.Categories;
             query.TotalPosts = queryResult.TotalPosts;
+            query.Posts = queryResult.Posts;
 
             return this.View(query);
         }
