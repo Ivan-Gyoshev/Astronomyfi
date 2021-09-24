@@ -2,6 +2,8 @@
 
 ![AstronomyfiLogo](AstronomifyLogo.png)
 
+<p>Notice: The application is not responsive for mobile devices yet.</p>
+
 ###### Overview:
 
 Astronomyfi is a forum system designed specifically for the European region. In it you can find various discussions about astronomy and all things on this topic. You can ask various questions or initiate new conversations on several interesting topics. You also have the opportunity to share photos of the starry sky or space. <br>
