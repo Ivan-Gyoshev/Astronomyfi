@@ -10,7 +10,8 @@
     {
         Task UpdateAvatarAsync(EditAvatarViewModel input);
 
-        Task DeleteUserAsync(string userId);
+        // Still in Work
+        // Task DeleteUserAsync(string userId);
 
         TModel GetUser<TModel>(string userId);
 

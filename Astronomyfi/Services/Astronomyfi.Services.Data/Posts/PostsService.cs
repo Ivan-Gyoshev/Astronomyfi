@@ -107,6 +107,7 @@
         private IEnumerable<PostListingViewModel> GetPosts(IQueryable<Post> postQuery)
             => postQuery
                 .To<PostListingViewModel>()
+                .OrderByDescending(p => p.CreatedOn)
                 .ToList();
     }
 }

@@ -7,7 +7,7 @@
 
     using static Astronomyfi.Data.Models.Common.DataConstants;
 
-    public class Comment : BaseDeletableModel<int>
+    public class Comment : BaseModel<int>
     {
         public Comment() => this.Votes = new HashSet<Vote>();
 

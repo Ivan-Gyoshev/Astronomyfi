@@ -28,7 +28,7 @@
             // Arange
             var dbContext = ApplicationDbContextInMemoryFactory.InitializeContext;
 
-            var commentsRepository = new EfDeletableEntityRepository<Comment>(dbContext);
+            var commentsRepository = new EfRepository<Comment>(dbContext);
 
             var commentsService = new CommentsService(commentsRepository);
 

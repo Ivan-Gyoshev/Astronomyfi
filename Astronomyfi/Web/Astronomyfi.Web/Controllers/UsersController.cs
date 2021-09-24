@@ -63,20 +63,22 @@
             return this.View(userView);
         }
 
-        public async Task<IActionResult> DeleteConfirmation()
-        {
-            var currentUser = await this.userManager.GetUserAsync(this.User);
+        // Still in work
 
-            if (currentUser.UserName == null)
-            {
-                return this.BadRequest();
-            }
+        //public async Task<IActionResult> DeleteConfirmation()
+        //{
+        //    var currentUser = await this.userManager.GetUserAsync(this.User);
 
-            await this.usersService.DeleteUserAsync(currentUser.Id);
+        //    if (currentUser.UserName == null)
+        //    {
+        //        return this.BadRequest();
+        //    }
 
-            await this.signInManager.SignOutAsync();
+        //    await this.usersService.DeleteUserAsync(currentUser.Id);
 
-            return this.RedirectToAction("Index", "Home");
-        }
+        //    await this.signInManager.SignOutAsync();
+
+        //    return this.RedirectToAction("Index", "Home");
+        //}
     }
 }

@@ -45,54 +45,68 @@
             await this.usersRepository.SaveChangesAsync();
         }
 
-        public async Task DeleteUserAsync(string userId)
-        {
-            var user = this.GetUser(userId);
+        // Still in Work
 
-            if (this.postsRepository.All().Any(p => p.AuthorId == user.Id))
-            {
-                var postsToDelete = this.postsRepository.All().Where(p => p.AuthorId == user.Id).ToList();
+        //public async Task DeleteUserAsync(string userId)
+        //{
+        //    var user = this.GetUser(userId);
 
-                foreach (var post in postsToDelete)
-                {
-                    this.postsRepository.Delete(post);
-                }
-            }
+        //    if (this.postsRepository.All().Any(p => p.AuthorId == user.Id))
+        //    {
+        //        var postsToDelete = this.postsRepository.All().Where(p => p.AuthorId == user.Id).ToList();
 
-            if (this.imagesRepository.All().Any(i => i.AuthorId == user.Id))
-            {
-                var imagesToDelete = this.imagesRepository.All().Where(i => i.AuthorId == user.Id).ToList();
+        //        foreach (var post in postsToDelete)
+        //        {
+        //            foreach (var comment in post.Comments)
+        //            {
+        //                this.commentsRepository.Delete(comment);
+        //            }
 
-                foreach (var image in imagesToDelete)
-                {
-                    this.imagesRepository.Delete(image);
-                }
-            }
+        //            this.postsRepository.Delete(post);
+        //        }
 
-            if (this.commentsRepository.All().Any(c => c.AuthorId == user.Id))
-            {
-                var commentsToDelete = this.commentsRepository.All().Where(i => i.AuthorId == user.Id).ToList();
+        //        await this.postsRepository.SaveChangesAsync();
+        //    }
 
-                foreach (var comment in commentsToDelete)
-                {
-                    this.commentsRepository.Delete(comment);
-                }
-            }
+        //    if (this.commentsRepository.All().Any(c => c.Author.Id == userId))
+        //    {
+        //        var commentsToDelete = this.commentsRepository.All().Where(i => i.AuthorId == user.Id).ToList();
 
-            if (this.votesRepository.All().Any(c => c.AuthorId == user.Id))
-            {
-                var votesToDelete = this.votesRepository.All().Where(i => i.AuthorId == user.Id).ToList();
+        //        foreach (var comment in commentsToDelete)
+        //        {
+        //            this.commentsRepository.Delete(comment);
+        //        }
 
-                foreach (var vote in votesToDelete)
-                {
-                    this.votesRepository.Delete(vote);
-                }
-            }
+        //        await this.commentsRepository.SaveChangesAsync();
+        //    }
 
-            this.usersRepository.Delete(user);
+        //    if (this.votesRepository.All().Any(c => c.AuthorId == user.Id))
+        //    {
+        //        var votesToDelete = this.votesRepository.All().Where(i => i.AuthorId == user.Id).ToList();
 
-            await this.usersRepository.SaveChangesAsync();
-        }
+        //        foreach (var vote in votesToDelete)
+        //        {
+        //            this.votesRepository.Delete(vote);
+        //        }
+
+        //        await this.votesRepository.SaveChangesAsync();
+        //    } 
+        //    if (this.imagesRepository.All().Any(i => i.AuthorId == user.Id))
+        //    {
+        //        var imagesToDelete = this.imagesRepository.All().Where(i => i.AuthorId == user.Id).ToList();
+
+        //        foreach (var image in imagesToDelete)
+        //        {
+        //            this.imagesRepository.Delete(image);
+        //        }
+
+        // await this.imagesRepository.SaveChangesAsync();
+        //    }
+
+        //    this.usersRepository.Delete(user);
+
+        //    await this.usersRepository.SaveChangesAsync();
+        //}
 
         public IEnumerable<TModel> GetAllUsers<TModel>()
             => this.usersRepository.All()

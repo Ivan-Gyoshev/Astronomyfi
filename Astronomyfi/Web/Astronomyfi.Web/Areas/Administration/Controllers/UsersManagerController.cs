@@ -26,11 +26,13 @@
             return this.View(users);
         }
 
-        public async Task<IActionResult> Ban(string userId)
-        {
-            await this.usersService.DeleteUserAsync(userId);
+        // Still in Work
 
-            return this.RedirectToAction("All");
-        }
+        //public async Task<IActionResult> Ban(string userId)
+        //{
+        //    await this.usersService.DeleteUserAsync(userId);
+
+        //    return this.RedirectToAction("All");
+        //}
     }
 }

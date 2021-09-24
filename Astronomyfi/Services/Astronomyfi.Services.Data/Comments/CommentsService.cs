@@ -12,9 +12,9 @@
 
     public class CommentsService : ICommentsService
     {
-        private readonly IDeletableEntityRepository<Comment> commentsRepository;
+        private readonly IRepository<Comment> commentsRepository;
 
-        public CommentsService(IDeletableEntityRepository<Comment> commentsRepository)
+        public CommentsService(IRepository<Comment> commentsRepository)
             => this.commentsRepository = commentsRepository;
 
         public async Task CreateCommentAsync(string content, string userId, int postId)
@@ -55,8 +55,7 @@
         {
             var comment = this.GetById(postId, commentId);
 
-            comment.IsDeleted = true;
-            comment.DeletedOn = DateTime.UtcNow;
+            this.commentsRepository.Delete(comment);
 
             await this.commentsRepository.SaveChangesAsync();
         }
