@@ -8,6 +8,8 @@
 
 Astronomyfi is a forum system designed specifically for the European region. In it you can find various discussions about astronomy and all things on this topic. You can ask various questions or initiate new conversations on several interesting topics. You also have the opportunity to share photos of the starry sky or space. <br>
 The Forum is mainly focused on events that have occurred or will occur in Europe and the region.(This does not prevent you from having or posting information from all over the world).
+
+http://astronomyfi.azurewebsites.net/
   
 # 🛠 Built with:
 * [.NET Core 5.0](https://github.com/dotnet/core)
