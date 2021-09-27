@@ -70,7 +70,7 @@
 
             var totalPosts = postsQuery.Count();
 
-            var posts = this.GetPosts(postsQuery.Skip((currentPage - 1) * postsPerPage)
+            var posts = this.GetPosts(postsQuery.OrderByDescending(p => p.CreatedOn).Skip((currentPage - 1) * postsPerPage)
                 .Take(postsPerPage));
 
             return new PostQueryServiceModel
@@ -107,7 +107,6 @@
         private IEnumerable<PostListingViewModel> GetPosts(IQueryable<Post> postQuery)
             => postQuery
                 .To<PostListingViewModel>()
-                .OrderByDescending(p => p.CreatedOn)
                 .ToList();
     }
 }
