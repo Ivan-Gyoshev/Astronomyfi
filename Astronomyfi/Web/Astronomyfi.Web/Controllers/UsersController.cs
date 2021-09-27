@@ -62,23 +62,5 @@
 
             return this.View(userView);
         }
-
-        // Still in work
-
-        //public async Task<IActionResult> DeleteConfirmation()
-        //{
-        //    var currentUser = await this.userManager.GetUserAsync(this.User);
-
-        //    if (currentUser.UserName == null)
-        //    {
-        //        return this.BadRequest();
-        //    }
-
-        //    await this.usersService.DeleteUserAsync(currentUser.Id);
-
-        //    await this.signInManager.SignOutAsync();
-
-        //    return this.RedirectToAction("Index", "Home");
-        //}
     }
 }

@@ -14,20 +14,12 @@
     public class UsersService : IUsersService
     {
         private readonly IRepository<ApplicationUser> usersRepository;
-        private readonly IRepository<Post> postsRepository;
-        private readonly IRepository<Image> imagesRepository;
-        private readonly IRepository<Comment> commentsRepository;
-        private readonly IRepository<Vote> votesRepository;
         private readonly ICloudinaryService cloudinaryService;
 
-        public UsersService(IRepository<ApplicationUser> usersRepository, ICloudinaryService cloudinaryService, IRepository<Post> postsRepository, IRepository<Image> imagesRepository, IRepository<Comment> commentsRepository, IRepository<Vote> votesRepository)
+        public UsersService(IRepository<ApplicationUser> usersRepository, ICloudinaryService cloudinaryService)
         {
             this.usersRepository = usersRepository;
             this.cloudinaryService = cloudinaryService;
-            this.postsRepository = postsRepository;
-            this.imagesRepository = imagesRepository;
-            this.commentsRepository = commentsRepository;
-            this.votesRepository = votesRepository;
         }
 
         public async Task UpdateAvatarAsync(EditAvatarViewModel input)
@@ -44,69 +36,6 @@
             this.usersRepository.Update(user);
             await this.usersRepository.SaveChangesAsync();
         }
-
-        // Still in Work
-
-        //public async Task DeleteUserAsync(string userId)
-        //{
-        //    var user = this.GetUser(userId);
-
-        //    if (this.postsRepository.All().Any(p => p.AuthorId == user.Id))
-        //    {
-        //        var postsToDelete = this.postsRepository.All().Where(p => p.AuthorId == user.Id).ToList();
-
-        //        foreach (var post in postsToDelete)
-        //        {
-        //            foreach (var comment in post.Comments)
-        //            {
-        //                this.commentsRepository.Delete(comment);
-        //            }
-
-        //            this.postsRepository.Delete(post);
-        //        }
-
-        //        await this.postsRepository.SaveChangesAsync();
-        //    }
-
-        //    if (this.commentsRepository.All().Any(c => c.Author.Id == userId))
-        //    {
-        //        var commentsToDelete = this.commentsRepository.All().Where(i => i.AuthorId == user.Id).ToList();
-
-        //        foreach (var comment in commentsToDelete)
-        //        {
-        //            this.commentsRepository.Delete(comment);
-        //        }
-
-        //        await this.commentsRepository.SaveChangesAsync();
-        //    }
-
-        //    if (this.votesRepository.All().Any(c => c.AuthorId == user.Id))
-        //    {
-        //        var votesToDelete = this.votesRepository.All().Where(i => i.AuthorId == user.Id).ToList();
-
-        //        foreach (var vote in votesToDelete)
-        //        {
-        //            this.votesRepository.Delete(vote);
-        //        }
-
-        //        await this.votesRepository.SaveChangesAsync();
-        //    } 
-        //    if (this.imagesRepository.All().Any(i => i.AuthorId == user.Id))
-        //    {
-        //        var imagesToDelete = this.imagesRepository.All().Where(i => i.AuthorId == user.Id).ToList();
-
-        //        foreach (var image in imagesToDelete)
-        //        {
-        //            this.imagesRepository.Delete(image);
-        //        }
-
-        // await this.imagesRepository.SaveChangesAsync();
-        //    }
-
-        //    this.usersRepository.Delete(user);
-
-        //    await this.usersRepository.SaveChangesAsync();
-        //}
 
         public IEnumerable<TModel> GetAllUsers<TModel>()
             => this.usersRepository.All()
