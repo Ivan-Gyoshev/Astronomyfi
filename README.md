@@ -2,7 +2,7 @@
 
 ![AstronomyfiLogo](AstronomifyLogo.png)
 
-<p>Notice: The application is not fully responsive for mobile devices yet.</p>
+<p>Notе: The application is not fully responsive for mobile devices yet.</p>
 
 ###### Overview:
 
