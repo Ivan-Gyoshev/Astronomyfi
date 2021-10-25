@@ -1,0 +1,3 @@
+astronomyfi.database.windows.net
+
+acc astronomyfi pass NItwPD1a3xZ7qvda
