@@ -1,6 +1,6 @@
 <p>Astronomyfi Website is my defense project for <a href="https://softuni.bg/trainings/3354/asp-dot-net-core-june-2021">ASP.NET Core course</a> at SoftUni (June-August 2021).</p>
 
-![AstronomyfiLogo](AstronomifyLogo.png)
+![AstronomyfiLogo](Screenshots/AstronomifyLogo.png)
 
 <p>Notе: The application is not fully responsive for mobile devices yet.</p>
 
