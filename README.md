@@ -30,3 +30,13 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) f
 [Nikolay Kostov](https://github.com/NikolayIT) <br>
 [Vladislav Karamfilov](https://github.com/vladislav-karamfilov) <br>
 [Stoyan Shopov](https://github.com/StoyanShopov) <br>
+
+# Screenshots
+
+![Home](HomePage.png)
+![Forum](Forum-Home.png)
+![SpaceCaptures](Post-Details.png)
+![Post](Categories.png)
+![Categories](Category-Details.png)
+![Category-Details](Space-Captures.png)
+![Account Panel](Account-Panel.png)
