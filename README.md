@@ -33,10 +33,12 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) f
 
 # Screenshots
 
-![Home](HomePage.png)
-![Forum](Forum-Home.png)
-![SpaceCaptures](Post-Details.png)
-![Post](Categories.png)
-![Categories](Category-Details.png)
-![Category-Details](Space-Captures.png)
-![Account Panel](Account-Panel.png)
+<img align="left" src="Screenshots/HomePage.png" />
+<img align="left" src="Screenshots/Forum-Home.png" />
+<img align="left" src="Screenshots/Post-Details.png" />
+<img align="left" src="Screenshots/Categories.png"  />
+<img align="left" src="Screenshots/Category-Details.png" />
+<img align="left" src="Screenshots/Space-Captures.png"/> <br>
+<img align="left" src="Screenshots/Account-Panel.png" /> <br>
+
+
